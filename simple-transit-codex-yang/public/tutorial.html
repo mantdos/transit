@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI 集创空间</title>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        --primary: #ea4c89;
+      }
+      .app-bg {
+        background:
+          radial-gradient(900px circle at 15% 10%, rgba(0, 166, 255, 0.24), transparent 48%),
+          radial-gradient(800px circle at 85% 25%, rgba(195, 105, 255, 0.22), transparent 48%),
+          radial-gradient(900px circle at 55% 95%, rgba(255, 69, 144, 0.18), transparent 48%),
+          linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+      }
+      .glass {
+        background: rgba(2, 6, 23, 0.55);
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+      }
+      .gradient-text {
+        background: linear-gradient(90deg, #00a6ff 0%, #c369ff 52.4%, #ff4590 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+      }
+      .btn-primary {
+        background: linear-gradient(90deg, #00a6ff 0%, #c369ff 52.4%, #ff4590 100%);
+      }
+      .btn-glass {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .nav-link {
+        color: rgb(203 213 225);
+        border: 1px solid transparent;
+      }
+      .nav-link:hover {
+        color: #ffffff;
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.12);
+      }
+      .nav-link-active {
+        color: #ffffff;
+        background: rgba(234, 76, 137, 0.14);
+        border-color: rgba(234, 76, 137, 0.38);
+      }
+
+      /* Typography overrides (only affects tutorial prose blocks) */
+      .tab-panel.prose h1,
+      .tab-panel.prose h2,
+      .tab-panel.prose h3 {
+        color: #ffffff;
+        font-weight: 800;
+      }
+
+      .tab-panel.prose h1 {
+        font-size: 1.6rem;
+        margin: 1.2rem 0 0.75rem;
+      }
+      .tab-panel.prose h2 {
+        font-size: 1.15rem;
+        margin: 1.1rem 0 0.6rem;
+      }
+      .tab-panel.prose h3 {
+        font-size: 1.05rem;
+        margin: 0.95rem 0 0.55rem;
+      }
+
+      .tab-panel.prose a {
+        color: #ea4c89;
+        text-decoration: none;
+      }
+      .tab-panel.prose a:hover {
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+
+      .tab-panel.prose pre {
+        background: rgba(15, 23, 42, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0.75rem;
+        padding: 0.95rem 1rem;
+        overflow: auto;
+      }
+      .tab-panel.prose pre code {
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        color: rgba(255, 255, 255, 0.95) !important;
+      }
+
+      /* inline code */
+      .tab-panel.prose :not(pre) > code {
+        color: #e879f9;
+        background: rgba(234, 76, 137, 0.12);
+        border: 1px solid rgba(234, 76, 137, 0.18);
+        border-radius: 0.5rem;
+        padding: 0 0.4rem;
+        font-size: 0.95em;
+      }
+
+      .tab-panel.prose blockquote {
+        border-left: 6px solid rgba(234, 76, 137, 0.9);
+        background: rgba(234, 76, 137, 0.08);
+        border-radius: 0.75rem;
+        padding: 0.75rem 1rem;
+      }
+
+      .tab-panel.prose blockquote p {
+        margin: 0.25rem 0;
+      }
+
+      /* markdown look for tutorial content */
+      .tab-markdown {
+        color: rgb(226 232 240);
+      }
+      .tab-markdown h1 {
+        font-size: 1.35rem;
+        font-weight: 800;
+        margin-bottom: 0.75rem;
+      }
+      .tab-markdown h2 {
+        font-size: 1rem;
+        font-weight: 800;
+        margin-top: 1.25rem;
+      }
+      .tab-markdown h3 {
+        font-size: 0.95rem;
+        font-weight: 750;
+        margin-top: 0.9rem;
+      }
+      .tab-markdown hr {
+        border: 0;
+        border-top: 1px solid rgba(148, 163, 184, 0.25);
+        margin: 1rem 0;
+      }
+      .tab-markdown p {
+        color: rgb(203 213 225);
+        margin-top: 0.5rem;
+        line-height: 1.6;
+      }
+      .tab-markdown ul {
+        margin-top: 0.5rem;
+        padding-left: 1.25rem;
+        list-style: disc;
+      }
+      .tab-markdown li {
+        color: rgb(203 213 225);
+        line-height: 1.6;
+      }
+      .tab-markdown a {
+        color: #ffffff;
+        text-decoration: underline;
+        text-decoration-color: rgba(234, 76, 137, 0.7);
+      }
+      .tab-markdown pre {
+        margin-top: 0.75rem;
+        background: rgba(0, 0, 0, 0.28);
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        border-radius: 14px;
+        padding: 0.9rem 1rem;
+        overflow: auto;
+      }
+      .tab-markdown code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      }
+      .tab-markdown strong {
+        color: #ffffff;
+        font-weight: 750;
+      }
+
+      .tab-markdown blockquote {
+        margin-top: 0.75rem;
+        margin-bottom: 0.75rem;
+        border-left: 4px solid rgba(234, 76, 137, 0.55);
+        background: rgba(234, 76, 137, 0.08);
+        padding: 0.6rem 0.8rem;
+        border-radius: 12px;
+      }
+
+      .tab-markdown blockquote p {
+        margin: 0.25rem 0;
+        line-height: 1.7;
+      }
+
+      .tab-markdown ol {
+        margin-top: 0.5rem;
+        padding-left: 1.25rem;
+        list-style: decimal;
+      }
+
+      .tab-markdown .inline-code {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 10px;
+        padding: 0.05rem 0.4rem;
+        font-size: 0.95em;
+      }
+
+      .tab-markdown .inline-link {
+        color: #ffffff;
+        text-decoration: underline;
+        text-decoration-color: rgba(234, 76, 137, 0.7);
+      }
+      .tab-markdown .pill-code {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 0.1rem 0.45rem;
+      }
+
+    </style>
+  </head>
+  <body class="min-h-screen text-slate-100 antialiased app-bg">
+    <header class="sticky top-0 z-50">
+      <div class="mx-auto max-w-6xl px-4 py-3">
+        <div class="glass rounded-2xl px-4">
+          <div class="flex items-center justify-between gap-4">
+            <a href="/" class="flex items-center gap-3 py-2">
+              <img src="/brand-logo.png" alt="品牌图标" class="h-10 w-10 rounded-xl object-cover brightness-150 contrast-110 drop-shadow-[0_0_10px_rgba(148,163,184,0.35)]" />
+              <div class="flex flex-col leading-tight">
+                <span class="text-sm font-extrabold gradient-text">API 中转站</span>
+                <span class="text-xs font-semibold tracking-wider bg-gradient-to-r from-slate-200 to-slate-400 bg-clip-text text-transparent">AI集创空间</span>
+              </div>
+            </a>
+
+            <nav class="flex items-center gap-2">
+              <a
+                href="/"
+                class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition"
+              >
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3 10.5 12 3l9 7.5V21a1.5 1.5 0 0 1-1.5 1.5H15v-6H9v6H4.5A1.5 1.5 0 0 1 3 21V10.5z" />
+                </svg>
+                首页
+              </a>
+              <a
+                href="/tutorial"
+                class="nav-link-active nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition"
+                aria-current="page"
+              >
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M8 9l-3 3 3 3" />
+                  <path d="M16 9l3 3-3 3" />
+                  <path d="M14 5l-4 14" />
+                </svg>
+                Codex & Open Code 教程
+              </a>
+              <a
+                href="/openclaw"
+                class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition"
+              >
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M13.5 3H8a2 2 0 0 0-2 2v4.5" />
+                  <path d="M10.5 21H16a2 2 0 0 0 2-2v-4.5" />
+                  <path d="M3 13.5V16a2 2 0 0 0 2 2h2.5" />
+                  <path d="M21 10.5V8a2 2 0 0 0-2-2h-2.5" />
+                  <path d="M8.5 8.5h7v7h-7z" />
+                </svg>
+                OpenClaw 配置
+              </a>
+              <a
+                href="/claude-code"
+                class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition"
+              >
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M8 8h8"></path>
+                  <path d="M8 12h8"></path>
+                  <path d="M8 16h5"></path>
+                  <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                </svg>
+                Claude Code 配置
+              </a>
+              <a
+                href="/usage"
+                class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition"
+              >
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 19V5" />
+                  <path d="M8 19v-8" />
+                  <path d="M12 19v-5" />
+                  <path d="M16 19V8" />
+                  <path d="M20 19v-3" />
+                </svg>
+                余额查询
+              </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-6xl px-4 py-10">
+      <section class="mx-auto max-w-3xl">
+        <header class="text-center">
+          <h1 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
+            <span class="gradient-text">Codex &amp; Open Code 使用教程</span>
+          </h1>
+        </header>
+
+        <div class="mt-8">
+          <div class="mt-6">
+            <div class="glass rounded-2xl p-6 prose prose-invert max-w-none">
+              <div class="tab-doc" id="tabDoc-main">
+                <p>教程内容加载中...</p>
+              </div>
+            </div>
+
+            <script type="text/plain" id="md-main"># 🚀 Codex & Open Code 使用教程
+
+## 一、环境安装
+
+运行 Codex 官方工具需要依赖 Node.js 环境。
+
+#### 💻 Windows 系统安装
+
+推荐直接前往 [Node.js 官网](https://nodejs.org/) 下载 `.msi` 安装包进行安装（通常选择 x64 版本）。
+
+#### 🍎 MacOS / 🐧 Linux 系统安装
+
+建议通过 nvm 来安装和管理 Node.js。
+
+```bash
+# 安装 nvm
+bash -c "$(curl -fsSL https://gitee.com/RubyMetric/nvm-cn/raw/main/install.sh)"
+# 刷新环境变量
+source ~/.nvm/nvm.sh
+# 安装 Node.js 18 版本
+nvm install 18
+```
+
+- **安装 Codex 官方命令行工具**：如果之前安装过第三方的 codex 工具，请先卸载。
+
+```bash
+npm install -g @openai/codex
+```
+
+---
+
+## 二、手动配置 API（核心步骤）
+
+> **高亮提醒：** 安装完成后，必须手动修改本地配置文件以接入我们的私有节点，否则将无法正常使用。
+
+### 1. 配置 `config.toml` 文件
+
+打开用户目录下的 `~/.codex/config.toml` 文件（如果没有请新建）。
+
+```toml
+model_provider = "crs"
+model = "gpt-5.4"
+model_reasoning_effort = "high"
+disable_response_storage = true
+preferred_auth_method = "apikey"
+
+[model_providers.crs]
+name = "crs"
+base_url = "https://codex.jc-space.cloud/v1"
+```
+
+### 2. 配置 `auth.json` 文件
+
+打开用户目录下的 `~/.codex/auth.json` 文件（如果没有请新建）。请将 `sk-...` 替换成你自己的 API Key。
+
+```json
+{
+  "auth_mode": "apikey",
+  "OPENAI_API_KEY": "sk-..."
+}
+```
+
+---
+
+## 三、在 VS Code 中使用 Codex
+
+如果你不习惯终端命令行，可以在 VS Code 中安装官方插件使用。
+
+1. 首先确保在系统的终端中，已经可以正常运行 `codex` 命令。
+2. 在 VS Code 扩展市场搜索并安装 `Codex` 插件（带有 OpenAI 官方标志）。
+3. **重要：** 完全退出 VS Code，然后再重新打开它（如果是 Linux，可使用 `code` 命令重新打开）。
+4. 进入插件界面后，在需要输入 API Key 的地方，**随意输入任意英文字母** 即可成功进入对话界面。
+
+> **Note：** 如果使用的是 Remote SSH 或 WSL 环境，必须先在服务器/WSL 中完成上述的环境安装和配置，确保命令行可用后，再重启服务器/WSL。
+
+---
+
+## 四、在 OpenCode 中使用
+
+### 1. 修改认证文件
+
+- 路径（Linux/MacOS）：`~/.local/share/opencode/auth.json`
+- 路径（Windows）：`用户目录/.local/share/opencode/auth.json`
+
+```json
+{
+  "openai": {
+    "type": "oauth",
+    "access": "sk-...",
+    "refresh": "none",
+    "expires": 1988150400000,
+    "accountId": "none"
+  }
+}
+```
+
+### 2. 修改节点配置文件
+
+- 路径（Linux/MacOS）：`~/.config/opencode/opencode.json`
+- 路径（Windows）：`用户目录/.config/opencode/opencode.json`
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "openai": {
+      "options": {
+        "baseURL": "https://codex.jc-space.cloud/v1"
+      }
+    }
+  }
+}
+```
+</script>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="mt-8">
+      <div class="mx-auto max-w-6xl px-4">
+        <div class="glass rounded-2xl p-6 md:p-8">
+          <div class="grid gap-8 md:grid-cols-3">
+            <div>
+              <div class="flex items-center gap-3">
+                <img src="/brand-logo.png" alt="品牌图标" class="h-10 w-10 rounded-xl object-cover brightness-125 contrast-110" />
+                <span class="text-sm font-semibold text-white">AI集创空间</span>
+              </div>
+              <p class="mt-4 text-sm leading-6 text-slate-400">
+                为您提供稳定、高效、透明的 AI 编程助手专属中转服务。
+              </p>
+            </div>
+
+            <div>
+              <h4 class="text-sm font-semibold text-white">快速导航</h4>
+              <div class="mt-4 space-y-2 text-sm">
+                <a href="/" class="block text-slate-300 hover:text-white">首页</a>
+                <a href="/tutorial" class="block text-slate-300 hover:text-white">Codex &amp; Open Code 教程</a>
+                <a href="/openclaw" class="block text-slate-300 hover:text-white">OpenClaw 配置</a>
+                <a href="/claude-code" class="block text-slate-300 hover:text-white">Claude Code 配置</a>
+                <a href="/usage" class="block text-slate-300 hover:text-white">消费查询</a>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="text-sm font-semibold text-white">政策与支持</h4>
+              <div class="mt-4 space-y-2 text-sm">
+                <a href="#" class="block text-slate-300 hover:text-white">常见问题</a>
+                <a href="#" class="block text-slate-300 hover:text-white">服务条款</a>
+                <a href="#" class="block text-slate-300 hover:text-white">隐私政策</a>
+              </div>
+            </div>
+          </div>
+          <div class="mt-8 border-t border-slate-700/70 pt-5 text-center text-xs text-slate-400">
+            © 2026 AI集创空间. All rights reserved.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        function escapeHtml(s) {
+          return String(s)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#39;");
+        }
+
+        function renderInline(text) {
+          // 先做转义，避免把用户文本当 HTML 执行
+          let s = escapeHtml(text);
+
+          // 行内代码
+          s = s.replace(/`([^`]+)`/g, function (_, code) {
+            return '<code class="inline-code">' + code + "</code>";
+          });
+
+          // 加粗
+          s = s.replace(/\*\*([^*]+)\*\*/g, function (_, t) {
+            return '<strong>' + t + "</strong>";
+          });
+
+          // 链接 [label](url)
+          s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, function (_, label, url) {
+            return (
+              '<a href="' +
+              url +
+              '" target="_blank" rel="noopener" class="inline-link">' +
+              label +
+              "</a>"
+            );
+          });
+
+          return s;
+        }
+
+        function parseMarkdown(md) {
+          md = String(md || "").replace(/\r\n/g, "\n");
+          var lines = md.split("\n");
+          var out = "";
+
+          var i = 0;
+          var seenTopH1 = false;
+
+          function isFenceStart(line) {
+            return /^```/.test(line.trim());
+          }
+
+          function fenceLang(line) {
+            var m = line.trim().match(/^```(\w+)?\s*$/);
+            return m && m[1] ? m[1] : "";
+          }
+
+          function isHrLine(trimmed) {
+            if (trimmed === "---") return true;
+            if (/^=+\s*$/.test(trimmed)) return true;
+            if (/^#\s*=+\s*$/.test(trimmed)) return true;
+            if (/^#\s*-{3,}\s*$/.test(trimmed)) return true;
+            return false;
+          }
+
+          function renderHeading(line) {
+            var m = line.trim().match(/^(#{1,6})\s+(.+)$/);
+            if (!m) return "";
+            var level = m[1].length;
+            var text = m[2];
+            var tag;
+            if (level === 1) {
+              tag = seenTopH1 ? "h2" : "h1";
+              seenTopH1 = true;
+            } else {
+              tag = "h" + Math.min(level, 6);
+            }
+            return "<" + tag + ">" + renderInline(text) + "</" + tag + ">";
+          }
+
+          function flushParagraph(buf) {
+            if (!buf.length) return "";
+            // 把换行当空格，避免出现“断行即断句”
+            var t = buf.join(" ").replace(/\s+/g, " ").trim();
+            buf.length = 0;
+            if (!t) return "";
+            return "<p>" + renderInline(t) + "</p>";
+          }
+
+          while (i < lines.length) {
+            var raw = lines[i];
+            var trimmed = raw.trim();
+
+            if (!trimmed) {
+              i++;
+              continue;
+            }
+
+            // code fence
+            if (isFenceStart(raw)) {
+              var lang = fenceLang(raw);
+              i++;
+              var codeLines = [];
+              while (i < lines.length && !isFenceStart(lines[i])) {
+                codeLines.push(lines[i]);
+                i++;
+              }
+              // skip closing fence
+              if (i < lines.length && isFenceStart(lines[i])) i++;
+
+              var code = escapeHtml(codeLines.join("\n"));
+              out +=
+                '<pre><code>' + code + (lang ? "</code></pre>" : "</code></pre>");
+              continue;
+            }
+
+            if (isHrLine(trimmed)) {
+              out += '<hr class="my-6 border-slate-700/60" />';
+              i++;
+              continue;
+            }
+
+            // heading
+            if (/^#{1,6}\s+/.test(trimmed)) {
+              out += renderHeading(trimmed);
+              i++;
+              continue;
+            }
+
+            // blockquote
+            if (/^>\s?/.test(trimmed)) {
+              var quoteLines = [];
+              while (i < lines.length && /^>\s?/.test(lines[i].trim())) {
+                quoteLines.push(lines[i].trim().replace(/^>\s?/, ""));
+                i++;
+              }
+              var quoteText = quoteLines.join("\n");
+              var parts = quoteText.split("\n").map(function (p) {
+                return "<p>" + renderInline(p) + "</p>";
+              });
+              out += '<blockquote>' + parts.join("") + "</blockquote>";
+              continue;
+            }
+
+            // unordered list
+            var ulMatch = raw.match(/^\s*[-*]\s+(.+)$/);
+            if (ulMatch) {
+              out += '<ul class="mt-3">';
+              while (i < lines.length) {
+                var line = lines[i];
+                var m = line.match(/^\s*[-*]\s+(.+)$/);
+                if (!m) break;
+                var item = m[1].trim();
+                out += "<li>" + renderInline(item) + "</li>";
+                i++;
+              }
+              out += "</ul>";
+              continue;
+            }
+
+            // ordered list
+            var olMatch = raw.match(/^\s*\d+\.\s+(.+)$/);
+            if (olMatch) {
+              out += '<ol class="mt-3">';
+              while (i < lines.length) {
+                var line2 = lines[i];
+                var m2 = line2.match(/^\s*(\d+)\.\s+(.+)$/);
+                if (!m2) break;
+                var item2 = m2[2].trim();
+                out += "<li>" + renderInline(item2) + "</li>";
+                i++;
+              }
+              out += "</ol>";
+              continue;
+            }
+
+            // paragraph (collect until blank line or block starter)
+            var buf = [];
+            while (i < lines.length) {
+              var l = lines[i];
+              var t = l.trim();
+              if (!t) break;
+              if (isFenceStart(l) || isHrLine(t) || /^#{1,6}\s+/.test(t) || /^>\s?/.test(t) || /^\s*[-*]\s+/.test(t) || /^\s*\d+\.\s+/.test(t)) {
+                break;
+              }
+              buf.push(t);
+              i++;
+            }
+            out += flushParagraph(buf);
+          }
+
+          return out;
+        }
+
+        var TRANSFER_BASE_URL = "https://codex.jc-space.cloud";
+        function normalizeMd(md) {
+          // 统一把示例域名替换为真实中转地址，并把“余额查询”链接指向本地路由
+          return String(md || "")
+            // URL 示例已在文本中替换为真实中转地址，这里无需再额外处理
+            .replaceAll(TRANSFER_BASE_URL + "/usage/", "/usage")
+            .replaceAll(TRANSFER_BASE_URL + "/usage", "/usage");
+        }
+
+        var mdSource = document.getElementById("md-main")
+          ? normalizeMd(document.getElementById("md-main").textContent)
+          : "";
+
+        var docEl = document.getElementById("tabDoc-main");
+
+        function renderMainDoc() {
+          if (!docEl) return;
+          var html = "";
+          if (window.marked && typeof window.marked.parse === "function") {
+            html = window.marked.parse(mdSource || "");
+          } else {
+            html = "<p>Markdown 渲染服务不可用。</p>";
+          }
+          docEl.innerHTML = html;
+        }
+
+        renderMainDoc();
+      })();
+    </script>
+  </body>
+</html>
+

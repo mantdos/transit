@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI 集创空间</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        --primary: #ea4c89;
+      }
+      .app-bg {
+        background:
+          radial-gradient(900px circle at 15% 10%, rgba(0, 166, 255, 0.22), transparent 46%),
+          radial-gradient(800px circle at 85% 25%, rgba(195, 105, 255, 0.2), transparent 46%),
+          radial-gradient(900px circle at 55% 95%, rgba(255, 69, 144, 0.16), transparent 46%),
+          linear-gradient(180deg, #0b1226 0%, #050a16 100%);
+      }
+      .glass {
+        background: rgba(2, 6, 23, 0.55);
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+      }
+      .gradient-text {
+        background: linear-gradient(90deg, #00a6ff 0%, #c369ff 52.4%, #ff4590 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+      }
+      .btn-primary {
+        background: linear-gradient(90deg, #00a6ff 0%, #c369ff 52.4%, #ff4590 100%);
+      }
+      .btn-glass {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .nav-link {
+        color: rgb(203 213 225);
+        border: 1px solid transparent;
+      }
+      .nav-link:hover {
+        color: #ffffff;
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.12);
+      }
+      .nav-link-active {
+        color: #ffffff;
+        background: rgba(234, 76, 137, 0.14);
+        border-color: rgba(234, 76, 137, 0.38);
+      }
+    </style>
+  </head>
+  <body class="min-h-screen text-slate-100 antialiased app-bg">
+    <header class="sticky top-0 z-50">
+      <div class="mx-auto max-w-6xl px-4 py-3">
+        <div class="glass rounded-2xl px-4">
+          <div class="flex items-center justify-between gap-4">
+            <a href="/" class="flex items-center gap-3 py-2">
+              <img src="/brand-logo.png" alt="品牌图标" class="h-10 w-10 rounded-xl object-cover brightness-150 contrast-110 drop-shadow-[0_0_10px_rgba(148,163,184,0.35)]" />
+              <div class="flex flex-col leading-tight">
+                <span class="text-sm font-extrabold gradient-text">API 中转站</span>
+                <span class="text-xs font-semibold tracking-wider bg-gradient-to-r from-slate-200 to-slate-400 bg-clip-text text-transparent">AI集创空间</span>
+              </div>
+            </a>
+
+            <nav class="flex items-center gap-2">
+              <a
+                href="/"
+                class="nav-link-active nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition"
+                aria-current="page"
+              >
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3 10.5 12 3l9 7.5V21a1.5 1.5 0 0 1-1.5 1.5H15v-6H9v6H4.5A1.5 1.5 0 0 1 3 21V10.5z" />
+                </svg>
+                首页
+              </a>
+              <a
+                href="/tutorial"
+                class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition"
+              >
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M8 9l-3 3 3 3" />
+                  <path d="M16 9l3 3-3 3" />
+                  <path d="M14 5l-4 14" />
+                </svg>
+                Codex & Open Code 教程
+              </a>
+              <a
+                href="/openclaw"
+                class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition"
+              >
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M13.5 3H8a2 2 0 0 0-2 2v4.5" />
+                  <path d="M10.5 21H16a2 2 0 0 0 2-2v-4.5" />
+                  <path d="M3 13.5V16a2 2 0 0 0 2 2h2.5" />
+                  <path d="M21 10.5V8a2 2 0 0 0-2-2h-2.5" />
+                  <path d="M8.5 8.5h7v7h-7z" />
+                </svg>
+                OpenClaw 配置
+              </a>
+              <a
+                href="/claude-code"
+                class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition"
+              >
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M8 8h8"></path>
+                  <path d="M8 12h8"></path>
+                  <path d="M8 16h5"></path>
+                  <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                </svg>
+                Claude Code 配置
+              </a>
+              <a
+                href="/usage"
+                class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition"
+              >
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 19V5" />
+                  <path d="M8 19v-8" />
+                  <path d="M12 19v-5" />
+                  <path d="M16 19V8" />
+                  <path d="M20 19v-3" />
+                </svg>
+                余额查询
+              </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-6xl px-4 py-24">
+      <section class="text-center">
+        <div class="mx-auto max-w-3xl space-y-8">
+          <h1 class="text-5xl font-extrabold tracking-tight md:text-6xl">
+            <span class="gradient-text">API 中转站</span>
+          </h1>
+          <p class="text-base text-slate-300 sm:text-lg">
+            稳定、高效的 AI 编程助手专属中转服务
+          </p>
+
+          <div class="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
+            <a
+              href="/tutorial"
+              class="btn-primary inline-flex items-center justify-center rounded-xl px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-pink-500/20 transition hover:opacity-95 md:text-lg"
+            >
+              立即开始
+            </a>
+            <a
+              href="/usage"
+              class="btn-glass inline-flex items-center justify-center rounded-xl px-8 py-3.5 text-base font-semibold text-slate-100 transition hover:bg-white/10 md:text-lg"
+            >
+              查询余额
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-20 grid gap-5 sm:grid-cols-2 xl:grid-cols-3 text-left">
+          <article class="rounded-2xl border border-slate-700/90 bg-slate-800/50 p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(234,76,137,0.15)]">
+            <div class="flex items-center justify-between">
+              <div class="rounded-xl bg-cyan-400/15 p-2.5 text-cyan-300">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="m13 2-8 11h6l-1 9 9-13h-6z" />
+                </svg>
+              </div>
+              <span class="rounded-full bg-cyan-400/20 px-2.5 py-1 text-xs font-medium text-cyan-200">性能</span>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-white">极速响应</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-300">优化网络链路，提供稳定可靠的API中转服务，保障日常调用的流畅体验。</p>
+            <div class="mt-4 border-t border-dashed border-slate-600/70 pt-4 grid grid-cols-2 gap-4">
+              <div><p class="text-xl font-bold text-cyan-300">&lt; 100ms</p><p class="text-xs text-slate-400">平均延迟</p></div>
+              <div><p class="text-xl font-bold text-cyan-300">99.9%</p><p class="text-xs text-slate-400">可用性</p></div>
+            </div>
+          </article>
+
+          <article class="rounded-2xl border border-slate-700/90 bg-slate-800/50 p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(234,76,137,0.15)]">
+            <div class="flex items-center justify-between">
+              <div class="rounded-xl bg-violet-400/15 p-2.5 text-violet-300">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="4" y="11" width="16" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 1 1 8 0v3"></path>
+                </svg>
+              </div>
+              <span class="rounded-full bg-violet-400/20 px-2.5 py-1 text-xs font-medium text-violet-200">技术</span>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-white">专属技术支持</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-300">我们的团队提供必要的技术支持，确保您的服务稳定运行，快速响应需求。</p>
+            <div class="mt-4 border-t border-dashed border-slate-600/70 pt-4 grid grid-cols-2 gap-4">
+              <div><p class="text-xl font-bold text-violet-300">10:00-22:00</p><p class="text-xs text-slate-400">服务时间</p></div>
+              <div><p class="text-xl font-bold text-violet-300">专业团队</p><p class="text-xs text-slate-400">技术支持</p></div>
+            </div>
+          </article>
+
+          <article class="rounded-2xl border border-slate-700/90 bg-slate-800/50 p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(234,76,137,0.15)]">
+            <div class="flex items-center justify-between">
+              <div class="rounded-xl bg-emerald-400/15 p-2.5 text-emerald-300">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="6" rx="2"></rect><rect x="3" y="14" width="18" height="6" rx="2"></rect><path d="M7 7h.01M7 17h.01"></path>
+                </svg>
+              </div>
+              <span class="rounded-full bg-emerald-400/20 px-2.5 py-1 text-xs font-medium text-emerald-200">稳定</span>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-white">高可用架构</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-300">分布式集群部署，自动故障转移，智能负载均衡，保证 7x24 小时不间断。</p>
+            <div class="mt-4 border-t border-dashed border-slate-600/70 pt-4 grid grid-cols-2 gap-4">
+              <div><p class="text-xl font-bold text-emerald-300">24/7</p><p class="text-xs text-slate-400">全天在线</p></div>
+              <div><p class="text-xl font-bold text-emerald-300">自动</p><p class="text-xs text-slate-400">故障恢复</p></div>
+            </div>
+          </article>
+
+          <article class="rounded-2xl border border-slate-700/90 bg-slate-800/50 p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(234,76,137,0.15)]">
+            <div class="flex items-center justify-between">
+              <div class="rounded-xl bg-blue-400/15 p-2.5 text-blue-300">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8M12 16v4"></path>
+                </svg>
+              </div>
+              <span class="rounded-full bg-blue-400/20 px-2.5 py-1 text-xs font-medium text-blue-200">兼容</span>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-white">全平台支持</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-300">完美支持 Windows、macOS、Linux 三大平台，一份配置文件，随处运行。</p>
+            <div class="mt-4 border-t border-dashed border-slate-600/70 pt-4 grid grid-cols-2 gap-4">
+              <div><p class="text-xl font-bold text-blue-300">3+</p><p class="text-xs text-slate-400">操作系统</p></div>
+              <div><p class="text-xl font-bold text-blue-300">统一</p><p class="text-xs text-slate-400">配置方式</p></div>
+            </div>
+          </article>
+
+          <article class="rounded-2xl border border-slate-700/90 bg-slate-800/50 p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(234,76,137,0.15)]">
+            <div class="flex items-center justify-between">
+              <div class="rounded-xl bg-amber-400/15 p-2.5 text-amber-300">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M16 12h.01"></path>
+                </svg>
+              </div>
+              <span class="rounded-full bg-amber-400/20 px-2.5 py-1 text-xs font-medium text-amber-200">透明</span>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-white">实时计费</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-300">实时更新使用情况，随时在控制台查询剩余额度，每一笔消费清晰可控。</p>
+            <div class="mt-4 border-t border-dashed border-slate-600/70 pt-4 grid grid-cols-2 gap-4">
+              <div><p class="text-xl font-bold text-amber-300">实时</p><p class="text-xs text-slate-400">用量统计</p></div>
+              <div><p class="text-xl font-bold text-amber-300">透明</p><p class="text-xs text-slate-400">费用明细</p></div>
+            </div>
+          </article>
+
+          <article class="rounded-2xl border border-slate-700/90 bg-slate-800/50 p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(234,76,137,0.15)]">
+            <div class="flex items-center justify-between">
+              <div class="rounded-xl bg-pink-400/15 p-2.5 text-pink-300">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M14 3h7v7"></path><path d="M21 3 10 14"></path><path d="M5 7h6v6H5z"></path><path d="M3 19h18"></path>
+                </svg>
+              </div>
+              <span class="rounded-full bg-pink-400/20 px-2.5 py-1 text-xs font-medium text-pink-200">简单</span>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-white">快速上手</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-300">详细的安装文档，分步骤图文教程，提供一键配置脚本，新手也能 5 分钟完成。</p>
+            <div class="mt-4 border-t border-dashed border-slate-600/70 pt-4 grid grid-cols-2 gap-4">
+              <div><p class="text-xl font-bold text-pink-300">5 分钟</p><p class="text-xs text-slate-400">快速部署</p></div>
+              <div><p class="text-xl font-bold text-pink-300">图文</p><p class="text-xs text-slate-400">详细教程</p></div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="mt-8">
+      <div class="mx-auto max-w-6xl px-4">
+        <div class="glass rounded-2xl p-6 md:p-8">
+          <div class="grid gap-8 md:grid-cols-3">
+            <div>
+              <div class="flex items-center gap-3">
+                <img src="/brand-logo.png" alt="品牌图标" class="h-10 w-10 rounded-xl object-cover brightness-125 contrast-110" />
+                <span class="text-sm font-semibold text-white">AI集创空间</span>
+              </div>
+              <p class="mt-4 text-sm leading-6 text-slate-400">
+                为您提供稳定、高效、透明的 AI 编程助手专属中转服务。
+              </p>
+            </div>
+
+            <div>
+              <h4 class="text-sm font-semibold text-white">快速导航</h4>
+              <div class="mt-4 space-y-2 text-sm">
+                <a href="/" class="block text-slate-300 hover:text-white">首页</a>
+                <a href="/tutorial" class="block text-slate-300 hover:text-white">Codex & Open Code 教程</a>
+                <a href="/openclaw" class="block text-slate-300 hover:text-white">OpenClaw 配置</a>
+                <a href="/claude-code" class="block text-slate-300 hover:text-white">Claude Code 配置</a>
+                <a href="/usage" class="block text-slate-300 hover:text-white">消费查询</a>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="text-sm font-semibold text-white">政策与支持</h4>
+              <div class="mt-4 space-y-2 text-sm">
+                <a href="#" class="block text-slate-300 hover:text-white">常见问题</a>
+                <a href="#" class="block text-slate-300 hover:text-white">服务条款</a>
+                <a href="#" class="block text-slate-300 hover:text-white">隐私政策</a>
+              </div>
+            </div>
+          </div>
+          <div class="mt-8 border-t border-slate-700/70 pt-5 text-center text-xs text-slate-400">
+            © 2026 AI集创空间. All rights reserved.
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

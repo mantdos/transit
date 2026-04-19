@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI 集创空间</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        --primary: #ea4c89;
+      }
+      .app-bg {
+        background:
+          radial-gradient(900px circle at 15% 10%, rgba(0, 166, 255, 0.22), transparent 46%),
+          radial-gradient(800px circle at 85% 25%, rgba(195, 105, 255, 0.2), transparent 46%),
+          radial-gradient(900px circle at 55% 95%, rgba(255, 69, 144, 0.16), transparent 46%),
+          linear-gradient(180deg, #0b1226 0%, #050a16 100%);
+      }
+      .glass {
+        background: rgba(2, 6, 23, 0.55);
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+      }
+      .gradient-text {
+        background: linear-gradient(90deg, #00a6ff 0%, #c369ff 52.4%, #ff4590 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+      }
+      .btn-glass {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .nav-link {
+        color: rgb(203 213 225);
+        border: 1px solid transparent;
+      }
+      .nav-link:hover {
+        color: #ffffff;
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.12);
+      }
+      .nav-link-active {
+        color: #ffffff;
+        background: rgba(234, 76, 137, 0.14);
+        border-color: rgba(234, 76, 137, 0.38);
+      }
+    </style>
+  </head>
+  <body class="min-h-screen text-slate-100 antialiased app-bg">
+    <header class="sticky top-0 z-50">
+      <div class="mx-auto max-w-6xl px-4 py-3">
+        <div class="glass rounded-2xl px-4">
+          <div class="flex items-center justify-between gap-4">
+            <a href="/" class="flex items-center gap-3 py-2">
+              <img src="/brand-logo.png" alt="品牌图标" class="h-10 w-10 rounded-xl object-cover brightness-150 contrast-110 drop-shadow-[0_0_10px_rgba(148,163,184,0.35)]" />
+              <div class="flex flex-col leading-tight">
+                <span class="text-sm font-extrabold gradient-text">API 中转站</span>
+                <span class="text-xs font-semibold tracking-wider bg-gradient-to-r from-slate-200 to-slate-400 bg-clip-text text-transparent">AI集创空间</span>
+              </div>
+            </a>
+
+            <nav class="flex items-center gap-2">
+              <a
+                href="/"
+                class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition"
+              >
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3 10.5 12 3l9 7.5V21a1.5 1.5 0 0 1-1.5 1.5H15v-6H9v6H4.5A1.5 1.5 0 0 1 3 21V10.5z" />
+                </svg>
+                首页
+              </a>
+              <a
+                href="/tutorial"
+                class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition"
+              >
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M8 9l-3 3 3 3" />
+                  <path d="M16 9l3 3-3 3" />
+                  <path d="M14 5l-4 14" />
+                </svg>
+                Codex & Open Code 教程
+              </a>
+              <a
+                href="/openclaw"
+                class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition"
+              >
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M13.5 3H8a2 2 0 0 0-2 2v4.5" />
+                  <path d="M10.5 21H16a2 2 0 0 0 2-2v-4.5" />
+                  <path d="M3 13.5V16a2 2 0 0 0 2 2h2.5" />
+                  <path d="M21 10.5V8a2 2 0 0 0-2-2h-2.5" />
+                  <path d="M8.5 8.5h7v7h-7z" />
+                </svg>
+                OpenClaw 配置
+              </a>
+              <a
+                href="/claude-code"
+                class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition"
+              >
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M8 8h8"></path>
+                  <path d="M8 12h8"></path>
+                  <path d="M8 16h5"></path>
+                  <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                </svg>
+                Claude Code 配置
+              </a>
+              <a
+                href="/usage"
+                class="nav-link-active nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition"
+                aria-current="page"
+              >
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 19V5" />
+                  <path d="M8 19v-8" />
+                  <path d="M12 19v-5" />
+                  <path d="M16 19V8" />
+                  <path d="M20 19v-3" />
+                </svg>
+                余额查询
+              </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="mx-auto max-w-4xl px-4 py-10 sm:px-6">
+      <header class="mb-10 text-center">
+        <h1 class="text-5xl font-extrabold tracking-tight md:text-6xl">
+          <span class="gradient-text">令牌用量查询</span>
+        </h1>
+        <p class="mt-4 text-base text-slate-300 sm:text-lg">
+          实时查看您的 Token 使用情况和剩余额度
+        </p>
+      </header>
+
+      <section class="rounded-2xl border border-slate-700/80 bg-slate-800/50 p-6 shadow-xl backdrop-blur sm:p-8">
+        <label for="token" class="mb-2 block text-sm font-medium text-slate-300">API Token</label>
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-stretch">
+          <div class="relative flex-1">
+            <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"
+                />
+              </svg>
+            </span>
+            <input
+              id="token"
+              type="password"
+              autocomplete="off"
+              placeholder="sk-..."
+              class="w-full rounded-xl border border-slate-600 bg-slate-900/80 py-3 pl-11 pr-11 text-sm text-slate-100 placeholder:text-slate-500 focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/40"
+            />
+            <button
+              id="btn-toggle-token"
+              type="button"
+              class="absolute inset-y-0 right-3 flex items-center text-slate-400 transition hover:text-white"
+              aria-label="显示/隐藏 API Key"
+            >
+              <svg
+                id="icon-eye"
+                class="h-5 w-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <svg
+                id="icon-eye-off"
+                class="hidden h-5 w-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M3 3l18 18"></path>
+                <path d="M10.58 10.58a2 2 0 0 0 2.83 2.83"></path>
+                <path d="M9.88 5.08A10.43 10.43 0 0 1 12 5c6.4 0 10 7 10 7a17.46 17.46 0 0 1-4.1 5.06"></path>
+                <path d="M6.11 6.11C3.72 7.85 2 12 2 12s3.6 7 10 7c1.11 0 2.16-.2 3.15-.56"></path>
+              </svg>
+            </button>
+          </div>
+          <button
+            id="btn-query"
+            type="button"
+            class="inline-flex shrink-0 items-center justify-center rounded-xl bg-violet-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-violet-900/30 transition hover:bg-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            查询用量
+          </button>
+        </div>
+        <p id="hint" class="mt-2 text-xs text-slate-500">Token 仅用于查询，不会持久化存储。</p>
+      </section>
+
+      <div id="error-box" class="mt-6 hidden rounded-xl border border-red-500/40 bg-red-950/40 px-4 py-3 text-sm text-red-200"></div>
+
+      <div id="dashboard" class="mt-8 hidden space-y-6">
+        <div class="rounded-2xl border border-slate-700/80 bg-gradient-to-br from-slate-800/90 to-slate-900/90 p-6 shadow-lg">
+          <div class="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <p class="text-xs uppercase tracking-wider text-slate-500">Token</p>
+              <p id="disp-name" class="mt-1 font-mono text-lg font-medium text-white">—</p>
+            </div>
+            <div class="text-right">
+              <p class="text-xs uppercase tracking-wider text-slate-500">有效期至</p>
+              <p id="disp-expire" class="mt-1 text-sm text-violet-300">—</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 动态限额月卡（上游占位巨额 limit）：仅展示累计已用 -->
+        <div id="usage-mode-dynamic" class="hidden space-y-4">
+          <div
+            class="rounded-2xl border border-amber-500/25 bg-gradient-to-br from-amber-950/35 via-slate-900/80 to-slate-900/90 p-8 text-center shadow-lg ring-1 ring-white/5"
+          >
+            <p class="text-sm font-medium tracking-wide text-slate-400">累计已用额度</p>
+            <p id="dynamic-used-display" class="mt-4 text-5xl font-bold tabular-nums tracking-tight text-amber-100 sm:text-6xl">
+              —
+            </p>
+          </div>
+          <p
+            id="dynamic-access-line"
+            class="hidden text-center text-sm leading-relaxed text-violet-200/90"
+          ></p>
+          <p
+            class="dynamic-limit-notice mx-auto max-w-2xl rounded-xl border border-slate-500/25 bg-slate-900/55 px-5 py-4 text-center text-[13px] leading-relaxed text-slate-400 shadow-inner sm:text-sm"
+          >
+            当前为动态限额月卡套餐（每日限额 $20 或 $50，具体视您的套餐而定）。系统仅显示累计消耗额度，次日自动重置可用量，实际状态请以当前调用是否成功为准。
+          </p>
+        </div>
+
+        <!-- 固定额度卡：完整指标 + 进度条 -->
+        <div id="usage-mode-fixed" class="hidden space-y-6">
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div class="rounded-xl border border-slate-700/80 bg-slate-800/60 p-5">
+              <p class="text-xs text-slate-500">授予总量 (USD)</p>
+              <p id="m-total" class="mt-2 text-2xl font-semibold text-white">—</p>
+            </div>
+            <div class="rounded-xl border border-slate-700/80 bg-slate-800/60 p-5">
+              <p class="text-xs text-slate-500">已使用 (USD)</p>
+              <p id="m-used" class="mt-2 text-2xl font-semibold text-amber-200">—</p>
+            </div>
+            <div class="rounded-xl border border-slate-700/80 bg-slate-800/60 p-5">
+              <p class="text-xs text-slate-500">剩余可用 (USD)</p>
+              <p id="m-left" class="mt-2 text-2xl font-semibold text-emerald-300">—</p>
+            </div>
+            <div class="rounded-xl border border-slate-700/80 bg-slate-800/60 p-5">
+              <p class="text-xs text-slate-500">使用率</p>
+              <p id="m-pct" class="mt-2 text-2xl font-semibold text-sky-300">—</p>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-slate-700/80 bg-slate-800/50 p-6">
+            <div class="mb-3 flex items-center justify-between text-sm">
+              <span class="text-slate-400">额度使用进度</span>
+              <span id="bar-label" class="font-medium text-slate-200">—</span>
+            </div>
+            <div class="h-3 w-full overflow-hidden rounded-full bg-slate-700/80">
+              <div
+                id="bar-fill"
+                class="h-full rounded-full transition-all duration-500 ease-out"
+                style="width: 0%"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="mt-8">
+      <div class="mx-auto max-w-6xl px-4">
+        <div class="glass rounded-2xl p-6 md:p-8">
+          <div class="grid gap-8 md:grid-cols-3">
+            <div>
+              <div class="flex items-center gap-3">
+                <img src="/brand-logo.png" alt="品牌图标" class="h-10 w-10 rounded-xl object-cover brightness-125 contrast-110" />
+                <span class="text-sm font-semibold text-white">AI集创空间</span>
+              </div>
+              <p class="mt-4 text-sm leading-6 text-slate-400">
+                为您提供稳定、高效、透明的 AI 编程助手专属中转服务。
+              </p>
+            </div>
+
+            <div>
+              <h4 class="text-sm font-semibold text-white">快速导航</h4>
+              <div class="mt-4 space-y-2 text-sm">
+                <a href="/" class="block text-slate-300 hover:text-white">首页</a>
+                <a href="/tutorial" class="block text-slate-300 hover:text-white">Codex & Open Code 教程</a>
+                <a href="/openclaw" class="block text-slate-300 hover:text-white">OpenClaw 配置</a>
+                <a href="/claude-code" class="block text-slate-300 hover:text-white">Claude Code 配置</a>
+                <a href="/usage" class="block text-slate-300 hover:text-white">消费查询</a>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="text-sm font-semibold text-white">政策与支持</h4>
+              <div class="mt-4 space-y-2 text-sm">
+                <a href="#" class="block text-slate-300 hover:text-white">常见问题</a>
+                <a href="#" class="block text-slate-300 hover:text-white">服务条款</a>
+                <a href="#" class="block text-slate-300 hover:text-white">隐私政策</a>
+              </div>
+            </div>
+          </div>
+          <div class="mt-8 border-t border-slate-700/70 pt-5 text-center text-xs text-slate-400">
+            © 2026 AI集创空间. All rights reserved.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        const $ = function (id) {
+          return document.getElementById(id);
+        };
+
+        function maskToken(t) {
+          if (!t || typeof t !== 'string') return '—';
+          const s = t.trim();
+          if (s.length <= 10) return s.slice(0, 3) + '…';
+          return s.slice(0, 7) + '…' + s.slice(-4);
+        }
+
+        function formatUsd(n) {
+          if (n === null || n === undefined || Number.isNaN(Number(n))) return '—';
+          return Number(n).toLocaleString('zh-CN', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 4,
+          });
+        }
+
+        /** 累计已用：固定为两位小数，与后端 New-API 口径一致 */
+        function formatUsdTwoDecimals(n) {
+          if (n === null || n === undefined || Number.isNaN(Number(n))) return '—';
+          return Number(n).toLocaleString('zh-CN', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          });
+        }
+
+        function isDynamicDailyQuota(d) {
+          const lim = d && d.hard_limit_usd;
+          return typeof lim === 'number' && !Number.isNaN(lim) && lim > 999999;
+        }
+
+        /** `access_until` 为秒级时间戳；与 `Date` 组合时使用 `* 1000`。 */
+        function normalizeAccessUntilSeconds(v) {
+          if (v === null || v === undefined) return 0;
+          const n = Number(v);
+          if (!Number.isFinite(n)) return 0;
+          return n;
+        }
+
+        /**
+         * @returns {{ kind: 'forever' } | { kind: 'invalid' } | { kind: 'date', dateStr: string, expired: boolean }}
+         */
+        function parseAccessUntil(accessUntil) {
+          const sec = normalizeAccessUntilSeconds(accessUntil);
+          if (sec <= 0) return { kind: 'forever' };
+          const ms = sec * 1000;
+          const dt = new Date(ms);
+          if (Number.isNaN(dt.getTime())) return { kind: 'invalid' };
+          const y = dt.getFullYear();
+          const mo = dt.getMonth() + 1;
+          const day = dt.getDate();
+          const dateStr = y + '年' + mo + '月' + day + '日';
+          const expired = Date.now() > ms;
+          return { kind: 'date', dateStr: dateStr, expired: expired };
+        }
+
+        function labelForValidityCard(accessUntil) {
+          const p = parseAccessUntil(accessUntil);
+          if (p.kind === 'forever') return '永久有效';
+          if (p.kind === 'invalid') return '—';
+          return p.dateStr + (p.expired ? '（已过期）' : '');
+        }
+
+        function barColorClass(pct) {
+          if (pct === null || pct === undefined || Number.isNaN(pct)) return 'bg-slate-500';
+          if (pct >= 90) return 'bg-red-500';
+          if (pct >= 70) return 'bg-amber-500';
+          return 'bg-emerald-500';
+        }
+
+        function showError(msg) {
+          const box = $('error-box');
+          box.textContent = msg || '未知错误';
+          box.classList.remove('hidden');
+        }
+
+        function hideError() {
+          $('error-box').classList.add('hidden');
+        }
+
+        async function query() {
+          const token = ($('token').value || '').trim();
+          hideError();
+          $('dashboard').classList.add('hidden');
+
+          if (!token.startsWith('sk-')) {
+            showError('请输入以 sk- 开头的有效 Token。');
+            return;
+          }
+
+          const btn = $('btn-query');
+          btn.disabled = true;
+          const prevText = btn.textContent;
+          btn.textContent = '查询中…';
+
+          try {
+            const res = await fetch('/api/check', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ token: token }),
+            });
+
+            let payload;
+            try {
+              payload = await res.json();
+            } catch {
+              showError('服务器返回了非 JSON 响应（HTTP ' + res.status + '）。');
+              return;
+            }
+
+            if (!res.ok || !payload.ok) {
+              const err =
+                payload && payload.error
+                  ? payload.error
+                  : '请求失败（HTTP ' + res.status + '）';
+              const detail =
+                payload && payload.detail && typeof payload.detail === 'object'
+                  ? JSON.stringify(payload.detail).slice(0, 400)
+                  : '';
+              showError(detail ? err + ' · ' + detail : err);
+              return;
+            }
+
+            const d = payload.data || {};
+            $('disp-name').textContent = maskToken(token);
+            $('disp-expire').textContent = labelForValidityCard(d.access_until);
+
+            const dynamic = isDynamicDailyQuota(d);
+            const elDyn = $('usage-mode-dynamic');
+            const elFixed = $('usage-mode-fixed');
+            if (elDyn) elDyn.classList.toggle('hidden', !dynamic);
+            if (elFixed) elFixed.classList.toggle('hidden', dynamic);
+
+            const dynLine = $('dynamic-access-line');
+            if (dynLine) {
+              if (dynamic) {
+                const au = parseAccessUntil(d.access_until);
+                if (au.kind === 'date') {
+                  dynLine.textContent =
+                    '本期套餐有效期至：' + au.dateStr + (au.expired ? '（已过期）' : '');
+                  dynLine.classList.remove('hidden');
+                } else {
+                  dynLine.textContent = '';
+                  dynLine.classList.add('hidden');
+                }
+              } else {
+                dynLine.textContent = '';
+                dynLine.classList.add('hidden');
+              }
+            }
+
+            if (dynamic) {
+              const u = formatUsdTwoDecimals(d.used_usd);
+              const el = $('dynamic-used-display');
+              if (el) el.textContent = u === '—' ? '—' : '$' + u;
+            } else {
+              $('m-total').textContent = formatUsd(d.hard_limit_usd);
+              $('m-used').textContent = formatUsd(d.used_usd);
+              $('m-left').textContent = formatUsd(d.remaining_usd);
+
+              const pct =
+                d.usage_percent !== null && d.usage_percent !== undefined
+                  ? Math.min(100, Math.max(0, Number(d.usage_percent)))
+                  : null;
+              $('m-pct').textContent =
+                pct !== null && !Number.isNaN(pct) ? pct.toFixed(2) + '%' : '—';
+
+              const bar = $('bar-fill');
+              const w = pct !== null && !Number.isNaN(pct) ? pct : 0;
+              bar.style.width = (Math.min(100, w) || 0) + '%';
+              bar.className =
+                'h-full rounded-full transition-all duration-500 ease-out ' + barColorClass(pct);
+              $('bar-label').textContent =
+                pct !== null && !Number.isNaN(pct) ? pct.toFixed(1) + '% 已用' : '—';
+            }
+
+            $('dashboard').classList.remove('hidden');
+          } catch (e) {
+            showError('网络错误：' + (e && e.message ? e.message : String(e)));
+          } finally {
+            btn.disabled = false;
+            btn.textContent = prevText;
+          }
+        }
+
+        // 显示/隐藏 API Key（即 Token）明文
+        const tokenInput = $('token');
+        const btnToggleToken = $('btn-toggle-token');
+        const iconEye = $('icon-eye');
+        const iconEyeOff = $('icon-eye-off');
+        function syncTokenRevealUI() {
+          if (!tokenInput) return;
+          const isText = tokenInput.type === 'text';
+          if (iconEye) iconEye.classList.toggle('hidden', isText);
+          if (iconEyeOff) iconEyeOff.classList.toggle('hidden', !isText);
+        }
+        if (btnToggleToken && tokenInput) {
+          btnToggleToken.addEventListener('click', function () {
+            tokenInput.type = tokenInput.type === 'password' ? 'text' : 'password';
+            syncTokenRevealUI();
+          });
+          syncTokenRevealUI();
+        }
+
+        $('btn-query').addEventListener('click', query);
+        $('token').addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') query();
+        });
+      })();
+    </script>
+  </body>
+</html>
+
