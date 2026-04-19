@@ -1,0 +1,11 @@
+{
+  "name": "simple-transit-hua",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "local": "vercel dev"
+  },
+  "devDependencies": {
+    "vercel": "^39.0.0"
+  }
+}

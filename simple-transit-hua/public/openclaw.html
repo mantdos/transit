@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>统一配置生成 · AI 集创空间</title>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .app-bg {
+        background:
+          radial-gradient(1000px circle at 14% 10%, rgba(56, 189, 248, 0.2), transparent 50%),
+          radial-gradient(880px circle at 84% 20%, rgba(167, 139, 250, 0.2), transparent 52%),
+          linear-gradient(180deg, #243247 0%, #172033 100%);
+      }
+      .glass {
+        background: rgba(2, 6, 23, 0.55);
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        backdrop-filter: blur(14px);
+      }
+      .gradient-text {
+        background: linear-gradient(90deg, #00a6ff 0%, #c369ff 52.4%, #ff4590 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+      }
+      .nav-link {
+        color: rgb(203 213 225);
+        border: 1px solid transparent;
+      }
+      .nav-link:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.12);
+      }
+      .nav-link-active {
+        color: #fff;
+        background: rgba(234, 76, 137, 0.14);
+        border-color: rgba(234, 76, 137, 0.38);
+      }
+      pre.code-block {
+        background: rgba(15, 23, 42, 0.72);
+        border: 1px solid rgba(100, 116, 139, 0.45);
+        border-radius: 1rem;
+        padding: 1.25rem;
+        overflow: auto;
+        font-size: 0.8rem;
+        line-height: 1.5;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen text-slate-100 antialiased app-bg">
+    <header class="sticky top-0 z-50">
+      <div class="mx-auto max-w-6xl px-4 py-3">
+        <div class="glass rounded-2xl px-4">
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <a href="/" class="flex items-center gap-3 py-2">
+              <img src="/brand-logo.png" alt="品牌图标" class="h-10 w-10 rounded-xl object-cover brightness-150 contrast-110" />
+              <div class="flex flex-col leading-tight">
+                <span class="text-sm font-extrabold gradient-text">API 中转站</span>
+                <span class="text-xs text-slate-400">统一配置</span>
+              </div>
+            </a>
+            <nav class="flex flex-wrap items-center gap-2">
+              <a href="/" class="nav-link inline-flex rounded-xl px-3 py-2 text-sm font-medium">首页</a>
+              <a href="/tutorial" class="nav-link inline-flex rounded-xl px-3 py-2 text-sm font-medium">教程中心</a>
+              <a href="/tutorial-claude.html" class="nav-link inline-flex rounded-xl px-3 py-2 text-sm font-medium">Claude 安装</a>
+              <a href="/tutorial-codex.html" class="nav-link inline-flex rounded-xl px-3 py-2 text-sm font-medium">Codex 教程</a>
+              <a href="/openclaw" class="nav-link-active nav-link inline-flex rounded-xl px-3 py-2 text-sm font-medium" aria-current="page">统一配置</a>
+              <a href="/usage" class="nav-link inline-flex rounded-xl px-3 py-2 text-sm font-medium">余额查询</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-4xl px-4 py-10">
+      <header class="text-center">
+        <h1 class="text-3xl font-extrabold sm:text-4xl"><span class="gradient-text">统一配置生成</span></h1>
+        <p class="mt-3 text-slate-300">
+          选择模型体系并填写 Key，将为本站地址
+          <code id="hint-origin" class="rounded bg-slate-800 px-1.5 py-0.5 text-cyan-200"></code>
+          生成 OpenClaw 片段与 Claude Code 配置。
+        </p>
+      </header>
+
+      <div class="glass mt-8 rounded-2xl p-6 prose prose-invert max-w-none">
+        <p class="text-slate-300 not-prose text-sm leading-relaxed">
+          也可通过
+          <a
+            href="https://ucngkdwd50uz.feishu.cn/wiki/S6MAwoZCDinuNDkqTPXcj5kZnOA"
+            target="_blank"
+            rel="noopener"
+            class="text-pink-400 hover:underline"
+            >cc-switch 文档</a
+          >
+          导入自定义提供商。以下为基于当前中转站域名自动替换后的模板。
+        </p>
+
+        <div class="not-prose mt-6 space-y-6">
+          <div>
+            <span class="mb-2 block text-sm font-medium text-slate-200">模型体系</span>
+            <div class="grid gap-3 sm:grid-cols-3">
+              <label class="flex cursor-pointer items-center gap-2 rounded-2xl border border-slate-700/60 bg-slate-900/60 px-3.5 py-3 text-sm">
+                <input type="radio" name="family" value="codex" class="h-4 w-4 accent-pink-500" />
+                Codex（OpenAI 协议）
+              </label>
+              <label class="flex cursor-pointer items-center gap-2 rounded-2xl border border-slate-700/60 bg-slate-900/60 px-3.5 py-3 text-sm">
+                <input type="radio" name="family" value="gemini" class="h-4 w-4 accent-pink-500" />
+                Gemini
+              </label>
+              <label class="flex cursor-pointer items-center gap-2 rounded-2xl border border-slate-700/60 bg-slate-900/60 px-3.5 py-3 text-sm">
+                <input type="radio" name="family" value="claude" class="h-4 w-4 accent-pink-500" checked />
+                Claude
+              </label>
+            </div>
+          </div>
+
+          <div class="grid gap-4 md:grid-cols-2">
+            <div>
+              <label for="apiKey" class="mb-2 block text-sm font-medium text-slate-200">API Key / Token</label>
+              <input
+                id="apiKey"
+                type="password"
+                autocomplete="off"
+                placeholder="sk-..."
+                class="w-full rounded-2xl border border-slate-700/60 bg-slate-900/60 p-3.5 text-sm outline-none focus:border-pink-500"
+              />
+            </div>
+            <div class="relative">
+              <label for="modelBtn" class="mb-2 block text-sm font-medium text-slate-200">模型</label>
+              <button
+                type="button"
+                id="modelBtn"
+                class="flex w-full items-center justify-between rounded-2xl border border-slate-700/60 bg-slate-900/60 p-3.5 text-left text-sm"
+                aria-expanded="false"
+              >
+                <span id="modelLabel">claude-sonnet-4.6</span>
+                <span class="text-slate-400">▼</span>
+              </button>
+              <div id="modelList" class="absolute z-20 mt-1 hidden max-h-56 w-full overflow-auto rounded-xl border border-slate-700 bg-slate-900 py-1 shadow-xl"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="not-prose mt-10 space-y-10">
+          <section>
+            <div class="flex items-center justify-between gap-3">
+              <h2 class="text-lg font-bold text-white">OpenClaw 自定义 Provider（JSON）</h2>
+              <button type="button" class="copy-btn rounded-lg border border-slate-600 px-3 py-1.5 text-xs hover:bg-slate-800" data-copy="openclaw">复制</button>
+            </div>
+            <pre class="code-block mt-3"><code id="out-openclaw"></code></pre>
+          </section>
+
+          <section>
+            <div class="flex items-center justify-between gap-3">
+              <h2 class="text-lg font-bold text-white">Claude Code / cc-switch（env JSON）</h2>
+              <button type="button" class="copy-btn rounded-lg border border-slate-600 px-3 py-1.5 text-xs hover:bg-slate-800" data-copy="claudecode">复制</button>
+            </div>
+            <pre class="code-block mt-3"><code id="out-claudecode"></code></pre>
+          </section>
+
+          <section>
+            <div class="flex items-center justify-between gap-3">
+              <h2 class="text-lg font-bold text-white">环境变量（终端快速写入）</h2>
+              <button type="button" class="copy-btn rounded-lg border border-slate-600 px-3 py-1.5 text-xs hover:bg-slate-800" data-copy="shell">复制 Bash</button>
+            </div>
+            <p class="mt-2 text-xs text-slate-400">将下方 <code class="text-slate-300">YOUR_KEY</code> 已替换为您输入的 Key（若为空则保留占位符）。</p>
+            <pre class="code-block mt-3"><code id="out-shell"></code></pre>
+            <div class="mt-3 flex justify-end">
+              <button type="button" class="copy-btn rounded-lg border border-slate-600 px-3 py-1.5 text-xs hover:bg-slate-800" data-copy="ps">复制 PowerShell</button>
+            </div>
+            <pre class="code-block mt-3"><code id="out-ps"></code></pre>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <div
+      id="toast"
+      class="fixed top-4 right-4 z-50 hidden rounded-xl border border-emerald-500/40 bg-slate-900/90 px-4 py-2 text-sm text-emerald-200 shadow-lg"
+    >
+      已复制
+    </div>
+
+    <script>
+      (function () {
+        var SITE = window.location.origin;
+        var OPENAI_BASE = SITE + '/v1';
+        document.getElementById('hint-origin').textContent = SITE;
+
+        var MODELS = {
+          codex: ['gpt-5.4', 'gpt-5.3-codex', 'gpt-5.2-codex', 'gpt-5.2'],
+          claude: ['claude-opus-4-6', 'claude-opus-4-6-thinking', 'claude-sonnet-4.6', 'claude-sonnet-4-6-thinking', 'claude-haiku-4.5'],
+          gemini: ['gemini-3-flash', 'gemini-3-flash-preview'],
+        };
+
+        var familyInputs = Array.prototype.slice.call(document.querySelectorAll('input[name="family"]'));
+        var apiKeyEl = document.getElementById('apiKey');
+        var modelBtn = document.getElementById('modelBtn');
+        var modelList = document.getElementById('modelList');
+        var modelLabel = document.getElementById('modelLabel');
+        var outOpenclaw = document.getElementById('out-openclaw');
+        var outClaudecode = document.getElementById('out-claudecode');
+        var outShell = document.getElementById('out-shell');
+        var outPs = document.getElementById('out-ps');
+        var toast = document.getElementById('toast');
+
+        var family = 'claude';
+        var model = MODELS.claude[2];
+
+        function getToken() {
+          var t = apiKeyEl && apiKeyEl.value ? apiKeyEl.value.trim() : '';
+          return t || 'sk-您的专属Token';
+        }
+
+        function openclawModelBlock(modelId, isOpenAI) {
+          var maxTok = isOpenAI ? 32000 : 8192;
+          return {
+            contextWindow: 200000,
+            cost: { cacheRead: 0.3, cacheWrite: 3.75, input: 3, output: 15 },
+            id: modelId,
+            input: ['text'],
+            maxTokens: maxTok,
+            name: modelId,
+            reasoning: false,
+          };
+        }
+
+        function buildOpenClaw() {
+          var token = getToken();
+          if (family === 'codex') {
+            return {
+              api: 'openai-completions',
+              apiKey: token,
+              baseUrl: OPENAI_BASE,
+              models: [openclawModelBlock(model, true)],
+            };
+          }
+          return {
+            api: 'anthropic-messages',
+            apiKey: token,
+            baseUrl: SITE,
+            models: [openclawModelBlock(model, false)],
+          };
+        }
+
+        function buildClaudeCodeJson() {
+          var token = getToken();
+          return {
+            env: {
+              ANTHROPIC_AUTH_TOKEN: token,
+              ANTHROPIC_BASE_URL: SITE,
+              ANTHROPIC_DEFAULT_HAIKU_MODEL: model,
+              ANTHROPIC_DEFAULT_OPUS_MODEL: model,
+              ANTHROPIC_DEFAULT_SONNET_MODEL: model,
+              ANTHROPIC_MODEL: model,
+              ANTHROPIC_REASONING_MODEL: model,
+            },
+            includeCoAuthoredBy: false,
+          };
+        }
+
+        function buildShell() {
+          var token = getToken().replace(/'/g, "'\\''");
+          return (
+            'export ANTHROPIC_BASE_URL="' +
+            SITE +
+            '"\n' +
+            'export ANTHROPIC_AUTH_TOKEN="' +
+            token +
+            '"\n' +
+            'export ANTHROPIC_MODEL="' +
+            model +
+            '"'
+          );
+        }
+
+        function buildPs() {
+          var token = getToken().replace(/"/g, '`"');
+          return (
+            '$env:ANTHROPIC_BASE_URL="' +
+            SITE +
+            '"\n' +
+            '$env:ANTHROPIC_AUTH_TOKEN="' +
+            token +
+            '"\n' +
+            '$env:ANTHROPIC_MODEL="' +
+            model +
+            '"'
+          );
+        }
+
+        function refresh() {
+          if (outOpenclaw) outOpenclaw.textContent = JSON.stringify(buildOpenClaw(), null, 2);
+          if (outClaudecode) outClaudecode.textContent = JSON.stringify(buildClaudeCodeJson(), null, 2);
+          if (outShell) outShell.textContent = buildShell();
+          if (outPs) outPs.textContent = buildPs();
+        }
+
+        function setFamily(f) {
+          family = MODELS[f] ? f : 'claude';
+          var opts = MODELS[family];
+          if (opts.indexOf(model) === -1) model = opts[0];
+          renderModelList();
+          if (modelLabel) modelLabel.textContent = model;
+          refresh();
+        }
+
+        function renderModelList() {
+          if (!modelList) return;
+          var opts = MODELS[family];
+          modelList.innerHTML = opts
+            .map(function (m) {
+              return '<button type="button" class="model-opt block w-full px-4 py-2.5 text-left text-sm hover:bg-slate-800" data-m="' + m + '">' + m + '</button>';
+            })
+            .join('');
+        }
+
+        function showToast() {
+          if (!toast) return;
+          toast.classList.remove('hidden');
+          setTimeout(function () {
+            toast.classList.add('hidden');
+          }, 1200);
+        }
+
+        familyInputs.forEach(function (inp) {
+          inp.addEventListener('change', function () {
+            if (inp.checked) setFamily(inp.value);
+          });
+        });
+
+        if (apiKeyEl) apiKeyEl.addEventListener('input', refresh);
+
+        if (modelBtn && modelList) {
+          modelBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            modelList.classList.toggle('hidden');
+          });
+          modelList.addEventListener('click', function (e) {
+            var b = e.target.closest('.model-opt');
+            if (!b) return;
+            model = b.getAttribute('data-m') || model;
+            if (modelLabel) modelLabel.textContent = model;
+            modelList.classList.add('hidden');
+            refresh();
+          });
+        }
+        document.addEventListener('click', function () {
+          if (modelList) modelList.classList.add('hidden');
+        });
+
+        document.querySelectorAll('.copy-btn').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var k = btn.getAttribute('data-copy');
+            var el = k === 'openclaw' ? outOpenclaw : k === 'claudecode' ? outClaudecode : k === 'shell' ? outShell : outPs;
+            if (el && navigator.clipboard) {
+              navigator.clipboard.writeText(el.textContent).then(showToast);
+            }
+          });
+        });
+
+        setFamily('claude');
+      })();
+    </script>
+  </body>
+</html>

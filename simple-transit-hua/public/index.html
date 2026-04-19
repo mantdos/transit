@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>综合 API 中转 · AI 集创空间</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .app-bg {
+        background:
+          radial-gradient(900px circle at 15% 10%, rgba(0, 166, 255, 0.22), transparent 46%),
+          radial-gradient(800px circle at 85% 25%, rgba(195, 105, 255, 0.2), transparent 46%),
+          radial-gradient(900px circle at 55% 95%, rgba(255, 69, 144, 0.16), transparent 46%),
+          linear-gradient(180deg, #0b1226 0%, #050a16 100%);
+      }
+      .glass {
+        background: rgba(2, 6, 23, 0.55);
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+      }
+      .gradient-text {
+        background: linear-gradient(90deg, #00a6ff 0%, #c369ff 52.4%, #ff4590 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+      }
+      .btn-primary {
+        background: linear-gradient(90deg, #00a6ff 0%, #c369ff 52.4%, #ff4590 100%);
+      }
+      .btn-glass {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(12px);
+      }
+      .nav-link {
+        color: rgb(203 213 225);
+        border: 1px solid transparent;
+      }
+      .nav-link:hover {
+        color: #ffffff;
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.12);
+      }
+      .nav-link-active {
+        color: #ffffff;
+        background: rgba(234, 76, 137, 0.14);
+        border-color: rgba(234, 76, 137, 0.38);
+      }
+    </style>
+  </head>
+  <body class="min-h-screen text-slate-100 antialiased app-bg">
+    <header class="sticky top-0 z-50">
+      <div class="mx-auto max-w-6xl px-4 py-3">
+        <div class="glass rounded-2xl px-4">
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <a href="/" class="flex items-center gap-3 py-2">
+              <img src="/brand-logo.png" alt="品牌图标" class="h-10 w-10 rounded-xl object-cover brightness-150 contrast-110" />
+              <div class="flex flex-col leading-tight">
+                <span class="text-sm font-extrabold gradient-text">API 中转站</span>
+                <span class="text-xs font-semibold tracking-wider text-slate-400">综合渠道</span>
+              </div>
+            </a>
+            <nav class="flex flex-wrap items-center gap-2">
+              <a href="/" class="nav-link-active nav-link inline-flex rounded-xl px-3 py-2 text-sm font-medium" aria-current="page">首页</a>
+              <a href="/tutorial" class="nav-link inline-flex rounded-xl px-3 py-2 text-sm font-medium">教程中心</a>
+              <a href="/tutorial-claude.html" class="nav-link inline-flex rounded-xl px-3 py-2 text-sm font-medium">Claude 安装</a>
+              <a href="/tutorial-codex.html" class="nav-link inline-flex rounded-xl px-3 py-2 text-sm font-medium">Codex 教程</a>
+              <a href="/openclaw" class="nav-link inline-flex rounded-xl px-3 py-2 text-sm font-medium">统一配置</a>
+              <a href="/usage" class="nav-link inline-flex rounded-xl px-3 py-2 text-sm font-medium">余额查询</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-6xl px-4 py-16">
+      <section class="text-center">
+        <div class="mx-auto max-w-3xl space-y-6">
+          <h1 class="text-4xl font-extrabold tracking-tight md:text-5xl">
+            <span class="gradient-text">综合 API 中转站</span>
+          </h1>
+          <p class="text-base text-slate-300 sm:text-lg">
+            Claude / Gemini / Codex 统一入口，请将客户端 Base URL 指向<strong class="text-white">当前站点</strong>（见下方）。
+          </p>
+        </div>
+
+        <div class="mx-auto mt-10 max-w-2xl rounded-2xl border border-violet-500/30 bg-slate-900/60 p-6 text-left shadow-xl">
+          <h2 class="text-sm font-semibold uppercase tracking-wider text-violet-300">API Base URL（当前站点）</h2>
+          <p class="mt-2 text-xs text-slate-400">
+            OpenAI 兼容客户端（Codex、部分工具）请在 Base URL 末尾保留
+            <code class="rounded bg-slate-800 px-1.5 py-0.5 text-slate-200">/v1</code>
+            ；Anthropic 兼容（Claude Code、OpenClaw 部分配置）通常使用根地址，无需再加
+            <code class="rounded bg-slate-800 px-1.5">/v1</code>。具体以「统一配置」页生成结果为准。
+          </p>
+          <div class="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center">
+            <code id="api-base-root" class="flex-1 break-all rounded-xl border border-slate-600 bg-slate-950/80 px-4 py-3 font-mono text-sm text-emerald-200"></code>
+            <button
+              type="button"
+              id="btn-copy-root"
+              class="shrink-0 rounded-xl border border-slate-600 px-4 py-3 text-sm font-medium text-slate-200 hover:bg-slate-800"
+            >
+              复制根地址
+            </button>
+          </div>
+          <p class="mt-3 font-mono text-sm text-slate-300">
+            OpenAI 兼容示例：<span id="api-base-openai" class="text-cyan-200"></span>
+          </p>
+        </div>
+
+        <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <a href="/usage" class="btn-primary inline-flex rounded-xl px-8 py-3.5 text-base font-semibold text-white shadow-lg transition hover:opacity-95">查询余额 / 连通性</a>
+          <a href="/openclaw" class="btn-glass inline-flex rounded-xl px-8 py-3.5 text-base font-semibold text-slate-100 transition hover:bg-white/10">统一配置生成</a>
+          <a href="/tutorial" class="btn-glass inline-flex rounded-xl px-8 py-3.5 text-base font-semibold text-slate-100 transition hover:bg-white/10">教程中心</a>
+        </div>
+      </section>
+
+      <div class="mt-20 grid gap-5 text-left sm:grid-cols-2 xl:grid-cols-3">
+        <article class="rounded-2xl border border-slate-700/90 bg-slate-800/50 p-6">
+          <h3 class="text-lg font-bold text-white">统一上游</h3>
+          <p class="mt-2 text-sm text-slate-300">流量经本站转发至统一渠道，前端仅暴露当前域名。</p>
+        </article>
+        <article class="rounded-2xl border border-slate-700/90 bg-slate-800/50 p-6">
+          <h3 class="text-lg font-bold text-white">多体系配置</h3>
+          <p class="mt-2 text-sm text-slate-300">同一页面生成 OpenClaw 与 Claude Code 所需片段。</p>
+        </article>
+        <article class="rounded-2xl border border-slate-700/90 bg-slate-800/50 p-6">
+          <h3 class="text-lg font-bold text-white">文档齐备</h3>
+          <p class="mt-2 text-sm text-slate-300">Claude 安装与 Codex 教程分栏保留，便于检索。</p>
+        </article>
+      </div>
+    </main>
+
+    <footer class="mt-8 pb-10">
+      <div class="mx-auto max-w-6xl px-4 text-center text-xs text-slate-500">© 2026 · 综合中转 · 部署后请将 brand-logo.png 置于 public 目录</div>
+    </footer>
+
+    <script>
+      (function () {
+        var root = window.location.origin;
+        var openai = root + '/v1';
+        var elRoot = document.getElementById('api-base-root');
+        var elOpen = document.getElementById('api-base-openai');
+        if (elRoot) elRoot.textContent = root;
+        if (elOpen) elOpen.textContent = openai;
+        var btn = document.getElementById('btn-copy-root');
+        if (btn) {
+          btn.addEventListener('click', function () {
+            navigator.clipboard.writeText(root).catch(function () {});
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

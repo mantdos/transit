@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>教程中心 · AI 集创空间</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .app-bg {
+        background:
+          radial-gradient(900px circle at 15% 10%, rgba(0, 166, 255, 0.22), transparent 46%),
+          radial-gradient(800px circle at 85% 25%, rgba(195, 105, 255, 0.2), transparent 46%),
+          linear-gradient(180deg, #0b1226 0%, #050a16 100%);
+      }
+      .glass {
+        background: rgba(2, 6, 23, 0.55);
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        backdrop-filter: blur(14px);
+      }
+      .gradient-text {
+        background: linear-gradient(90deg, #00a6ff 0%, #c369ff 52.4%, #ff4590 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+      }
+      .nav-link {
+        color: rgb(203 213 225);
+        border: 1px solid transparent;
+      }
+      .nav-link:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.12);
+      }
+      .nav-link-active {
+        color: #fff;
+        background: rgba(234, 76, 137, 0.14);
+        border-color: rgba(234, 76, 137, 0.38);
+      }
+    </style>
+  </head>
+  <body class="min-h-screen text-slate-100 antialiased app-bg">
+    <header class="sticky top-0 z-50">
+      <div class="mx-auto max-w-6xl px-4 py-3">
+        <div class="glass rounded-2xl px-4">
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <a href="/" class="flex items-center gap-3 py-2">
+              <img src="/brand-logo.png" alt="品牌图标" class="h-10 w-10 rounded-xl object-cover brightness-150 contrast-110" />
+              <div class="flex flex-col leading-tight">
+                <span class="text-sm font-extrabold gradient-text">API 中转站</span>
+                <span class="text-xs font-semibold tracking-wider text-slate-400">综合渠道 · Red Panda Lab</span>
+              </div>
+            </a>
+            <nav class="flex flex-wrap items-center gap-2">
+              <a href="/" class="nav-link inline-flex rounded-xl px-3 py-2 text-sm font-medium">首页</a>
+              <a href="/tutorial" class="nav-link-active nav-link inline-flex rounded-xl px-3 py-2 text-sm font-medium" aria-current="page">教程中心</a>
+              <a href="/tutorial-claude.html" class="nav-link inline-flex rounded-xl px-3 py-2 text-sm font-medium">Claude 安装</a>
+              <a href="/tutorial-codex.html" class="nav-link inline-flex rounded-xl px-3 py-2 text-sm font-medium">Codex 教程</a>
+              <a href="/openclaw" class="nav-link inline-flex rounded-xl px-3 py-2 text-sm font-medium">统一配置</a>
+              <a href="/usage" class="nav-link inline-flex rounded-xl px-3 py-2 text-sm font-medium">余额查询</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-4xl px-4 py-16">
+      <h1 class="text-center text-3xl font-extrabold sm:text-4xl">
+        <span class="gradient-text">教程中心</span>
+      </h1>
+      <p class="mx-auto mt-4 max-w-2xl text-center text-slate-300">
+        以下两篇文章分别从参考项目完整迁移：<strong class="text-white">Claude Code 安装</strong>（Windows / macOS / Linux）与
+        <strong class="text-white">Codex &amp; Open Code 使用</strong>。内容中的 API 地址已按当前站点自动替换。
+      </p>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2">
+        <a
+          href="/tutorial-claude.html"
+          class="glass group rounded-2xl border border-slate-600/50 p-8 transition hover:border-pink-500/40 hover:shadow-[0_0_30px_rgba(234,76,137,0.12)]"
+        >
+          <div class="text-xs font-semibold uppercase tracking-wider text-pink-300">Claude 体系</div>
+          <h2 class="mt-3 text-xl font-bold text-white group-hover:text-pink-200">Claude Code 安装教程</h2>
+          <p class="mt-3 text-sm leading-relaxed text-slate-400">
+            含 Git / Node 环境、多平台安装步骤、环境变量与常见问题，与历史「Claude Code 安装教程」一致。
+          </p>
+          <span class="mt-6 inline-flex text-sm font-semibold text-pink-300">打开教程 →</span>
+        </a>
+
+        <a
+          href="/tutorial-codex.html"
+          class="glass group rounded-2xl border border-slate-600/50 p-8 transition hover:border-cyan-500/40 hover:shadow-[0_0_30px_rgba(34,211,238,0.12)]"
+        >
+          <div class="text-xs font-semibold uppercase tracking-wider text-cyan-300">Codex / Open Code</div>
+          <h2 class="mt-3 text-xl font-bold text-white group-hover:text-cyan-200">Codex &amp; Open Code 使用教程</h2>
+          <p class="mt-3 text-sm leading-relaxed text-slate-400">
+            官方 Codex CLI、config.toml / auth.json、VS Code 插件与 OpenCode 配置说明，与历史「Codex 使用教程」一致。
+          </p>
+          <span class="mt-6 inline-flex text-sm font-semibold text-cyan-300">打开教程 →</span>
+        </a>
+      </div>
+    </main>
+  </body>
+</html>

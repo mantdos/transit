@@ -1,0 +1,36 @@
+{
+  "rewrites": [
+    {
+      "source": "/v1/(.*)",
+      "destination": "/api/proxy?path=$1"
+    },
+    {
+      "source": "/tutorial",
+      "destination": "/tutorial.html"
+    },
+    {
+      "source": "/openclaw",
+      "destination": "/openclaw.html"
+    },
+    {
+      "source": "/claudecode-config",
+      "destination": "/openclaw.html"
+    },
+    {
+      "source": "/claude-code",
+      "destination": "/openclaw.html"
+    },
+    {
+      "source": "/usage",
+      "destination": "/usage.html"
+    }
+  ],
+  "functions": {
+    "api/proxy.js": {
+      "maxDuration": 300
+    },
+    "api/check.js": {
+      "maxDuration": 60
+    }
+  }
+}
