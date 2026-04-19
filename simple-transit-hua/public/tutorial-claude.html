@@ -257,7 +257,7 @@
     <header class="sticky top-0 z-50">
       <div class="mx-auto max-w-6xl px-4 py-3">
         <div class="glass rounded-2xl px-4">
-          <div class="flex items-center justify-between gap-4">
+          <div class="flex flex-wrap items-center justify-between gap-4">
             <a href="/" class="flex items-center gap-3 py-2">
               <img src="/brand-logo.png" alt="品牌图标" class="h-10 w-10 rounded-xl object-cover brightness-150 contrast-110 drop-shadow-[0_0_10px_rgba(148,163,184,0.35)]" />
               <div class="flex flex-col leading-tight">
@@ -265,25 +265,56 @@
                 <span class="text-xs font-semibold tracking-wider bg-gradient-to-r from-slate-200 to-slate-400 bg-clip-text text-transparent">AI集创空间</span>
               </div>
             </a>
-
             <nav class="flex flex-wrap items-center gap-2">
               <a href="/" class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
-                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M3 10.5 12 3l9 7.5V21a1.5 1.5 0 0 1-1.5 1.5H15v-6H9v6H4.5A1.5 1.5 0 0 1 3 21V10.5z" />
                 </svg>
                 首页
               </a>
-              <a href="/tutorial" class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">教程中心</a>
-              <a
-                href="/tutorial-claude.html"
-                class="nav-link-active nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition"
-                aria-current="page"
-              >
-                Claude 安装
+              <a href="/tutorial" class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
+                <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                </svg>
+                教程中心
               </a>
-              <a href="/tutorial-codex.html" class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">Codex 教程</a>
-              <a href="/openclaw" class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">统一配置</a>
-              <a href="/usage" class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">余额查询</a>
+              <a href="/tutorial-claude.html" class="nav-link-active nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition" aria-current="page">
+                <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M8 9l-3 3 3 3" />
+                  <path d="M16 9l3 3-3 3" />
+                  <path d="M14 5l-4 14" />
+                </svg>
+                Claude Code教程
+              </a>
+              <a href="/tutorial-codex.html" class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
+                <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M9 12h6" />
+                  <path d="M12 9v6" />
+                  <rect x="3" y="5" width="18" height="14" rx="2" />
+                </svg>
+                Codex 使用教程
+              </a>
+              <a href="/openclaw" class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
+                <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M13.5 3H8a2 2 0 0 0-2 2v4.5" />
+                  <path d="M10.5 21H16a2 2 0 0 0 2-2v-4.5" />
+                  <path d="M3 13.5V16a2 2 0 0 0 2 2h2.5" />
+                  <path d="M21 10.5V8a2 2 0 0 0-2-2h-2.5" />
+                  <path d="M8.5 8.5h7v7h-7z" />
+                </svg>
+                统一配置
+              </a>
+              <a href="/usage" class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
+                <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 19V5" />
+                  <path d="M8 19v-8" />
+                  <path d="M12 19v-5" />
+                  <path d="M16 19V8" />
+                  <path d="M20 19v-3" />
+                </svg>
+                余额查询
+              </a>
             </nav>
           </div>
         </div>
@@ -1923,7 +1954,7 @@ claude --version
               <div class="mt-4 space-y-2 text-sm">
                 <a href="/" class="block text-slate-300 hover:text-white">首页</a>
                 <a href="/tutorial" class="block text-slate-300 hover:text-white">教程中心</a>
-                <a href="/tutorial-codex.html" class="block text-slate-300 hover:text-white">Codex 教程</a>
+                <a href="/tutorial-codex.html" class="block text-slate-300 hover:text-white">Codex 使用教程</a>
                 <a href="/openclaw" class="block text-slate-300 hover:text-white">统一配置</a>
                 <a href="/usage" class="block text-slate-300 hover:text-white">消费查询</a>
               </div>

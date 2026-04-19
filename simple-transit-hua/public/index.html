@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>综合 API 中转 · AI 集创空间</title>
+    <title>API中转站 · AI集创空间</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -17,6 +17,9 @@
       };
     </script>
     <style>
+      :root {
+        --primary: #ea4c89;
+      }
       .app-bg {
         background:
           radial-gradient(900px circle at 15% 10%, rgba(0, 166, 255, 0.22), transparent 46%),
@@ -44,6 +47,7 @@
         background: rgba(255, 255, 255, 0.06);
         border: 1px solid rgba(255, 255, 255, 0.12);
         backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
       }
       .nav-link {
         color: rgb(203 213 225);
@@ -67,44 +71,79 @@
         <div class="glass rounded-2xl px-4">
           <div class="flex flex-wrap items-center justify-between gap-4">
             <a href="/" class="flex items-center gap-3 py-2">
-              <img src="/brand-logo.png" alt="品牌图标" class="h-10 w-10 rounded-xl object-cover brightness-150 contrast-110" />
+              <img src="/brand-logo.png" alt="品牌图标" class="h-10 w-10 rounded-xl object-cover brightness-150 contrast-110 drop-shadow-[0_0_10px_rgba(148,163,184,0.35)]" />
               <div class="flex flex-col leading-tight">
                 <span class="text-sm font-extrabold gradient-text">API 中转站</span>
-                <span class="text-xs font-semibold tracking-wider text-slate-400">综合渠道</span>
+                <span class="text-xs font-semibold tracking-wider bg-gradient-to-r from-slate-200 to-slate-400 bg-clip-text text-transparent">AI集创空间</span>
               </div>
             </a>
             <nav class="flex flex-wrap items-center gap-2">
-              <a href="/" class="nav-link-active nav-link inline-flex rounded-xl px-3 py-2 text-sm font-medium" aria-current="page">首页</a>
-              <a href="/tutorial" class="nav-link inline-flex rounded-xl px-3 py-2 text-sm font-medium">教程中心</a>
-              <a href="/tutorial-claude.html" class="nav-link inline-flex rounded-xl px-3 py-2 text-sm font-medium">Claude 安装</a>
-              <a href="/tutorial-codex.html" class="nav-link inline-flex rounded-xl px-3 py-2 text-sm font-medium">Codex 教程</a>
-              <a href="/openclaw" class="nav-link inline-flex rounded-xl px-3 py-2 text-sm font-medium">统一配置</a>
-              <a href="/usage" class="nav-link inline-flex rounded-xl px-3 py-2 text-sm font-medium">余额查询</a>
+              <a href="/" class="nav-link-active nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition" aria-current="page">
+                <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3 10.5 12 3l9 7.5V21a1.5 1.5 0 0 1-1.5 1.5H15v-6H9v6H4.5A1.5 1.5 0 0 1 3 21V10.5z" />
+                </svg>
+                首页
+              </a>
+              <a href="/tutorial" class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
+                <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                </svg>
+                教程中心
+              </a>
+              <a href="/tutorial-claude.html" class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
+                <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M8 9l-3 3 3 3" />
+                  <path d="M16 9l3 3-3 3" />
+                  <path d="M14 5l-4 14" />
+                </svg>
+                Claude Code教程
+              </a>
+              <a href="/tutorial-codex.html" class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
+                <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M9 12h6" />
+                  <path d="M12 9v6" />
+                  <rect x="3" y="5" width="18" height="14" rx="2" />
+                </svg>
+                Codex 使用教程
+              </a>
+              <a href="/openclaw" class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
+                <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M13.5 3H8a2 2 0 0 0-2 2v4.5" />
+                  <path d="M10.5 21H16a2 2 0 0 0 2-2v-4.5" />
+                  <path d="M3 13.5V16a2 2 0 0 0 2 2h2.5" />
+                  <path d="M21 10.5V8a2 2 0 0 0-2-2h-2.5" />
+                  <path d="M8.5 8.5h7v7h-7z" />
+                </svg>
+                统一配置
+              </a>
+              <a href="/usage" class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
+                <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 19V5" />
+                  <path d="M8 19v-8" />
+                  <path d="M12 19v-5" />
+                  <path d="M16 19V8" />
+                  <path d="M20 19v-3" />
+                </svg>
+                余额查询
+              </a>
             </nav>
           </div>
         </div>
       </div>
     </header>
 
-    <main class="mx-auto max-w-6xl px-4 py-16">
+    <main class="mx-auto max-w-6xl px-4 py-24">
       <section class="text-center">
-        <div class="mx-auto max-w-3xl space-y-6">
-          <h1 class="text-4xl font-extrabold tracking-tight md:text-5xl">
-            <span class="gradient-text">综合 API 中转站</span>
+        <div class="mx-auto max-w-3xl space-y-8">
+          <h1 class="text-5xl font-extrabold tracking-tight md:text-6xl">
+            <span class="gradient-text">API中转站</span>
           </h1>
-          <p class="text-base text-slate-300 sm:text-lg">
-            Claude / Gemini / Codex 统一入口，请将客户端 Base URL 指向<strong class="text-white">当前站点</strong>（见下方）。
-          </p>
+          <p class="text-base text-slate-300 sm:text-lg">稳定、高效的 AI 编程助手专属中转服务</p>
         </div>
 
         <div class="mx-auto mt-10 max-w-2xl rounded-2xl border border-violet-500/30 bg-slate-900/60 p-6 text-left shadow-xl">
-          <h2 class="text-sm font-semibold uppercase tracking-wider text-violet-300">API Base URL（当前站点）</h2>
-          <p class="mt-2 text-xs text-slate-400">
-            OpenAI 兼容客户端（Codex、部分工具）请在 Base URL 末尾保留
-            <code class="rounded bg-slate-800 px-1.5 py-0.5 text-slate-200">/v1</code>
-            ；Anthropic 兼容（Claude Code、OpenClaw 部分配置）通常使用根地址，无需再加
-            <code class="rounded bg-slate-800 px-1.5">/v1</code>。具体以「统一配置」页生成结果为准。
-          </p>
+          <h2 class="text-sm font-semibold uppercase tracking-wider text-violet-300">API Base URL</h2>
           <div class="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center">
             <code id="api-base-root" class="flex-1 break-all rounded-xl border border-slate-600 bg-slate-950/80 px-4 py-3 font-mono text-sm text-emerald-200"></code>
             <button
@@ -115,36 +154,210 @@
               复制根地址
             </button>
           </div>
+          <p class="mt-3 text-sm leading-6 text-slate-400">
+            说明：Codex兼容客户端需要在 URL 末尾保留
+            <code class="rounded bg-slate-800 px-1.5 py-0.5 text-slate-200">/v1</code>。具体请以「统一配置」页生成的配置为准。
+          </p>
           <p class="mt-3 font-mono text-sm text-slate-300">
-            OpenAI 兼容示例：<span id="api-base-openai" class="text-cyan-200"></span>
+            Codex 兼容示例：<span id="api-base-openai" class="text-cyan-200"></span>
           </p>
         </div>
 
-        <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <a href="/usage" class="btn-primary inline-flex rounded-xl px-8 py-3.5 text-base font-semibold text-white shadow-lg transition hover:opacity-95">查询余额 / 连通性</a>
-          <a href="/openclaw" class="btn-glass inline-flex rounded-xl px-8 py-3.5 text-base font-semibold text-slate-100 transition hover:bg-white/10">统一配置生成</a>
-          <a href="/tutorial" class="btn-glass inline-flex rounded-xl px-8 py-3.5 text-base font-semibold text-slate-100 transition hover:bg-white/10">教程中心</a>
+        <div class="mt-10 flex flex-col items-center justify-center gap-6 sm:flex-row sm:gap-12 md:gap-16">
+          <a
+            href="/usage"
+            class="btn-primary inline-flex items-center justify-center rounded-xl px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-pink-500/20 transition hover:opacity-95 md:text-lg"
+          >
+            查询余额
+          </a>
+          <a href="/tutorial" class="btn-glass inline-flex items-center justify-center rounded-xl px-8 py-3.5 text-base font-semibold text-slate-100 transition hover:bg-white/10 md:text-lg">教程中心</a>
+          <a href="/openclaw" class="btn-glass inline-flex items-center justify-center rounded-xl px-8 py-3.5 text-base font-semibold text-slate-100 transition hover:bg-white/10 md:text-lg">统一配置生成</a>
+        </div>
+
+        <div class="mt-20 grid gap-5 text-left sm:grid-cols-2 xl:grid-cols-3">
+          <article class="rounded-2xl border border-slate-700/90 bg-slate-800/50 p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(234,76,137,0.15)]">
+            <div class="flex items-center justify-between">
+              <div class="rounded-xl bg-cyan-400/15 p-2.5 text-cyan-300">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="m13 2-8 11h6l-1 9 9-13h-6z" />
+                </svg>
+              </div>
+              <span class="rounded-full bg-cyan-400/20 px-2.5 py-1 text-xs font-medium text-cyan-200">性能</span>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-white">极速响应</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-300">优化网络链路，提供稳定可靠的API中转服务，保障日常调用的流畅体验。</p>
+            <div class="mt-4 grid grid-cols-2 gap-4 border-t border-dashed border-slate-600/70 pt-4">
+              <div>
+                <p class="text-xl font-bold text-cyan-300">&lt; 100ms</p>
+                <p class="text-xs text-slate-400">平均延迟</p>
+              </div>
+              <div>
+                <p class="text-xl font-bold text-cyan-300">99.9%</p>
+                <p class="text-xs text-slate-400">可用性</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="rounded-2xl border border-slate-700/90 bg-slate-800/50 p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(234,76,137,0.15)]">
+            <div class="flex items-center justify-between">
+              <div class="rounded-xl bg-violet-400/15 p-2.5 text-violet-300">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="4" y="11" width="16" height="9" rx="2"></rect>
+                  <path d="M8 11V8a4 4 0 1 1 8 0v3"></path>
+                </svg>
+              </div>
+              <span class="rounded-full bg-violet-400/20 px-2.5 py-1 text-xs font-medium text-violet-200">技术</span>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-white">专属技术支持</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-300">我们的团队提供必要的技术支持，确保您的服务稳定运行，快速响应需求。</p>
+            <div class="mt-4 grid grid-cols-2 gap-4 border-t border-dashed border-slate-600/70 pt-4">
+              <div>
+                <p class="text-xl font-bold text-violet-300">10:00-22:00</p>
+                <p class="text-xs text-slate-400">服务时间</p>
+              </div>
+              <div>
+                <p class="text-xl font-bold text-violet-300">专业团队</p>
+                <p class="text-xs text-slate-400">技术支持</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="rounded-2xl border border-slate-700/90 bg-slate-800/50 p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(234,76,137,0.15)]">
+            <div class="flex items-center justify-between">
+              <div class="rounded-xl bg-emerald-400/15 p-2.5 text-emerald-300">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="6" rx="2"></rect>
+                  <rect x="3" y="14" width="18" height="6" rx="2"></rect>
+                  <path d="M7 7h.01M7 17h.01"></path>
+                </svg>
+              </div>
+              <span class="rounded-full bg-emerald-400/20 px-2.5 py-1 text-xs font-medium text-emerald-200">稳定</span>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-white">高可用架构</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-300">分布式集群部署，自动故障转移，智能负载均衡，保证 7x24 小时不间断。</p>
+            <div class="mt-4 grid grid-cols-2 gap-4 border-t border-dashed border-slate-600/70 pt-4">
+              <div>
+                <p class="text-xl font-bold text-emerald-300">24/7</p>
+                <p class="text-xs text-slate-400">全天在线</p>
+              </div>
+              <div>
+                <p class="text-xl font-bold text-emerald-300">自动</p>
+                <p class="text-xs text-slate-400">故障恢复</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="rounded-2xl border border-slate-700/90 bg-slate-800/50 p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(234,76,137,0.15)]">
+            <div class="flex items-center justify-between">
+              <div class="rounded-xl bg-blue-400/15 p-2.5 text-blue-300">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="12" rx="2"></rect>
+                  <path d="M8 20h8M12 16v4"></path>
+                </svg>
+              </div>
+              <span class="rounded-full bg-blue-400/20 px-2.5 py-1 text-xs font-medium text-blue-200">兼容</span>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-white">全平台支持</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-300">完美支持 Windows、macOS、Linux 三大平台，一份配置文件，随处运行。</p>
+            <div class="mt-4 grid grid-cols-2 gap-4 border-t border-dashed border-slate-600/70 pt-4">
+              <div>
+                <p class="text-xl font-bold text-blue-300">3+</p>
+                <p class="text-xs text-slate-400">操作系统</p>
+              </div>
+              <div>
+                <p class="text-xl font-bold text-blue-300">统一</p>
+                <p class="text-xs text-slate-400">配置方式</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="rounded-2xl border border-slate-700/90 bg-slate-800/50 p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(234,76,137,0.15)]">
+            <div class="flex items-center justify-between">
+              <div class="rounded-xl bg-amber-400/15 p-2.5 text-amber-300">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="3" y="6" width="18" height="12" rx="2"></rect>
+                  <path d="M16 12h.01"></path>
+                </svg>
+              </div>
+              <span class="rounded-full bg-amber-400/20 px-2.5 py-1 text-xs font-medium text-amber-200">透明</span>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-white">实时计费</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-300">实时更新使用情况，随时在控制台查询剩余额度，每一笔消费清晰可控。</p>
+            <div class="mt-4 grid grid-cols-2 gap-4 border-t border-dashed border-slate-600/70 pt-4">
+              <div>
+                <p class="text-xl font-bold text-amber-300">实时</p>
+                <p class="text-xs text-slate-400">用量统计</p>
+              </div>
+              <div>
+                <p class="text-xl font-bold text-amber-300">透明</p>
+                <p class="text-xs text-slate-400">费用明细</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="rounded-2xl border border-slate-700/90 bg-slate-800/50 p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(234,76,137,0.15)]">
+            <div class="flex items-center justify-between">
+              <div class="rounded-xl bg-pink-400/15 p-2.5 text-pink-300">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M14 3h7v7"></path>
+                  <path d="M21 3 10 14"></path>
+                  <path d="M5 7h6v6H5z"></path>
+                  <path d="M3 19h18"></path>
+                </svg>
+              </div>
+              <span class="rounded-full bg-pink-400/20 px-2.5 py-1 text-xs font-medium text-pink-200">简单</span>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-white">快速上手</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-300">详细的安装文档，分步骤图文教程，提供一键配置脚本，新手也能 5 分钟完成。</p>
+            <div class="mt-4 grid grid-cols-2 gap-4 border-t border-dashed border-slate-600/70 pt-4">
+              <div>
+                <p class="text-xl font-bold text-pink-300">5 分钟</p>
+                <p class="text-xs text-slate-400">快速部署</p>
+              </div>
+              <div>
+                <p class="text-xl font-bold text-pink-300">图文</p>
+                <p class="text-xs text-slate-400">详细教程</p>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
-
-      <div class="mt-20 grid gap-5 text-left sm:grid-cols-2 xl:grid-cols-3">
-        <article class="rounded-2xl border border-slate-700/90 bg-slate-800/50 p-6">
-          <h3 class="text-lg font-bold text-white">统一上游</h3>
-          <p class="mt-2 text-sm text-slate-300">流量经本站转发至统一渠道，前端仅暴露当前域名。</p>
-        </article>
-        <article class="rounded-2xl border border-slate-700/90 bg-slate-800/50 p-6">
-          <h3 class="text-lg font-bold text-white">多体系配置</h3>
-          <p class="mt-2 text-sm text-slate-300">同一页面生成 OpenClaw 与 Claude Code 所需片段。</p>
-        </article>
-        <article class="rounded-2xl border border-slate-700/90 bg-slate-800/50 p-6">
-          <h3 class="text-lg font-bold text-white">文档齐备</h3>
-          <p class="mt-2 text-sm text-slate-300">Claude 安装与 Codex 教程分栏保留，便于检索。</p>
-        </article>
-      </div>
     </main>
 
-    <footer class="mt-8 pb-10">
-      <div class="mx-auto max-w-6xl px-4 text-center text-xs text-slate-500">© 2026 · 综合中转 · 部署后请将 brand-logo.png 置于 public 目录</div>
+    <footer class="mt-8">
+      <div class="mx-auto max-w-6xl px-4">
+        <div class="glass rounded-2xl p-6 md:p-8">
+          <div class="grid gap-8 md:grid-cols-3">
+            <div>
+              <div class="flex items-center gap-3">
+                <img src="/brand-logo.png" alt="品牌图标" class="h-10 w-10 rounded-xl object-cover brightness-125 contrast-110" />
+                <span class="text-sm font-semibold text-white">AI集创空间</span>
+              </div>
+              <p class="mt-4 text-sm leading-6 text-slate-400">为您提供稳定、高效、透明的 AI 编程助手专属中转服务。</p>
+            </div>
+
+            <div>
+              <h4 class="text-sm font-semibold text-white">快速导航</h4>
+              <div class="mt-4 space-y-2 text-sm">
+                <a href="/" class="block text-slate-300 hover:text-white">首页</a>
+                <a href="/tutorial" class="block text-slate-300 hover:text-white">Claude Code 安装教程</a>
+                <a href="/openclaw" class="block text-slate-300 hover:text-white">Openclaw 配置说明</a>
+                <a href="/usage" class="block text-slate-300 hover:text-white">消费查询</a>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="text-sm font-semibold text-white">政策与支持</h4>
+              <div class="mt-4 space-y-2 text-sm">
+                <a href="#" class="block text-slate-300 hover:text-white">常见问题</a>
+                <a href="#" class="block text-slate-300 hover:text-white">服务条款</a>
+                <a href="#" class="block text-slate-300 hover:text-white">隐私政策</a>
+              </div>
+            </div>
+          </div>
+          <div class="mt-8 border-t border-slate-700/70 pt-5 text-center text-xs text-slate-400">© 2026 AI集创空间. All rights reserved.</div>
+        </div>
+      </div>
     </footer>
 
     <script>
@@ -153,8 +366,10 @@
         var openai = root + '/v1';
         var elRoot = document.getElementById('api-base-root');
         var elOpen = document.getElementById('api-base-openai');
+        var elInline = document.getElementById('api-base-inline');
         if (elRoot) elRoot.textContent = root;
         if (elOpen) elOpen.textContent = openai;
+        if (elInline) elInline.textContent = root;
         var btn = document.getElementById('btn-copy-root');
         if (btn) {
           btn.addEventListener('click', function () {
