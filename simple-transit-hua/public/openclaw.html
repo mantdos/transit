@@ -80,6 +80,10 @@
         background: linear-gradient(135deg, rgba(251, 191, 36, 0.12), rgba(234, 76, 137, 0.08));
         box-shadow: 0 12px 40px rgba(2, 6, 23, 0.35);
       }
+      .model-tag-badge {
+        user-select: none;
+        -webkit-user-select: none;
+      }
     </style>
   </head>
   <body class="min-h-screen text-slate-100 antialiased app-bg">
@@ -217,7 +221,7 @@
                   aria-haspopup="listbox"
                   aria-expanded="false"
                 >
-                  <span id="ccSelectedModelText">claude-sonnet-4.6</span>
+                  <span id="ccSelectedModelText" class="flex min-w-0 flex-1 flex-wrap items-center gap-1.5 pr-2 text-left"></span>
                   <svg id="ccModelChevron" class="h-4 w-4 text-slate-300 transition-transform" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                     <path d="m5 7 5 5 5-5" />
                   </svg>
@@ -283,7 +287,7 @@
                   aria-haspopup="listbox"
                   aria-expanded="false"
                 >
-                  <span id="ocSelectedModelText">claude-sonnet-4.6</span>
+                  <span id="ocSelectedModelText" class="flex min-w-0 flex-1 flex-wrap items-center gap-1.5 pr-2 text-left"></span>
                   <svg id="ocModelChevron" class="h-4 w-4 text-slate-300 transition-transform" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                     <path d="m5 7 5 5 5-5" />
                   </svg>
@@ -376,6 +380,7 @@
       <span>已复制</span>
     </div>
 
+    <script src="/js/transit-pricing.js"></script>
     <script>
       (function () {
         var SITE_ORIGIN = window.location.origin;
@@ -402,8 +407,10 @@
           });
         });
 
+        var PRICING_TAG_MAP = {};
+
         var MODEL_CARD_CLASS =
-          "rounded-xl border border-slate-700/80 bg-slate-900/40 px-4 py-3 font-mono text-sm text-slate-100 transition-all duration-300 hover:-translate-y-1 hover:border-[#ea4c89]/50 hover:bg-slate-800/60 hover:shadow-[0_0_15px_rgba(234,76,137,0.15)] cursor-default";
+          "rounded-xl border border-slate-700/80 bg-slate-900/40 px-4 py-3 text-sm text-slate-100 transition-all duration-300 hover:-translate-y-1 hover:border-[#ea4c89]/50 hover:bg-slate-800/60 hover:shadow-[0_0_15px_rgba(234,76,137,0.15)] cursor-default flex flex-wrap items-center gap-x-2 gap-y-1";
 
         var MODEL_CATALOG = {
           claude: {
@@ -467,25 +474,36 @@
         function renderCcModelDropdownOptions() {
           if (!ccModelDropdownList) return;
           var catalog = MODEL_CATALOG[ccCategory] || MODEL_CATALOG.claude;
-          ccModelDropdownList.innerHTML = catalog.options
-            .map(function (model) {
-              var isActive = model === ccModel;
-              return (
-                '<button type="button" class="cc-model-option model-option w-full rounded-xl px-3 py-2.5 text-left text-sm transition hover:bg-white/10 hover:text-white ' +
-                (isActive ? "bg-white/10 text-white hover:bg-white/15" : "text-slate-200") +
-                '" data-model="' +
-                model +
-                '">' +
-                model +
-                "</button>"
-              );
-            })
-            .join("");
+          ccModelDropdownList.innerHTML = "";
+          catalog.options.forEach(function (model) {
+            var isActive = model === ccModel;
+            var btn = document.createElement("button");
+            btn.type = "button";
+            btn.setAttribute("data-model", model);
+            btn.className =
+              "cc-model-option model-option w-full rounded-xl px-3 py-2.5 text-left text-sm transition hover:bg-white/10 hover:text-white " +
+              (isActive ? "bg-white/10 text-white hover:bg-white/15" : "text-slate-200");
+            var inner = document.createElement("span");
+            inner.className = "flex w-full flex-wrap items-center gap-1.5";
+            if (typeof transitRenderModelLabel === "function") {
+              transitRenderModelLabel(inner, model, PRICING_TAG_MAP);
+            } else {
+              inner.textContent = model;
+            }
+            btn.appendChild(inner);
+            ccModelDropdownList.appendChild(btn);
+          });
         }
 
         function selectCcModel(model) {
           ccModel = model;
-          if (ccSelectedModelText) ccSelectedModelText.textContent = model;
+          if (ccSelectedModelText) {
+            if (typeof transitRenderModelLabel === "function") {
+              transitRenderModelLabel(ccSelectedModelText, ccModel, PRICING_TAG_MAP);
+            } else {
+              ccSelectedModelText.textContent = model;
+            }
+          }
           renderCcModelDropdownOptions();
           renderCcConfigJson();
         }
@@ -582,25 +600,36 @@
         function renderOcModelDropdownOptions() {
           if (!ocModelDropdownList) return;
           var catalog = MODEL_CATALOG[ocCategory] || MODEL_CATALOG.claude;
-          ocModelDropdownList.innerHTML = catalog.options
-            .map(function (model) {
-              var isActive = model === ocModel;
-              return (
-                '<button type="button" class="oc-model-option model-option w-full rounded-xl px-3 py-2.5 text-left text-sm transition hover:bg-white/10 hover:text-white ' +
-                (isActive ? "bg-white/10 text-white hover:bg-white/15" : "text-slate-200") +
-                '" data-model="' +
-                model +
-                '">' +
-                model +
-                "</button>"
-              );
-            })
-            .join("");
+          ocModelDropdownList.innerHTML = "";
+          catalog.options.forEach(function (model) {
+            var isActive = model === ocModel;
+            var btn = document.createElement("button");
+            btn.type = "button";
+            btn.setAttribute("data-model", model);
+            btn.className =
+              "oc-model-option model-option w-full rounded-xl px-3 py-2.5 text-left text-sm transition hover:bg-white/10 hover:text-white " +
+              (isActive ? "bg-white/10 text-white hover:bg-white/15" : "text-slate-200");
+            var inner = document.createElement("span");
+            inner.className = "flex w-full flex-wrap items-center gap-1.5";
+            if (typeof transitRenderModelLabel === "function") {
+              transitRenderModelLabel(inner, model, PRICING_TAG_MAP);
+            } else {
+              inner.textContent = model;
+            }
+            btn.appendChild(inner);
+            ocModelDropdownList.appendChild(btn);
+          });
         }
 
         function selectOcModel(model) {
           ocModel = model;
-          if (ocSelectedModelText) ocSelectedModelText.textContent = model;
+          if (ocSelectedModelText) {
+            if (typeof transitRenderModelLabel === "function") {
+              transitRenderModelLabel(ocSelectedModelText, ocModel, PRICING_TAG_MAP);
+            } else {
+              ocSelectedModelText.textContent = model;
+            }
+          }
           renderOcModelDropdownOptions();
           renderOcConfigJson();
         }
@@ -709,7 +738,11 @@
           models.forEach(function (model) {
             var card = document.createElement("div");
             card.className = MODEL_CARD_CLASS;
-            card.textContent = model;
+            if (typeof transitRenderModelLabel === "function") {
+              transitRenderModelLabel(card, model, PRICING_TAG_MAP);
+            } else {
+              card.textContent = model;
+            }
             container.appendChild(card);
           });
         }
@@ -743,17 +776,29 @@
           return true;
         }
 
-        async function fetchRemoteModels() {
+        async function fetchModelsAndPricing() {
           var controller = new AbortController();
           var timeoutId = setTimeout(function () {
             controller.abort();
           }, 12000);
           try {
-            var response = await fetch("/api/models", { method: "GET", signal: controller.signal });
-            if (!response.ok) return;
-            var payload = await response.json();
-            if (!payload || payload.ok !== true || !payload.data) return;
-            applyRemoteModels(payload.data);
+            var tagMapPromise =
+              typeof transitGetPricingTagMapOnce === "function" ? transitGetPricingTagMapOnce() : Promise.resolve({});
+            var modelsPromise = fetch("/api/models", { method: "GET", signal: controller.signal }).then(function (r) {
+              return r.ok ? r.json() : null;
+            });
+            var pair = await Promise.all([tagMapPromise, modelsPromise]);
+            PRICING_TAG_MAP = pair[0] || {};
+            var payload = pair[1];
+            var applied = false;
+            if (payload && payload.ok === true && payload.data) {
+              applied = applyRemoteModels(payload.data);
+            }
+            if (!applied) {
+              seedPlaceholderCards();
+            }
+            selectCcModel(ccModel);
+            selectOcModel(ocModel);
           } catch (e) {
           } finally {
             clearTimeout(timeoutId);
@@ -772,7 +817,7 @@
         renderOcConfigJson();
         setActiveTab("cc-guide");
         seedPlaceholderCards();
-        fetchRemoteModels();
+        fetchModelsAndPricing();
       })();
     </script>
   </body>

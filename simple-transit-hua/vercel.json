@@ -34,6 +34,9 @@
     },
     "api/models.js": {
       "maxDuration": 60
+    },
+    "api/pricing.js": {
+      "maxDuration": 60
     }
   }
 }
