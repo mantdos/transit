@@ -46,6 +46,22 @@
   };
 
   /**
+   * 与 public/css/transit-model-tags.css 中 .transit-model-tag--* 一致（深色半透明 + 高亮边/字）。
+   */
+  function badgeClassForText(tagText) {
+    var s = String(tagText || "").trim();
+    if (s.indexOf("高可用") !== -1) {
+      return "transit-model-tag transit-model-tag--ha";
+    }
+    if (/x$/i.test(s)) {
+      return "transit-model-tag transit-model-tag--rate";
+    }
+    return "transit-model-tag transit-model-tag--neutral";
+  }
+
+  global.transitTagBadgeClassForText = badgeClassForText;
+
+  /**
    * 在容器内渲染模型名（可选中复制）+ 标签（不可选中、不拦截点击）。
    */
   global.transitRenderModelLabel = function (container, modelId, tagMap) {
@@ -58,11 +74,11 @@
     var tags = tagMap && tagMap[modelId] ? tagMap[modelId] : [];
     for (var t = 0; t < tags.length; t++) {
       var b = document.createElement("span");
-      b.className =
-        "model-tag-badge inline-flex shrink-0 items-center rounded-md border border-fuchsia-500/35 bg-fuchsia-500/15 px-1.5 py-0.5 text-[11px] font-medium leading-none text-fuchsia-100";
+      b.className = badgeClassForText(tags[t]);
       b.textContent = tags[t];
       b.setAttribute("aria-hidden", "true");
       b.style.userSelect = "none";
+      b.style.webkitUserSelect = "none";
       b.style.pointerEvents = "none";
       container.appendChild(b);
     }

@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>一键接入助手 · AI 集创空间</title>
+    <link rel="stylesheet" href="/css/transit-model-tags.css" />
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <script>
       tailwind.config = {
@@ -79,10 +80,6 @@
         border: 1px solid rgba(251, 191, 36, 0.45);
         background: linear-gradient(135deg, rgba(251, 191, 36, 0.12), rgba(234, 76, 137, 0.08));
         box-shadow: 0 12px 40px rgba(2, 6, 23, 0.35);
-      }
-      .model-tag-badge {
-        user-select: none;
-        -webkit-user-select: none;
       }
     </style>
   </head>
@@ -315,6 +312,10 @@
           <article class="tab-panel glass rounded-2xl p-6 prose prose-invert max-w-none" data-tab-panel="models" aria-hidden="true">
             <h2>平台当前支持的模型标识 (Model ID)</h2>
             <p>以下列表由本站后端使用展示专用 Key 实时拉取并聚合，供您在配置时参考。</p>
+            <div class="not-prose transit-billing-banner mt-4 text-left" role="note">
+              💡 提示：未标注倍率标签的模型均按官方倍率 1:1 计费。部分特殊模型可能按更高倍率额外计费，具体查看标签，例如
+              <span class="rate-tag-style" aria-hidden="true">2.5x</span>。
+            </div>
             <div class="not-prose mt-5 space-y-4">
               <div>
                 <h3 class="mb-3 text-base font-semibold text-slate-100">Claude 模型</h3>

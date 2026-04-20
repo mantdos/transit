@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>API中转站 · AI集创空间</title>
+    <link rel="stylesheet" href="/css/transit-model-tags.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -66,10 +67,6 @@
       /* 首页教程卡片：与教程中心页一致的 actions 区，主按钮 + 次要外链 */
       .tutorial-home-card .feature-actions > a:first-of-type {
         min-height: 2.75rem;
-      }
-      .model-tag-badge {
-        user-select: none;
-        -webkit-user-select: none;
       }
       .index-model-card {
         border-radius: 0.75rem;
@@ -295,6 +292,13 @@
                 >一键接入助手中配置与完整总览</a
               >
             </p>
+            <div
+              class="transit-billing-banner not-prose mx-auto mt-5 max-w-2xl text-left"
+              role="note"
+            >
+              💡 提示：未标注倍率标签的模型均按官方倍率 1:1 计费。部分特殊模型可能按更高倍率额外计费，具体查看标签，例如
+              <span class="rate-tag-style" aria-hidden="true">2.5x</span>。
+            </div>
           </div>
           <div class="mt-6 space-y-5">
             <div>

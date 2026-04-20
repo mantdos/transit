@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI 集创空间</title>
+    <link rel="stylesheet" href="/css/transit-model-tags.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -139,6 +140,11 @@
           实时查看您的 Token 使用情况和剩余额度
         </p>
       </header>
+
+      <div class="transit-billing-banner not-prose mb-8 text-left" role="note">
+        💡 提示：未标注倍率标签的模型均按官方倍率 1:1 计费。部分特殊模型可能按更高倍率额外计费，具体查看标签，例如
+        <span class="rate-tag-style" aria-hidden="true">2.5x</span>。
+      </div>
 
       <section class="rounded-2xl border border-slate-700/80 bg-slate-800/50 p-6 shadow-xl backdrop-blur sm:p-8">
         <label for="token" class="mb-2 block text-sm font-medium text-slate-300">API Token</label>
