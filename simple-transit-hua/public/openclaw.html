@@ -182,6 +182,14 @@
             <p class="not-prose mb-4 text-[0.9375rem] leading-relaxed text-slate-300">
               请在下方选择模型类别、填入您的 API 密钥，并挑选目标模型。系统将为您自动生成对应的配置代码，您可以直接将其复制并应用于 cc-switch 或其他支持的客户端。
             </p>
+            
+            <div class="transit-billing-banner not-prose mb-8 text-left" role="note">
+
+              💡 提示：未标注倍率标签的模型均按官方倍率 1:1 计费。部分特殊模型可能按更高倍率额外计费，具体查看标签，例如
+      
+              <span class="rate-tag-style" aria-hidden="true">2.5x</span>。
+      
+            </div>
             <div class="not-prose grid gap-4 md:grid-cols-2">
               <div class="md:col-span-2">
                 <label class="mb-2 block text-sm font-medium text-slate-200">模型类别</label>
@@ -244,10 +252,17 @@
 
           <!-- Tab 2: OpenClaw -->
           <article class="tab-panel glass rounded-2xl p-6 prose prose-invert max-w-none" data-tab-panel="oc-guide" aria-hidden="true">
-            <h2>OpenClaw 自定义 Provider 配置</h2>
+            <h2>OpenClaw 一键接入</h2>
             <p class="not-prose mb-4 text-[0.9375rem] leading-relaxed text-slate-300">
               请在下方选择模型类别、填入您的 API 密钥，并挑选目标模型。系统将为您自动生成对应的配置代码，您可以直接将其复制并应用于 cc-switch 或其他支持的客户端。
             </p>
+            <div class="transit-billing-banner not-prose mb-8 text-left" role="note">
+
+              💡 提示：未标注倍率标签的模型均按官方倍率 1:1 计费。部分特殊模型可能按更高倍率额外计费，具体查看标签，例如
+      
+              <span class="rate-tag-style" aria-hidden="true">2.5x</span>。
+      
+            </div>
             <div class="not-prose grid gap-4 md:grid-cols-2">
               <div class="md:col-span-2">
                 <label class="mb-2 block text-sm font-medium text-slate-200">模型类别</label>
@@ -310,8 +325,8 @@
 
           <!-- Tab 3: 支持模型 -->
           <article class="tab-panel glass rounded-2xl p-6 prose prose-invert max-w-none" data-tab-panel="models" aria-hidden="true">
-            <h2>平台当前支持的模型标识 (Model ID)</h2>
-            <p>以下列表由本站后端使用展示专用 Key 实时拉取并聚合，供您在配置时参考。</p>
+            <h2>平台当前支持的模型标识</h2>
+            <p>以下列表为实时拉取，供您在配置时参考。</p>
             <div class="not-prose transit-billing-banner mt-4 text-left" role="note">
               💡 提示：未标注倍率标签的模型均按官方倍率 1:1 计费。部分特殊模型可能按更高倍率额外计费，具体查看标签，例如
               <span class="rate-tag-style" aria-hidden="true">2.5x</span>。
