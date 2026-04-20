@@ -76,10 +76,34 @@
       .tab-panel pre code {
         color: rgba(255, 255, 255, 0.95);
       }
-      .cc-tip-banner {
-        border: 1px solid rgba(251, 191, 36, 0.45);
-        background: linear-gradient(135deg, rgba(251, 191, 36, 0.12), rgba(234, 76, 137, 0.08));
-        box-shadow: 0 12px 40px rgba(2, 6, 23, 0.35);
+      .feature-box {
+        background: rgba(139, 92, 246, 0.1);
+        border-left: 4px solid #8b5cf6;
+        color: #ddd6fe;
+        box-shadow: 0 12px 40px rgba(2, 6, 23, 0.25);
+      }
+      .feature-box strong {
+        color: #e9d5ff;
+      }
+      .transit-billing-banner.billing-alert {
+        background: rgba(15, 23, 42, 0.88);
+        border: 1px solid rgba(59, 130, 246, 0.32);
+        border-left: 4px solid #3b82f6;
+        color: rgba(226, 232, 240, 0.96);
+      }
+      .tag-rate-example {
+        background: rgba(245, 158, 11, 0.15);
+        color: #fbbf24;
+        border: 1px solid rgba(251, 191, 36, 0.3);
+        display: inline;
+        border-radius: 4px;
+        padding: 2px 6px;
+        font-size: 0.85em;
+        font-weight: 600;
+        user-select: none;
+        -webkit-user-select: none;
+        margin: 0 0.125rem;
+        vertical-align: baseline;
       }
     </style>
   </head>
@@ -155,17 +179,17 @@
       <section class="mx-auto max-w-4xl">
         <header class="text-center">
           <h1 class="gradient-text text-3xl font-extrabold tracking-tight sm:text-4xl">一键接入助手 · 配置与接入一站完成</h1>
-          <div class="cc-tip-banner mx-auto mt-4 max-w-3xl rounded-2xl px-4 py-3 text-left text-sm leading-relaxed text-slate-100">
-            <span aria-hidden="true">💡</span>
-            <strong class="text-amber-200">推荐提示</strong>：建议配合
+          <div class="feature-box not-prose mx-auto mt-4 max-w-3xl rounded-2xl px-4 py-3 text-left text-sm leading-relaxed">
+            <span aria-hidden="true">✨</span>
+            <strong>推荐提示</strong>：建议配合cc-switch使用
             <a
               href="https://ucngkdwd50uz.feishu.cn/wiki/S6MAwoZCDinuNDkqTPXcj5kZnOA"
               target="_blank"
               rel="noopener noreferrer"
-              class="font-medium text-[#ea4c89] underline decoration-[#ea4c89]/50 underline-offset-4 transition hover:text-[#f082ac]"
-              >cc-switch（点击查看下载与使用指南）</a
+              class="font-medium text-sky-300 underline decoration-sky-500/50 underline-offset-4 transition hover:text-sky-200"
+              >（点击查看下载与使用指南）</a
             >
-            使用。只需将本页面生成的配置一键复制并导入，即可实现极简接入与模型切换。
+            。只需将本页面生成的配置一键复制并导入，即可实现极简接入与模型切换。
           </div>
         </header>
 
@@ -180,15 +204,14 @@
           <article class="tab-panel glass rounded-2xl p-6 prose prose-invert max-w-none active" data-tab-panel="cc-guide" aria-hidden="false">
             <h2>Claude Code 一键接入</h2>
             <p class="not-prose mb-4 text-[0.9375rem] leading-relaxed text-slate-300">
-              请在下方选择模型类别、填入您的 API 密钥，并挑选目标模型。系统将为您自动生成对应的配置代码，您可以直接将其复制并应用于 cc-switch 或其他支持的客户端。
+              请在下方选择模型类别、填入您的 API 密钥，并挑选目标模型。系统将为您自动生成对应的配置代码，您可以直接将其复制并应用于
+              <a href="https://ucngkdwd50uz.feishu.cn/wiki/S6MAwoZCDinuNDkqTPXcj5kZnOA" style="color: #3b82f6; text-decoration: underline;">cc-switch</a>
+              或其他支持的客户端。
             </p>
             
-            <div class="transit-billing-banner not-prose mb-8 text-left" role="note">
-
-              💡 提示：未标注倍率标签的模型均按官方倍率 1:1 计费。部分特殊模型可能按更高倍率额外计费，具体查看标签，例如
-      
-              <span class="rate-tag-style" aria-hidden="true">2.5x</span>。
-      
+            <div class="transit-billing-banner billing-alert not-prose mb-8 text-left" role="note">
+              💡 计费说明：未标注倍率标签的模型均按官方倍率 1:1 计费。部分特殊模型可能按更高倍率额外计费，具体查看标签，例如
+              <span class="tag-rate-example" aria-hidden="true">2.5x</span>。
             </div>
             <div class="not-prose grid gap-4 md:grid-cols-2">
               <div class="md:col-span-2">
@@ -254,14 +277,13 @@
           <article class="tab-panel glass rounded-2xl p-6 prose prose-invert max-w-none" data-tab-panel="oc-guide" aria-hidden="true">
             <h2>OpenClaw 一键接入</h2>
             <p class="not-prose mb-4 text-[0.9375rem] leading-relaxed text-slate-300">
-              请在下方选择模型类别、填入您的 API 密钥，并挑选目标模型。系统将为您自动生成对应的配置代码，您可以直接将其复制并应用于 cc-switch 或其他支持的客户端。
+              请在下方选择模型类别、填入您的 API 密钥，并挑选目标模型。系统将为您自动生成对应的配置代码，您可以直接将其复制并应用于
+              <a href="https://ucngkdwd50uz.feishu.cn/wiki/S6MAwoZCDinuNDkqTPXcj5kZnOA" style="color: #3b82f6; text-decoration: underline;">cc-switch</a>
+              或其他支持的客户端。
             </p>
-            <div class="transit-billing-banner not-prose mb-8 text-left" role="note">
-
-              💡 提示：未标注倍率标签的模型均按官方倍率 1:1 计费。部分特殊模型可能按更高倍率额外计费，具体查看标签，例如
-      
-              <span class="rate-tag-style" aria-hidden="true">2.5x</span>。
-      
+            <div class="transit-billing-banner billing-alert not-prose mb-8 text-left" role="note">
+              💡 计费说明：未标注倍率标签的模型均按官方倍率 1:1 计费。部分特殊模型可能按更高倍率额外计费，具体查看标签，例如
+              <span class="tag-rate-example" aria-hidden="true">2.5x</span>。
             </div>
             <div class="not-prose grid gap-4 md:grid-cols-2">
               <div class="md:col-span-2">
@@ -327,9 +349,9 @@
           <article class="tab-panel glass rounded-2xl p-6 prose prose-invert max-w-none" data-tab-panel="models" aria-hidden="true">
             <h2>平台当前支持的模型标识</h2>
             <p>以下列表为实时拉取，供您在配置时参考。</p>
-            <div class="not-prose transit-billing-banner mt-4 text-left" role="note">
-              💡 提示：未标注倍率标签的模型均按官方倍率 1:1 计费。部分特殊模型可能按更高倍率额外计费，具体查看标签，例如
-              <span class="rate-tag-style" aria-hidden="true">2.5x</span>。
+            <div class="not-prose transit-billing-banner billing-alert mt-4 text-left" role="note">
+              💡 计费说明：未标注倍率标签的模型均按官方倍率 1:1 计费。部分特殊模型可能按更高倍率额外计费，具体查看标签，例如
+              <span class="tag-rate-example" aria-hidden="true">2.5x</span>。
             </div>
             <div class="not-prose mt-5 space-y-4">
               <div>
