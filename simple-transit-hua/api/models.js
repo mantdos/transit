@@ -4,9 +4,9 @@
 
 const MODELS_API_URL = "https://api.redpanda-lab.xyz/v1/models";
 
-const CODEX_API_KEY = "sk-c8I5x26EICr1wTj0C6BMJO6exHLps80N7szOsSXTxbQ0fpEQ";
-const CLAUDE_API_KEY = "sk-JyX6iM0qDRhuELxG25VwGd1EonlrB06VyjeV4I4N217YI8Ci";
-const GEMINI_API_KEY = "sk-8h575vqxTlZ41Nw6PXON9wbqPfn8KGIorywmOJtuUKwz0iBi";
+const CODEX_API_KEY = "sk-Mhvf0FExNekQcz0AAovid94pE9l6ayTaOSQOLBITj0UrmOrR";
+const CLAUDE_API_KEY = "sk-UxjBkIkCzVGUmpnivsRTW3L7VjGhBbiV1yvtVutgltsKo4tb";
+const GEMINI_API_KEY = "sk-xHFzra9TlKzRI4dvBttR07Ch5QzdaBUef8PKgnDEbMwrxxtr";
 
 function setCorsHeaders(res) {
   res.setHeader("Access-Control-Allow-Origin", "*");

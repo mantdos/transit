@@ -378,18 +378,6 @@
                 macOS
               </span>
             </button>
-            <button
-              type="button"
-              class="glass tab-btn rounded-xl px-4 py-2 text-sm font-semibold transition"
-              data-tab-btn="linux"
-            >
-              <span class="flex items-center gap-2">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.132 1.884 1.071.771-.06 1.592-.536 2.257-1.306.631-.765 1.683-1.084 2.378-1.503.348-.199.629-.469.649-.853.023-.4-.2-.811-.714-1.376v-.097l-.003-.003c-.17-.2-.25-.535-.338-.926-.085-.401-.182-.786-.492-1.046h-.003c-.059-.054-.123-.067-.188-.135a.357.357 0 00-.19-.064c.431-1.278.264-2.55-.173-3.694-.533-1.41-1.465-2.638-2.175-3.483-.796-1.005-1.576-1.957-1.56-3.368.026-2.152.236-6.133-3.544-6.139zm.529 3.405h.013c.213 0 .396.062.584.198.19.135.33.332.438.533.105.259.158.459.166.724 0-.02.006-.04.006-.06v.105a.086.086 0 01-.004-.021l-.004-.024a1.807 1.807 0 01-.15.706.953.953 0 01-.213.335.71.71 0 01-.088.069c-.128.063-.26.1-.405.1-.002 0-.003 0-.005-.002h-.002c-.196 0-.366-.054-.535-.147a.992.992 0 01-.313-.248 1.24 1.24 0 01-.199-.31 1.382 1.382 0 01-.083-.449v-.002c0-.162.04-.32.117-.464.076-.144.19-.273.335-.362a.839.839 0 01.486-.134zm2.974 1.388c.878.043 1.334.477 1.311 1.188-.01.291-.05.562-.123.794a1.88 1.88 0 01-.354.57.896.896 0 01-.604.288c-.542-.074-.84-.476-.84-1.05 0-.524.257-.974.69-1.314a1.061 1.061 0 01.92-.476zm-5.503.093c.01 0 .02.002.029.008.062.037.093.11.093.19a.478.478 0 01-.202.426c-.113.072-.286.114-.496.114-.209 0-.381-.042-.493-.114a.478.478 0 01-.202-.426c0-.08.03-.153.093-.19.008-.006.018-.008.028-.008h.005c.073 0 .183.032.335.083.152.05.305.077.458.077.152 0 .304-.027.457-.077.151-.05.261-.083.335-.083h.005zm8.492.163a.899.899 0 01-.69.165.441.441 0 01-.35-.2c-.01-.02-.017-.04-.024-.062-.007-.02-.01-.04-.013-.062a.738.738 0 01.015-.277.699.699 0 01.112-.219.815.815 0 01.203-.194.758.758 0 01.258-.104.9.9 0 01.298-.013c.191.035.36.126.448.3.088.177.1.384-.002.579a.536.536 0 01-.255.087z"></path>
-                </svg>
-                Linux
-              </span>
-            </button>
           </div>
 
           <div class="mt-6">
@@ -399,433 +387,14 @@
                 data-tab-panel="windows"
                 aria-hidden="false"
               >
-                <div class="tab-doc" id="tabDoc-windows">
-                  <h1>Windows 安装教程</h1>
-
-                  <h2>前置要求: 安装 Git</h2>
-                  <p>
-                    确保已安装 Git，如果尚未安装，可以点击前往→
-                    <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">Git 官网</a>
-                    下载并安装（安装时一直点击“下一步”即可）。
-                  </p>
-
-                  <h2>前置要求：安装 Node.js</h2>
-                  <p>确保 Node.js 版本 ≥ 18.0</p>
-
-                  <h3>检查是否已安装 Node.js</h3>
-                  <pre><code class="language-bash">node --version</code></pre>
-                  <p>
-                    如果版本低于 18.0 或未安装，请点击前往→
-                    <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js 官网</a>
-                    下载安装最新 LTS 版本。
-                  </p>
-
-                  <hr />
-
-                  <h2>步骤 1：卸载其他中转客户端（可选）</h2>
-                  <p>如果之前安装过其他 Claude Code 客户端，建议先卸载。</p>
-
-                  <h3>检查安装位置</h3>
-                  <p>检查是否在本地项目中安装：</p>
-                  <pre><code class="language-bash">npm ls @anthropic-ai/claude-code</code></pre>
-                  <p>检查是否被全局安装：</p>
-                  <pre><code class="language-bash">npm ls -g @anthropic-ai/claude-code</code></pre>
-
-                  <h3>执行卸载操作</h3>
-                  <p>卸载本地安装的包：</p>
-                  <pre><code class="language-bash">npm uninstall @anthropic-ai/claude-code</code></pre>
-                  <p>卸载全局安装的包：</p>
-                  <pre><code class="language-bash">npm uninstall -g @anthropic-ai/claude-code</code></pre>
-
-                  <hr />
-
-                  <h2>步骤 2：安装 Claude Code</h2>
-                  <h3>方法 1：使用 PowerShell 脚本安装（推荐）</h3>
-                  <pre><code class="language-powershell"># 以管理员身份运行 PowerShell
-irm https://claude.ai/install.ps1 | iex</code></pre>
-
-                  <h3>方法 2：使用 npm 全局安装</h3>
-                  <pre><code class="language-bash">npm install -g @anthropic-ai/claude-code</code></pre>
-
-                  <h3>验证安装</h3>
-                  <pre><code class="language-bash">claude --version</code></pre>
-
-                  <hr />
-
-                  <h2>步骤 3：配置环境变量</h2>
-                  <p>您需要配置两个环境变量：</p>
-                  <ul>
-                    <li>
-                      <code>ANTHROPIC_AUTH_TOKEN</code>：您的授权令牌（格式：<code>sk_...</code>）
-                    </li>
-                    <li>
-                      <code>ANTHROPIC_BASE_URL</code>：API 服务地址（本站提供的连接点 URL：
-                      <code>__SITE_ORIGIN__</code>）
-                    </li>
-                  </ul>
-
-                  <h3>第一推荐：CC Switch（强烈推荐）</h3>
-                  <p class="cc-switch-reco">
-                    <strong>强烈推荐：</strong>使用 CC Switch 一键切换配置（<a href="/openclaw.html">点击前往一键接入助手</a>）
-                  </p>
-
-                  <h3>第二推荐：永久配置（推荐）</h3>
-                  <h4>通过系统环境变量设置</h4>
-                  <ol>
-                    <li>右键点击“此电脑”，选择“属性”</li>
-                    <li>点击“高级系统设置”</li>
-                    <li>点击“环境变量”</li>
-                    <li>
-                      在“用户变量”区域，点击“新建”，分别添加：
-                      <ul>
-                        <li>变量名：<code>ANTHROPIC_BASE_URL</code>，变量值：您的连接点 URL</li>
-                        <li>变量名：<code>ANTHROPIC_AUTH_TOKEN</code>，变量值：您的 Token</li>
-                      </ul>
-                    </li>
-                    <li>点击“确定”保存</li>
-                    <li>重启终端或命令提示符</li>
-                  </ol>
-
-                  <h3>第三推荐：临时配置（当前会话有效）</h3>
-                  <h4>方法1：使用 PowerShell</h4>
-                  <pre><code class="language-powershell">$env:ANTHROPIC_BASE_URL="__SITE_ORIGIN__"
-$env:ANTHROPIC_AUTH_TOKEN="您的Token"</code></pre>
-
-                  <h4>方法2：使用命令提示符（CMD）</h4>
-                  <pre><code class="language-cmd">set ANTHROPIC_BASE_URL=__SITE_ORIGIN__
-set ANTHROPIC_AUTH_TOKEN=您的Token</code></pre>
-
-                  <hr />
-
-                  <h2>步骤 4：开始使用</h2>
-                  <h3>首次运行配置</h3>
-                  <p>运行后需要完成以下步骤：</p>
-                  <ol>
-                    <li>✅ 安装Git（如尚未安装，可从 Git 官网下载并安装）</li>
-                    <li>✅ 选择你喜欢的主题 + <code>Enter</code></li>
-                    <li>✅ 确认安全须知 + <code>Enter</code></li>
-                    <li>✅ 使用默认 Terminal 配置 + <code>Enter</code></li>
-                    <li>✅ 信任工作目录 + <code>Enter</code></li>
-                  </ol>
-                  <blockquote>
-                    <p>提示：如果不是第一次运行，可以跳过以上步骤。</p>
-                  </blockquote>
-
-                  <p>配置好环境变量后，在您的项目目录下使用终端运行：</p>
-                  <pre><code class="language-bash">cd your-project-folder
-claude 你是什么大模型</code></pre>
-
-                  <p>
-                    当然，你也可以在 <strong>VS Code</strong> 或 <strong>Cursor</strong> 中安装插件
-                    <code>Claude Code for VS Code</code> 来获得更好的使用体验。
-                  </p>
-                  <p>
-                    详细的图文教程可查看：<a
-                      href="https://ucngkdwd50uz.feishu.cn/wiki/BmcvwIT4bimiErk8O9McCQUqnFb"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >在 VS Code 中使用 Claude Code 图文指南</a
-                    >。
-                  </p>
-
-                  <p>完成后，就可以开始在终端里和你的 AI 编程搭档一起写代码了！🚀</p>
-
-                  <hr />
-
-                  <h2>常见问题</h2>
-
-                  <h3>❓ 提示找不到 claude 命令</h3>
-                  <p><strong>解决方法：</strong></p>
-                  <ol>
-                    <li>确认已正确安装：<code>npm ls -g @anthropic-ai/claude-code</code></li>
-                    <li>重启终端窗口</li>
-                    <li>检查 npm 全局路径是否在 PATH 中</li>
-                  </ol>
-
-                  <h3>❓ 环境变量设置后不生效</h3>
-                  <p><strong>解决方法：</strong></p>
-                  <ul>
-                    <li>完全关闭所有终端窗口，重新打开</li>
-                    <li>如果是永久配置，需要重启电脑</li>
-                    <li>使用 <code>echo %ANTHROPIC_AUTH_TOKEN%</code> 验证变量是否设置成功</li>
-                  </ul>
-
-                  <h3>❓ PowerShell 脚本执行被阻止</h3>
-                  <p><strong>解决方法：</strong></p>
-                  <pre><code class="language-powershell"># 以管理员身份运行 PowerShell
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser</code></pre>
-
-                  <hr />
-
-                  <h2>进阶配置</h2>
-
-                  <h3>WSL（Windows Subsystem for Linux）用户</h3>
-                  <p>如果您使用 WSL，可以按照 Linux 教程进行安装：</p>
-                  <pre><code class="language-bash"># 在 WSL 终端中
-curl -fsSL https://claude.ai/install.sh | bash</code></pre>
-
-                  <h3>使用配置文件</h3>
-                  <p>您也可以创建 <code>.env</code> 文件来管理环境变量：</p>
-                  <pre><code>ANTHROPIC_BASE_URL=__SITE_ORIGIN__
-ANTHROPIC_AUTH_TOKEN=您的Token</code></pre>
-
-                  <hr />
-
-                  <h2>下一步</h2>
-                  <p><strong>✅ 安装完成后，您可以：</strong></p>
-                  <ul>
-                    <li>在任意项目目录使用 <code>claude</code> 命令</li>
-                    <li>前往 <a href="/usage">余额查询</a> 页面查看 API 使用情况</li>
-                    <li>查看官方文档了解更多功能</li>
-                  </ul>
-                </div>
+                <div class="tab-doc" id="tabDoc-windows"></div>
               </div>
               <div
                 class="tab-panel glass rounded-2xl p-6 prose prose-invert max-w-none"
                 data-tab-panel="macos"
                 aria-hidden="true"
               >
-                <div class="tab-doc" id="tabDoc-macos">
-                  <h1>macOS 安装教程</h1>
-
-                  <h2>前置要求: 安装 Git</h2>
-                  <p>
-                    确保已安装 Git，如果尚未安装，可以点击前往→
-                    <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">Git 官网</a>
-                    下载并安装。
-                  </p>
-
-                  <h2>前置要求：安装 Node.js</h2>
-                  <p>确保 Node.js 版本 ≥ 18.0</p>
-
-                  <h2>安装 Xcode Command Line Tools</h2>
-                  <pre><code class="language-bash">sudo xcode-select --install</code></pre>
-
-                  <h2>安装 Homebrew</h2>
-                  <pre><code class="language-bash">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
-
-                  <h2>安装 Node.js</h2>
-                  <pre><code class="language-bash">brew install node</code></pre>
-
-                  <h3>验证安装</h3>
-                  <pre><code class="language-bash">node --version</code></pre>
-
-                  <hr />
-
-                  <h2>步骤 1：卸载其他中转客户端（可选）</h2>
-                  <p>如果之前安装过其他 Claude Code 客户端，建议先卸载。</p>
-
-                  <h3>检查安装位置</h3>
-                  <p>检查是否在本地项目中安装：</p>
-                  <pre><code class="language-bash">npm ls @anthropic-ai/claude-code</code></pre>
-                  <p>检查是否被全局安装：</p>
-                  <pre><code class="language-bash">npm ls -g @anthropic-ai/claude-code</code></pre>
-
-                  <h3>执行卸载操作</h3>
-                  <p>卸载本地安装的包：</p>
-                  <pre><code class="language-bash">npm uninstall @anthropic-ai/claude-code</code></pre>
-                  <p>卸载全局安装的包：</p>
-                  <pre><code class="language-bash">npm uninstall -g @anthropic-ai/claude-code</code></pre>
-
-                  <hr />
-
-                  <h2>步骤 2：安装 Claude Code</h2>
-                  <h3>方法 1：使用 Homebrew 安装（推荐）</h3>
-                  <pre><code class="language-bash">brew install --cask claude-code</code></pre>
-
-                  <h3>方法 2：使用安装脚本</h3>
-                  <pre><code class="language-bash">curl -fsSL https://claude.ai/install.sh | bash</code></pre>
-
-                  <h3>方法 3：使用 npm 全局安装</h3>
-                  <pre><code class="language-bash">npm install -g @anthropic-ai/claude-code</code></pre>
-
-                  <h3>验证安装</h3>
-                  <pre><code class="language-bash">claude --version</code></pre>
-
-                  <hr />
-
-                  <h2>步骤 3：配置环境变量</h2>
-
-                  <h3>第一推荐：CC Switch（强烈推荐）</h3>
-                  <p class="cc-switch-reco">
-                    <strong>强烈推荐：</strong>使用 CC Switch 一键切换配置（<a href="/openclaw.html">点击前往一键接入助手</a>）
-                  </p>
-
-                  <h3>第二推荐：永久配置（推荐）</h3>
-
-                  <h4>检查当前使用的 Shell</h4>
-                  <pre><code class="language-bash">echo $SHELL</code></pre>
-
-                  <h4>Zsh 配置（macOS 默认）</h4>
-                  <pre><code class="language-bash">echo -e '\nexport ANTHROPIC_AUTH_TOKEN="您的Token"' &gt;&gt; ~/.zshrc
-echo -e '\nexport ANTHROPIC_BASE_URL="__SITE_ORIGIN__"' &gt;&gt; ~/.zshrc
-
-source ~/.zshrc</code></pre>
-
-                  <h4>Bash 配置</h4>
-                  <pre><code class="language-bash">echo -e '\nexport ANTHROPIC_AUTH_TOKEN="您的Token"' &gt;&gt; ~/.bash_profile
-echo -e '\nexport ANTHROPIC_BASE_URL="__SITE_ORIGIN__"' &gt;&gt; ~/.bash_profile
-echo -e '\nexport ANTHROPIC_AUTH_TOKEN="您的Token"' &gt;&gt; ~/.bashrc
-echo -e '\nexport ANTHROPIC_BASE_URL="__SITE_ORIGIN__"' &gt;&gt; ~/.bashrc
-
-source ~/.bash_profile
-source ~/.bashrc</code></pre>
-
-                  <h3>第三推荐：临时配置（当前会话有效）</h3>
-                  <pre><code class="language-bash">export ANTHROPIC_BASE_URL="__SITE_ORIGIN__"
-export ANTHROPIC_AUTH_TOKEN="您的Token"</code></pre>
-
-                  <hr />
-
-                  <h2>步骤 4：开始使用</h2>
-                  <p>配置好环境变量后，在您的项目目录下运行：</p>
-                  <pre><code class="language-bash">cd your-project-folder
-claude 你是什么大模型</code></pre>
-
-                  <h3>首次运行配置</h3>
-                  <ol>
-                    <li>✅ 选择你喜欢的主题 + <code>Enter</code></li>
-                    <li>✅ 确认安全须知 + <code>Enter</code></li>
-                    <li>✅ 使用默认 Terminal 配置 + <code>Enter</code></li>
-                    <li>✅ 信任工作目录 + <code>Enter</code></li>
-                  </ol>
-
-                  <hr />
-
-                  <h2>快速启动示例</h2>
-                  <h3>临时使用</h3>
-                  <pre><code class="language-bash">export ANTHROPIC_BASE_URL="__SITE_ORIGIN__"
-export ANTHROPIC_AUTH_TOKEN="您的Token"
-
-cd your-project-folder
-claude</code></pre>
-
-                  <h3>永久配置后使用</h3>
-                  <pre><code class="language-bash">cd your-project-folder
-claude</code></pre>
-
-                  <hr />
-
-                  <h2>常见问题</h2>
-                  <h3>❓ 提示找不到 claude 命令</h3>
-                  <p><strong>解决方法：</strong></p>
-                  <ol>
-                    <li>检查安装：<code>which claude</code>、<code>npm ls -g @anthropic-ai/claude-code</code></li>
-                    <li>确保 npm 全局路径在 PATH 中</li>
-                  </ol>
-
-                  <h3>❓ 环境变量不生效</h3>
-                  <p><strong>解决方法：</strong></p>
-                  <ol>
-                    <li>重新加载配置文件（<code>source ~/.zshrc</code> 或 <code>source ~/.bashrc</code>）</li>
-                    <li>验证变量：<code>echo $ANTHROPIC_AUTH_TOKEN</code>、<code>echo $ANTHROPIC_BASE_URL</code></li>
-                  </ol>
-
-                  <hr />
-
-                  <h2>下一步</h2>
-                  <ul>
-                    <li>在任意项目目录使用 <code>claude</code> 命令</li>
-                    <li>前往 <a href="/usage">余额查询</a> 页面查看 API 使用情况</li>
-                    <li>查看官方文档了解更多功能</li>
-                  </ul>
-                </div>
-              </div>
-              <div
-                class="tab-panel glass rounded-2xl p-6 prose prose-invert max-w-none"
-                data-tab-panel="linux"
-                aria-hidden="true"
-              >
-                <div class="tab-doc" id="tabDoc-linux">
-                  <h1>Linux 安装教程</h1>
-
-                  <h2>前置要求: 安装 Git</h2>
-                  <p>
-                    确保已安装 Git（如果尚未安装，请根据你的发行版安装）。
-                  </p>
-
-                  <h2>前置要求：安装 Node.js</h2>
-                  <p>确保 Node.js 版本 ≥ 18.0</p>
-
-                  <h2>Ubuntu / Debian 系列</h2>
-                  <pre><code class="language-bash"># 添加 NodeSource 仓库并安装 Node.js LTS
-curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo bash -
-sudo apt-get install -y nodejs
-
-# 验证安装
-node --version</code></pre>
-
-                  <h2>Fedora / RHEL / CentOS 系列</h2>
-                  <pre><code class="language-bash"># 安装 Node.js
-sudo dnf install -y nodejs
-
-# 验证安装
-node --version</code></pre>
-
-                  <h2>Arch Linux / Manjaro</h2>
-                  <pre><code class="language-bash">sudo pacman -S nodejs npm
-node --version</code></pre>
-
-                  <hr />
-
-                  <h2>步骤 1：卸载其他中转客户端（可选）</h2>
-                  <p>如果之前安装过其他 Claude Code 客户端，建议先卸载。</p>
-
-                  <h3>检查安装位置</h3>
-                  <p>检查是否在本地项目中安装：</p>
-                  <pre><code class="language-bash">npm ls @anthropic-ai/claude-code</code></pre>
-                  <p>检查是否被全局安装：</p>
-                  <pre><code class="language-bash">npm ls -g @anthropic-ai/claude-code</code></pre>
-
-                  <h3>执行卸载操作</h3>
-                  <p>卸载本地安装的包：</p>
-                  <pre><code class="language-bash">npm uninstall @anthropic-ai/claude-code</code></pre>
-                  <p>卸载全局安装的包：</p>
-                  <pre><code class="language-bash">npm uninstall -g @anthropic-ai/claude-code</code></pre>
-
-                  <hr />
-
-                  <h2>步骤 2：安装 Claude Code</h2>
-                  <h3>方法 1：使用安装脚本（推荐）</h3>
-                  <pre><code class="language-bash">curl -fsSL https://claude.ai/install.sh | bash</code></pre>
-
-                  <h3>方法 2：使用 npm 全局安装</h3>
-                  <pre><code class="language-bash">npm install -g @anthropic-ai/claude-code</code></pre>
-
-                  <h3>验证安装</h3>
-                  <pre><code class="language-bash">claude --version</code></pre>
-
-                  <hr />
-
-                  <h2>步骤 3：配置环境变量</h2>
-
-                  <h3>第一推荐：CC Switch（强烈推荐）</h3>
-                  <p class="cc-switch-reco">
-                    <strong>强烈推荐：</strong>使用 CC Switch 一键切换配置（<a href="/openclaw.html">点击前往一键接入助手</a>）
-                  </p>
-
-                  <h3>第二推荐：永久配置（推荐）</h3>
-                  <p>将环境变量写入你的 shell 配置文件（常见为 <code>~/.bashrc</code> 或 <code>~/.zshrc</code>），然后重新加载：</p>
-                  <pre><code class="language-bash">source ~/.bashrc
-# 或
-source ~/.zshrc</code></pre>
-
-                  <h3>第三推荐：临时配置（当前会话有效）</h3>
-                  <pre><code class="language-bash">export ANTHROPIC_BASE_URL="__SITE_ORIGIN__"
-export ANTHROPIC_AUTH_TOKEN="您的Token"</code></pre>
-
-                  <hr />
-
-                  <h2>步骤 4：开始使用</h2>
-                  <pre><code class="language-bash">cd your-project-folder
-claude 你是什么大模型</code></pre>
-
-                  <h3>下一步</h3>
-                  <ul>
-                    <li>前往 <a href="/usage">余额查询</a> 页面查看 API 使用情况</li>
-                    <li>查看官方文档了解更多功能</li>
-                  </ul>
-                </div>
+                <div class="tab-doc" id="tabDoc-macos"></div>
               </div>
             </div>
 
@@ -849,33 +418,9 @@ node --version
 
 ---
 
-## **步骤 1：卸载其他中转客户端（可选）**
+## **清理旧版客户端（可选）**
 
-如果之前安装过其他 Claude Code 客户端，建议先卸载。
-
-### **检查安装位置**
-
-检查是否在本地项目中安装：
-
-```bash
-npm ls @anthropic-ai/claude-code
-```
-
-检查是否被全局安装：
-
-```bash
-npm ls -g @anthropic-ai/claude-code
-```
-
-### **执行卸载操作**
-
-卸载本地安装的包：
-
-```bash
-npm uninstall @anthropic-ai/claude-code
-```
-
-卸载全局安装的包：
+如果你之前是通过 npm 安装的 Claude Code，为了防止冲突，建议先将其卸载：
 
 ```bash
 npm uninstall -g @anthropic-ai/claude-code
@@ -883,22 +428,16 @@ npm uninstall -g @anthropic-ai/claude-code
 
 ---
 
-## **步骤 2：安装 Claude Code**
+## **步骤 1：安装 Claude Code（安装过Claude Code可跳过）**
 
-#### **方法 1：使用 PowerShell 脚本安装（推荐）**
+请打开 PowerShell（建议右键“以管理员身份运行”），执行以下官方安装脚本：
 
 ```powershell
-# 以管理员身份运行 PowerShell
 irm https://claude.ai/install.ps1 | iex
 ```
 
-#### **方法 2：使用 npm 全局安装**
-
-```bash
-npm install -g @anthropic-ai/claude-code
-```
-
 ### **验证安装**
+安装完成后，请关闭当前终端并重新打开一个新窗口，输入以下命令验证：
 
 ```bash
 claude --version
@@ -906,7 +445,7 @@ claude --version
 
 ---
 
-## **步骤 3：配置环境变量**
+## **步骤 2：配置环境变量**
 
 您需要配置两个环境变量：
 
@@ -919,54 +458,53 @@ claude --version
 
 ### **第二推荐：永久配置（推荐）**
 
-#### **方法1：通过系统环境变量设置**
+#### **方法1：通过系统环境变量设置（图形界面）**
 
-1. 右键点击"此电脑"，选择"属性"
-2. 点击"高级系统设置"
-3. 点击"环境变量"
-4. 在"用户变量"区域，点击"新建"，分别添加：
-    - 变量名：`ANTHROPIC_BASE_URL`，变量值：您的连接点 URL
-    - 变量名：`ANTHROPIC_AUTH_TOKEN`，变量值：您的 Token
-5. 点击"确定"保存
-6. 重启终端或命令提示符
+右键点击“此电脑”，选择“属性”
+
+点击“高级系统设置”
+
+点击“环境变量”
+
+在“用户变量”区域，点击“新建”，分别添加：
+
+变量名：ANTHROPIC_BASE_URL，变量值：__SITE_ORIGIN__
+
+变量名：ANTHROPIC_AUTH_TOKEN，变量值：您的Token
+
+点击“确定”保存，并重启终端窗口。
 
 #### **方法2：通过 PowerShell 配置**
 
 在 PowerShell 中运行以下命令设置用户级环境变量：
 
 ```powershell
-[System.Environment]::SetEnvironmentVariable("ANTHROPIC_BASE_URL", "__SITE_ORIGIN__", [System.EnvironmentVariableTarget]::User)
-
-[System.Environment]::SetEnvironmentVariable("ANTHROPIC_AUTH_TOKEN", "你的API密钥", [System.EnvironmentVariableTarget]::User)
+setx ANTHROPIC_BASE_URL "__SITE_ORIGIN__"
+setx ANTHROPIC_AUTH_TOKEN "您的Token"
 ```
+**(提示：运行完成后，需要关闭当前 PowerShell 并重新打开一个新窗口才会生效。)**
+
+#### **验证配置**
 
 在 PowerShell 中查看已设置的环境变量：
 
 ```powershell
-[System.Environment]::GetEnvironmentVariable("ANTHROPIC_BASE_URL", [System.EnvironmentVariableTarget]::User)
-
-[System.Environment]::GetEnvironmentVariable("ANTHROPIC_AUTH_TOKEN", [System.EnvironmentVariableTarget]::User)
+echo $env:ANTHROPIC_AUTH_TOKEN
+echo $env:ANTHROPIC_BASE_URL
 ```
 
 ### **第三推荐：临时配置（当前会话有效）**
 
-#### **方法1：使用 PowerShell**
+如果您只想在当前窗口临时使用，可以在 PowerShell 中直接执行：
 
 ```powershell
 $env:ANTHROPIC_BASE_URL="__SITE_ORIGIN__"
 $env:ANTHROPIC_AUTH_TOKEN="您的Token"
 ```
 
-#### **方法2：使用命令提示符（CMD）**
-
-```bash
-set ANTHROPIC_BASE_URL=__SITE_ORIGIN__
-set ANTHROPIC_AUTH_TOKEN=您的Token
-```
-
 ---
 
-## **步骤 4：开始使用**
+## **步骤 3：开始使用**
 
 配置好环境变量后，在您的项目目录下使用`cmd`等的终端运行：
 
@@ -975,7 +513,7 @@ cd your-project-folder
 claude 你是什么大模型
 ```
 
-当然, 你也可以在**VS Code**或者**Cursor**中安装插件`Claude Code for VS Code`来获得更好的使用体验。
+当然, 你也可以在**VS Code**中安装插件`Claude Code for VS Code`来获得更好的使用体验。
 
 详细的图文教程可查看：[在 VS Code 中使用 Claude Code 图文指南](https://ucngkdwd50uz.feishu.cn/wiki/BmcvwIT4bimiErk8O9McCQUqnFb)
 
@@ -989,17 +527,19 @@ claude 你是什么大模型
 
 **解决方法**：
 
-1. 确认已正确安装：`npm ls -g @anthropic-ai/claude-code`
-2. 重启终端窗口
-3. 检查 npm 全局路径是否在 PATH 中
+- 确认 PowerShell 安装脚本是否执行成功且无报错。
+
+- 安装后必须重新启动终端窗口（关闭并重新打开），才能让系统识别到新的命令。
+
+- 检查环境变量 PATH 中是否包含了 Claude 的安装路径（通常在用户目录的 AppData 下）。
 
 ### **❓ 环境变量设置后不生效**
 
 **解决方法**：
 
-- 完全关闭所有终端窗口，重新打开
-- 如果是永久配置，需要重启电脑
-- 使用 `echo %ANTHROPIC_AUTH_TOKEN%` 验证变量是否设置成功
+- 完全关闭所有终端窗口（包括 VS Code 中的内置终端），重新打开。
+- 在终端输入 `echo $env:ANTHROPIC_AUTH_TOKEN` 或 `echo $env:ANTHROPIC_BASE_URL`验证环境变量是否成功设置。
+- 如果是永久配置，确保没有多余的空格。
 
 ### **❓ PowerShell 脚本执行被阻止**
 
@@ -1009,29 +549,6 @@ claude 你是什么大模型
 # 以管理员身份运行 PowerShell
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
-
----
-
-## **进阶配置**
-
-### **WSL (Windows Subsystem for Linux) 用户**
-
-如果您使用 WSL，可以按照 Linux 教程进行安装：
-
-```bash
-# 在 WSL 终端中
-curl -fsSL https://claude.ai/install.sh | bash
-```
-
-### **使用配置文件**
-
-您也可以创建 `.env` 文件来管理环境变量：
-
-```
-ANTHROPIC_BASE_URL=__SITE_ORIGIN__
-ANTHROPIC_AUTH_TOKEN=您的Token
-```
-
 ---
 
 ## **下一步**
@@ -1041,6 +558,8 @@ ANTHROPIC_AUTH_TOKEN=您的Token
 - 在任意项目目录使用 `claude` 命令
 - 前往 [余额查询](/usage) 页面查看 API 使用情况
 - 查看官方文档了解更多功能</script>
+
+
             <script type="text/plain" id="md-macos"># **macOS 安装教程**
 
 ## **前置要求: 安装 Git**
@@ -1051,23 +570,7 @@ ANTHROPIC_AUTH_TOKEN=您的Token
 
 确保 Node.js 版本 ≥ 18.0
 
-### **安装 Xcode Command Line Tools**
-
-```bash
-sudo xcode-select --install
-```
-
-### **安装 Homebrew**
-
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
-### **安装 Node.js**
-
-```bash
-brew install node
-```
+如果未安装，建议通过 Homebrew 安装：brew install node，或前往 Node.js 官网 下载安装包。
 
 ### **验证安装**
 
@@ -1079,58 +582,20 @@ node --version
 
 ---
 
-## **步骤 1：卸载其他中转客户端（可选）**
+## **清理旧版客户端（可选）**
 
-如果之前安装过其他 Claude Code 客户端，建议先卸载。
-
-### **检查安装位置**
-
-检查是否在本地项目中安装：
-
-```bash
-npm ls @anthropic-ai/claude-code
-```
-
-检查是否被全局安装：
-
-```bash
-npm ls -g @anthropic-ai/claude-code
-```
-
-### **执行卸载操作**
-
-卸载本地安装的包：
-
-```bash
-npm uninstall @anthropic-ai/claude-code
-```
-
-卸载全局安装的包：
-
+如果你之前是通过 npm 安装的 Claude Code，建议先将其卸载：
 ```bash
 npm uninstall -g @anthropic-ai/claude-code
 ```
 
 ---
 
-## **步骤 2：安装 Claude Code**
+## **步骤 1：安装 Claude Code（安装过可跳过）**
 
-#### **方法 1：使用 Homebrew 安装（推荐）**
-
-```bash
-brew install --cask claude-code
-```
-
-#### **方法 2：使用安装脚本**
-
+执行以下官方安装脚本：
 ```bash
 curl -fsSL https://claude.ai/install.sh | bash
-```
-
-#### **方法 3：使用 npm 全局安装**
-
-```bash
-npm install -g @anthropic-ai/claude-code
 ```
 
 ### **验证安装**
@@ -1141,7 +606,13 @@ claude --version
 
 ---
 
-## **步骤 3：配置环境变量**
+## **步骤 2：配置环境变量**
+
+您需要配置两个环境变量：
+
+ANTHROPIC_AUTH_TOKEN：您的授权令牌（格式：sk_...）
+
+ANTHROPIC_BASE_URL：API 服务地址（本站提供的连接点 URL）
 
 ### **第一推荐：CC Switch（强烈推荐）**
 
@@ -1163,13 +634,13 @@ echo $SHELL
 将环境变量写入配置文件：
 
 ```bash
-echo -e '\nexport ANTHROPIC_AUTH_TOKEN="您的Token"' >> ~/.zshrc
-echo -e '\nexport ANTHROPIC_BASE_URL="__SITE_ORIGIN__"' >> ~/.zshrc
-```
+# 写入中转地址
+echo 'export ANTHROPIC_BASE_URL="__SITE_ORIGIN__"' >> ~/.zshrc
 
-重新加载配置：
+# 写入您的 Token
+echo 'export ANTHROPIC_AUTH_TOKEN="您的Token"' >> ~/.zshrc
 
-```bash
+# 使配置立即生效
 source ~/.zshrc
 ```
 
@@ -1185,10 +656,16 @@ echo -e '\nexport ANTHROPIC_BASE_URL="__SITE_ORIGIN__"' >> ~/.bashrc
 ```
 
 重新加载配置：
-
 ```bash
 source ~/.bash_profile
 source ~/.bashrc
+```
+
+#### **验证配置**
+运行以下命令，如果能正确打印出地址和 Token，说明配置成功：
+```bash
+echo $ANTHROPIC_AUTH_TOKEN
+echo $ANTHROPIC_BASE_URL
 ```
 
 ### **第三推荐：临时配置（当前会话有效）**
@@ -1200,7 +677,7 @@ export ANTHROPIC_AUTH_TOKEN="您的Token"
 
 ---
 
-## **步骤 4：开始使用**
+## **步骤 3：开始使用**
 
 配置好环境变量后，在您的项目目录下运行：
 
@@ -1208,779 +685,12 @@ export ANTHROPIC_AUTH_TOKEN="您的Token"
 cd your-project-folder
 claude 你是什么大模型
 ```
+当然, 你也可以在**VS Code**中安装插件`Claude Code for VS Code`来获得更好的使用体验。
 
-### **首次运行配置**
-
-运行后需要完成以下步骤：
-
-1. ✅ 选择你喜欢的主题 + `Enter`
-2. ✅ 确认安全须知 + `Enter`
-3. ✅ 使用默认 Terminal 配置 + `Enter`
-4. ✅ 信任工作目录 + `Enter`
+详细的图文教程可查看：[在 VS Code 中使用 Claude Code 图文指南](https://ucngkdwd50uz.feishu.cn/wiki/BmcvwIT4bimiErk8O9McCQUqnFb)
 
 完成后，就可以开始在终端里和您的 AI 编程搭档一起写代码了！🚀
-
----
-
-## **快速启动示例**
-
-### **临时使用**
-
-```bash
-# 设置环境变量
-export ANTHROPIC_BASE_URL="__SITE_ORIGIN__"
-export ANTHROPIC_AUTH_TOKEN="您的Token"
-
-# 进入项目目录并启动
-cd your-project-folder
-claude
-```
-
-### **永久配置后使用**
-
-配置好 `.zshrc` 或 `.bash_profile` 后，重启终端，直接使用：
-
-```bash
-cd your-project-folder
-claude
-```
-
----
-
-## **一键配置脚本（推荐）**
-
-创建一个便捷的配置脚本：
-
-```bash
-# 创建配置脚本
-cat > ~/setup-claude.sh << 'EOF'
-#!/bin/bash
-echo "正在配置 Claude Code 环境变量..."
-
-# 替换为您的实际值
-export ANTHROPIC_BASE_URL="__SITE_ORIGIN__"
-export ANTHROPIC_AUTH_TOKEN="您的Token"
-
-# 写入配置文件
-echo -e '\nexport ANTHROPIC_AUTH_TOKEN="'$ANTHROPIC_AUTH_TOKEN'"' >> ~/.zshrc
-echo -e '\nexport ANTHROPIC_BASE_URL="'$ANTHROPIC_BASE_URL'"' >> ~/.zshrc
-echo -e '\nexport ANTHROPIC_AUTH_TOKEN="'$ANTHROPIC_AUTH_TOKEN'"' >> ~/.bash_profile
-echo -e '\nexport ANTHROPIC_BASE_URL="'$ANTHROPIC_BASE_URL'"' >> ~/.bash_profile
-echo -e '\nexport ANTHROPIC_AUTH_TOKEN="'$ANTHROPIC_AUTH_TOKEN'"' >> ~/.bashrc
-echo -e '\nexport ANTHROPIC_BASE_URL="'$ANTHROPIC_BASE_URL'"' >> ~/.bashrc
-echo -e '\nexport ANTHROPIC_AUTH_TOKEN="'$ANTHROPIC_AUTH_TOKEN'"' >> ~/.zshrc
-echo -e '\nexport ANTHROPIC_BASE_URL="'$ANTHROPIC_BASE_URL'"' >> ~/.zshrc
-
-echo "配置完成！请重启终端或运行: source ~/.zshrc"
-EOF
-
-# 添加执行权限
-chmod +x ~/setup-claude.sh
-
-# 运行配置脚本
-~/setup-claude.sh
-```
-
----
-
-## **常见问题**
-
-### **❓ 提示找不到 claude 命令**
-
-**解决方法**：
-
-1. 检查安装：
-
-```bash
-which claude
-npm ls -g @anthropic-ai/claude-code
-```
-
-1. 确保 npm 全局路径在 PATH 中：
-
-```bash
-echo $PATH | grep npm
-
-# 如果不在，添加到 ~/.bashrc
-echo 'export PATH="$PATH:$(npm config get prefix)/bin"' >> ~/.bashrc
-source ~/.bashrc
-```
-
-1. 检查 Node.js 全局模块路径：
-
-```bash
-npm config get prefix
-```
-
-### **❓ 环境变量不生效**
-
-**解决方法**：
-
-1. 确认已重新加载配置文件：
-
-```bash
-source ~/.zshrc  # 或 source ~/.bash_profile
-```
-
-1. 验证环境变量：
-
-```bash
-echo $ANTHROPIC_AUTH_TOKEN
-echo $ANTHROPIC_BASE_URL
-```
-
-1. 完全关闭终端并重新打开
-
-### **❓ 权限错误**
-
-**解决方法**：
-
-```bash
-# 修复 npm 权限问题
-sudo chown -R $(whoami) ~/.npm
-sudo chown -R $(whoami) /usr/local/lib/node_modules
-```
-
----
-
-## **进阶配置**
-
-### **使用别名简化命令**
-
-在 `~/.bashrc` 或 `~/.zshrc` 中添加：
-
-```bash
-alias cc="claude"
-alias ccv="claude --version"
-```
-
-重新加载后即可使用 `cc` 代替 `claude`。
-
-### **iTerm2 配置**
-
-如果使用 iTerm2，可以配置专门的 Profile：
-
-1. 打开 iTerm2 → Preferences → Profiles
-2. 新建 Profile，命名为 "Claude Code"
-3. 在 "General" → "Command" 设置启动命令：
-
-```bash
-source ~/.zshrc && cd ~/your-default-project
-```
-
----
-
-## **卸载**
-
-## **卸载 npm 版本**
-
-```bash
-npm uninstall -g @anthropic-ai/claude-code
-```
-
-### **清除配置**
-
-```bash
-# 从配置文件中移除环境变量
-sed -i '/ANTHROPIC_AUTH_TOKEN/d' ~/.bashrc
-sed -i '/ANTHROPIC_BASE_URL/d' ~/.bashrc
-sed -i '/ANTHROPIC_AUTH_TOKEN/d' ~/.bash_profile
-sed -i '/ANTHROPIC_BASE_URL/d' ~/.bash_profile
-sed -i '/ANTHROPIC_AUTH_TOKEN/d' ~/.zshrc
-sed -i '/ANTHROPIC_BASE_URL/d' ~/.zshrc
-
-# 重新加载配置
-source ~/.bashrc
-```
-
----
-
-## **故障排查**
-
-### **检查网络连接**
-
-```bash
-# 测试 API 连接
-curl -I "__SITE_ORIGIN__"
-```
-
-### **查看日志**
-
-```bash
-# 查看 Claude Code 日志
-claude --debug
-
-# 或查看详细输出
-ANTHROPIC_LOG_LEVEL=debug claude
-```
-
-### **完全重新安装**
-
-```bash
-# 1. 卸载
-npm uninstall -g @anthropic-ai/claude-code
-
-# 2. 清除缓存
-npm cache clean --force
-
-# 3. 重新安装
-npm install -g @anthropic-ai/claude-code
-
-# 4. 验证
-claude --version
-```
-
----
-
-## **下一步**
-
-✅ 安装完成后，您可以：
-
-- 在任意项目目录使用 `claude` 命令
-- 前往 [余额查询](/usage) 页面查看 API 使用情况
-- 查看官方文档了解更多功能</script>
-            <script type="text/plain" id="md-linux"># **Linux 安装教程**
-
-## **前置要求: 安装 Git**
-
-确保已安装 Git ,如果尚未安装，可以点击前往→ [Git 官网 https://git-scm.com/download/win](https://git-scm.com/download/win) 下载并安装。
-
-## **前置要求：安装 Node.js**
-
-确保 Node.js 版本 ≥ 18.0
-
-### **Ubuntu / Debian 系列**
-
-```bash
-# 添加 NodeSource 仓库并安装 Node.js LTS
-curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo bash -
-sudo apt-get install -y nodejs
-
-# 验证安装
-node --version
-```
-
-### **Fedora / RHEL / CentOS 系列**
-
-```bash
-# 安装 Node.js
-sudo dnf install -y nodejs
-
-# 或使用 NodeSource 仓库
-curl -fsSL https://rpm.nodesource.com/setup_lts.x | sudo bash -
-sudo dnf install -y nodejs
-
-# 验证安装
-node --version
-```
-
-### **Arch Linux / Manjaro**
-
-```bash
-# 安装 Node.js
-sudo pacman -S nodejs npm
-
-# 验证安装
-node --version
-```
-
----
-
-## **步骤 1：卸载其他中转客户端（可选）**
-
-如果之前安装过其他 Claude Code 客户端，建议先卸载。
-
-### **检查安装位置**
-
-检查是否在本地项目中安装：
-
-```bash
-npm ls @anthropic-ai/claude-code
-```
-
-检查是否被全局安装：
-
-```bash
-npm ls -g @anthropic-ai/claude-code
-```
-
-### **执行卸载操作**
-
-卸载本地安装的包：
-
-```bash
-npm uninstall @anthropic-ai/claude-code
-```
-
-卸载全局安装的包：
-
-```bash
-npm uninstall -g @anthropic-ai/claude-code
-```
-
----
-
-## **步骤 2：安装 Claude Code**
-
-#### **方法 1：使用 Homebrew（推荐）**
-
-如果已安装 Homebrew on Linux：
-
-```bash
-brew install --cask claude-code
-```
-
-#### **方法 2：使用安装脚本（推荐）**
-
-```bash
-curl -fsSL https://claude.ai/install.sh | bash
-```
-
-#### **方法 3：使用 npm 全局安装**
-
-```bash
-npm install -g @anthropic-ai/claude-code
-```
-
-### **验证安装**
-
-```bash
-claude --version
-```
-
----
-
-## **步骤 3：配置环境变量**
-
-您需要配置两个环境变量：
-
-- `ANTHROPIC_AUTH_TOKEN`：您的授权令牌（格式：`cr_...`）
-- `ANTHROPIC_BASE_URL`：API 服务地址（本站提供的连接点 URL）
-
-### **第一推荐：CC Switch（强烈推荐）**
-
-**强烈推荐：**使用 CC Switch 一键切换配置（[点击前往一键接入助手](/openclaw.html)）
-
-### **第二推荐：永久配置（推荐）**
-
-#### **检查当前使用的 Shell**
-
-```bash
-echo $SHELL
-```
-
-#### **Bash Shell（最常见）**
-
-将环境变量写入配置文件：
-
-```bash
-echo -e '\nexport ANTHROPIC_AUTH_TOKEN="您的Token"' >> ~/.bash_profile
-echo -e '\nexport ANTHROPIC_BASE_URL="__SITE_ORIGIN__"' >> ~/.bash_profile
-echo -e '\nexport ANTHROPIC_AUTH_TOKEN="您的Token"' >> ~/.bashrc
-echo -e '\nexport ANTHROPIC_BASE_URL="__SITE_ORIGIN__"' >> ~/.bashrc
-```
-
-重新加载配置：
-
-```bash
-source ~/.bash_profile
-source ~/.bashrc
-```
-
-#### **Zsh Shell**
-
-```bash
-echo -e '\nexport ANTHROPIC_AUTH_TOKEN="您的Token"' >> ~/.zshrc
-echo -e '\nexport ANTHROPIC_BASE_URL="__SITE_ORIGIN__"' >> ~/.zshrc
-
-# 重新加载
-source ~/.zshrc
-```
-
-#### **Fish Shell**
-
-```bash
-set -Ux ANTHROPIC_AUTH_TOKEN "您的Token"
-set -Ux ANTHROPIC_BASE_URL "__SITE_ORIGIN__"
-```
-
-### **第三推荐：临时配置（当前会话有效）**
-
-```bash
-export ANTHROPIC_BASE_URL="__SITE_ORIGIN__"
-export ANTHROPIC_AUTH_TOKEN="您的Token"
-```
-
----
-
-## **步骤 4：开始使用**
-
-配置好环境变量后，在您的项目目录下运行：
-
-```bash
-cd your-project-folder
-claude 你是什么大模型
-```
-
-### **首次运行配置**
-
-运行后需要完成以下步骤：
-
-1. ✅ 选择你喜欢的主题 + `Enter`
-2. ✅ 确认安全须知 + `Enter`
-3. ✅ 使用默认 Terminal 配置 + `Enter`
-4. ✅ 信任工作目录 + `Enter`
-
-完成后，就可以开始在终端里和您的 AI 编程搭档一起写代码了！🚀
-
----
-
-## **快速启动示例**
-
-### **临时使用**
-
-```bash
-# 设置环境变量
-export ANTHROPIC_BASE_URL="__SITE_ORIGIN__"
-export ANTHROPIC_AUTH_TOKEN="您的Token"
-
-# 进入项目目录并启动
-cd your-project-folder
-claude
-```
-
-### **永久配置后使用**
-
-配置好 `.bashrc` 或 `.zshrc` 后，重启终端，直接使用：
-
-```bash
-cd your-project-folder
-claude
-```
-
----
-
-## **一键配置脚本（推荐）**
-
-创建一个便捷的配置脚本：
-
-```bash
-# 创建配置脚本
-cat > ~/setup-claude.sh << 'EOF'
-#!/bin/bash
-echo "正在配置 Claude Code 环境变量..."
-
-# 替换为您的实际值
-ANTHROPIC_BASE_URL="__SITE_ORIGIN__"
-ANTHROPIC_AUTH_TOKEN="您的Token"
-
-# 写入配置文件
-echo -e '\nexport ANTHROPIC_AUTH_TOKEN="'$ANTHROPIC_AUTH_TOKEN'"' >> ~/.bash_profile
-echo -e '\nexport ANTHROPIC_BASE_URL="'$ANTHROPIC_BASE_URL'"' >> ~/.bash_profile
-echo -e '\nexport ANTHROPIC_AUTH_TOKEN="'$ANTHROPIC_AUTH_TOKEN'"' >> ~/.bashrc
-echo -e '\nexport ANTHROPIC_BASE_URL="'$ANTHROPIC_BASE_URL'"' >> ~/.bashrc
-echo -e '\nexport ANTHROPIC_AUTH_TOKEN="'$ANTHROPIC_AUTH_TOKEN'"' >> ~/.zshrc
-echo -e '\nexport ANTHROPIC_BASE_URL="'$ANTHROPIC_BASE_URL'"' >> ~/.zshrc
-
-echo "配置完成！请重启终端或运行: source ~/.bashrc"
-EOF
-
-# 添加执行权限
-chmod +x ~/setup-claude.sh
-
-# 运行配置脚本
-~/setup-claude.sh
-```
-
----
-
-## **常见问题**
-
-### **❓ 提示找不到 claude 命令**
-
-**解决方法**：
-
-1. 检查安装：
-
-```bash
-which claude
-npm ls -g @anthropic-ai/claude-code
-```
-
-1. 确保 npm 全局路径在 PATH 中：
-
-```bash
-echo $PATH | grep npm
-
-# 如果不在，添加到 ~/.bashrc
-echo 'export PATH="$PATH:$(npm config get prefix)/bin"' >> ~/.bashrc
-source ~/.bashrc
-```
-
-1. 检查 Node.js 全局模块路径：
-
-```bash
-npm config get prefix
-```
-
-### **❓ 环境变量不生效**
-
-**解决方法**：
-
-1. 确认已重新加载配置文件：
-
-```bash
-source ~/.bashrc  # 或 source ~/.bash_profile
-```
-
-1. 验证环境变量：
-
-```bash
-echo $ANTHROPIC_AUTH_TOKEN
-echo $ANTHROPIC_BASE_URL
-```
-
-1. 确认编辑了正确的配置文件：
-
-```bash
-# 查看当前 Shell
-echo $SHELL
-
-# Bash 用户编辑 ~/.bashrc 或 ~/.bash_profile
-# Zsh 用户编辑 ~/.zshrc
-```
-
-1. 完全关闭终端并重新打开
-
-### **❓ 权限不足错误**
-
-**解决方法**：
-
-```bash
-# 修复 npm 权限问题
-sudo chown -R $(whoami) ~/.npm
-sudo chown -R $(whoami) $(npm config get prefix)
-
-# 或使用 npm 的安全方式
-mkdir ~/.npm-global
-npm config set prefix '~/.npm-global'
-echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.bashrc
-source ~/.bashrc
-```
-
-### **❓ 依赖包缺失**
-
-**Ubuntu/Debian**：
-
-```bash
-sudo apt-get update
-sudo apt-get install -y build-essential
-```
-
-**Fedora/RHEL**：
-
-```bash
-sudo dnf groupinstall "Development Tools"
-```
-
-**Arch Linux**：
-
-```bash
-sudo pacman -S base-devel
-```
-
----
-
-## **发行版特定说明**
-
-### **Ubuntu 20.04 / 22.04 / 24.04 LTS**
-
-完全支持，推荐使用 apt 安装 Node.js 后通过 npm 安装 Claude Code。
-
-```bash
-# 完整安装流程
-curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo bash -
-sudo apt-get install -y nodejs
-npm install -g @anthropic-ai/claude-code
-```
-
-### **Debian 11 / 12**
-
-与 Ubuntu 相同，完全支持。
-
-```bash
-# 完整安装流程
-curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo bash -
-sudo apt-get install -y nodejs
-npm install -g @anthropic-ai/claude-code
-```
-
-### **Fedora 38+**
-
-使用 dnf 包管理器：
-
-```bash
-sudo dnf install -y nodejs
-npm install -g @anthropic-ai/claude-code
-```
-
-### **Arch Linux / Manjaro**
-
-使用 pacman 安装：
-
-```bash
-sudo pacman -S nodejs npm
-npm install -g @anthropic-ai/claude-code
-```
-
-### **openSUSE**
-
-```bash
-sudo zypper install nodejs npm
-npm install -g @anthropic-ai/claude-code
-```
-
----
-
-## **进阶配置**
-
-### **使用别名简化命令**
-
-在 `~/.bashrc` 或 `~/.zshrc` 中添加：
-
-```bash
-alias cc="claude"
-alias ccv="claude --version"
-```
-
-重新加载后即可使用 `cc` 代替 `claude`。
-
-### **systemd 服务配置（可选）**
-
-如果需要将 Claude Code 作为服务运行：
-
-```bash
-# 创建服务文件
-sudo nano /etc/systemd/system/claude-code.service
-
-# 添加以下内容
-[Unit]
-Description=Claude Code Service
-After=network.target
-
-[Service]
-Type=simple
-User=your-username
-WorkingDirectory=/home/your-username
-Environment="ANTHROPIC_AUTH_TOKEN=您的Token"
-Environment="ANTHROPIC_BASE_URL=__SITE_ORIGIN__"
-ExecStart=/usr/bin/claude daemon
-Restart=on-failure
-
-[Install]
-WantedBy=multi-user.target
-
-# 启用并启动服务
-sudo systemctl daemon-reload
-sudo systemctl enable claude-code
-sudo systemctl start claude-code
-```
-
-### **使用 Docker（高级）**
-
-```bash
-# 创建 Dockerfile
-cat > Dockerfile << 'EOF'
-FROM node:18-alpine
-RUN npm install -g @anthropic-ai/claude-code
-ENV ANTHROPIC_AUTH_TOKEN=""
-ENV ANTHROPIC_BASE_URL=""
-WORKDIR /workspace
-CMD ["claude"]
-EOF
-
-# 构建镜像
-docker build -t claude-code .
-
-# 运行容器
-docker run -it --rm \
-  -e ANTHROPIC_AUTH_TOKEN="您的Token" \
-  -e ANTHROPIC_BASE_URL="__SITE_ORIGIN__" \
-  -v $(pwd):/workspace \
-  claude-code
-```
-
----
-
-## **卸载**
-
-## **卸载 npm 版本**
-
-```bash
-npm uninstall -g @anthropic-ai/claude-code
-```
-
-### **清除配置**
-
-```bash
-# 从配置文件中移除环境变量
-sed -i '/ANTHROPIC_AUTH_TOKEN/d' ~/.bashrc
-sed -i '/ANTHROPIC_BASE_URL/d' ~/.bashrc
-sed -i '/ANTHROPIC_AUTH_TOKEN/d' ~/.bash_profile
-sed -i '/ANTHROPIC_BASE_URL/d' ~/.bash_profile
-sed -i '/ANTHROPIC_AUTH_TOKEN/d' ~/.zshrc
-sed -i '/ANTHROPIC_BASE_URL/d' ~/.zshrc
-
-# 重新加载配置
-source ~/.bashrc
-```
-
----
-
-## **故障排查**
-
-### **检查网络连接**
-
-```bash
-# 测试 API 连接
-curl -I "__SITE_ORIGIN__"
-```
-
-### **查看日志**
-
-```bash
-# 查看 Claude Code 日志
-claude --debug
-
-# 或查看详细输出
-ANTHROPIC_LOG_LEVEL=debug claude
-```
-
-### **完全重新安装**
-
-```bash
-# 1. 卸载
-npm uninstall -g @anthropic-ai/claude-code
-
-# 2. 清除缓存
-npm cache clean --force
-
-# 3. 重新安装
-npm install -g @anthropic-ai/claude-code
-
-# 4. 验证
-claude --version
-```
-
----
-
-## **下一步**
-
-✅ 安装完成后，您可以：
-
-- 在任意项目目录使用 `claude` 命令
-- 前往 [余额查询](/usage) 页面查看 API 使用情况
-- 查看官方文档了解更多功能</script>
+</script>
           </div>
         </div>
       </section>
@@ -2259,15 +969,11 @@ claude --version
           macos: document.getElementById("md-macos")
             ? normalizeMd(document.getElementById("md-macos").textContent)
             : "",
-          linux: document.getElementById("md-linux")
-            ? normalizeMd(document.getElementById("md-linux").textContent)
-            : "",
         };
 
         var docEls = {
           windows: document.getElementById("tabDoc-windows"),
           macos: document.getElementById("tabDoc-macos"),
-          linux: document.getElementById("tabDoc-linux"),
         };
 
         var renderedKeys = {};
@@ -2311,4 +1017,3 @@ claude --version
     </script>
   </body>
 </html>
-
