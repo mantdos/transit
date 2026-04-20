@@ -133,23 +133,35 @@
       </p>
 
       <div class="mt-12 grid gap-6 sm:grid-cols-2">
-        <a
-          href="/tutorial-claude.html"
-          class="glass group rounded-2xl border border-slate-600/50 p-8 transition hover:border-pink-500/40 hover:shadow-[0_0_30px_rgba(234,76,137,0.12)]"
+        <article
+          class="glass flex flex-col rounded-2xl border border-slate-600/50 p-8 transition hover:border-pink-500/40 hover:shadow-[0_0_30px_rgba(234,76,137,0.12)]"
         >
           <div class="text-xs font-semibold uppercase tracking-wider text-pink-300">Claude 体系</div>
-          <h2 class="mt-3 text-xl font-bold text-white group-hover:text-pink-200">Claude Code 安装教程</h2>
+          <h2 class="mt-3 text-xl font-bold text-white">Claude Code 安装教程</h2>
           <p class="mt-3 text-sm leading-relaxed text-slate-400">
             含 Git / Node 环境、多平台安装步骤、环境变量与常见问题，与历史「Claude Code 安装教程」一致。
           </p>
-          <span class="mt-6 inline-flex text-sm font-semibold text-pink-300">打开教程 →</span>
-        </a>
+          <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <a
+              href="/tutorial-claude.html"
+              class="inline-flex w-fit text-sm font-semibold text-pink-300 transition hover:text-pink-200"
+              >打开教程 →</a
+            >
+            <a
+              href="https://ucngkdwd50uz.feishu.cn/wiki/BmcvwIT4bimiErk8O9McCQUqnFb"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex w-fit rounded-xl border border-pink-500/35 bg-pink-500/10 px-4 py-2 text-sm font-semibold text-pink-200 transition hover:border-pink-400/50 hover:bg-pink-500/15"
+              >Claude Code 接入 VS Code →</a
+            >
+          </div>
+        </article>
 
         <a
           href="/tutorial-codex.html"
           class="glass group rounded-2xl border border-slate-600/50 p-8 transition hover:border-cyan-500/40 hover:shadow-[0_0_30px_rgba(34,211,238,0.12)]"
         >
-          <div class="text-xs font-semibold uppercase tracking-wider text-cyan-300">Codex / Open Code</div>
+          <div class="text-xs font-semibold uppercase tracking-wider text-cyan-300">Codex Cli</div>
           <h2 class="mt-3 text-xl font-bold text-white group-hover:text-cyan-200">Codex Cli 安装使用教程</h2>
           <p class="mt-3 text-sm leading-relaxed text-slate-400">
             官方 Codex CLI、config.toml / auth.json、VS Code 插件与 OpenCode 配置说明，与历史「Codex Cli 安装使用」一致。

@@ -674,6 +674,10 @@ base_url = "__SITE_ORIGIN__/v1"
             html = "<p>Markdown 渲染服务不可用。</p>";
           }
           docEl.innerHTML = html;
+          Array.prototype.forEach.call(docEl.querySelectorAll("h2"), function (el) {
+            if (el.id) return;
+            if (el.textContent.indexOf("在 VS Code 中使用 Codex") !== -1) el.id = "vscode-codex";
+          });
         }
 
         renderMainDoc();

@@ -130,6 +130,29 @@
         margin: 0.25rem 0;
       }
 
+      .cc-switch-reco {
+        border-radius: 0.75rem;
+        border: 1px solid rgba(251, 191, 36, 0.45);
+        background: rgba(251, 191, 36, 0.1);
+        padding: 0.85rem 1rem;
+        margin: 0.75rem 0 1rem;
+        line-height: 1.65;
+        color: rgb(254 243 199);
+      }
+      .cc-switch-reco strong {
+        color: rgb(253 230 138);
+        font-weight: 800;
+      }
+      .cc-switch-reco a {
+        color: rgb(253 224 71);
+        font-weight: 700;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .cc-switch-reco a:hover {
+        color: #fff;
+      }
+
       /* markdown look for tutorial content */
       .tab-markdown {
         color: rgb(226 232 240);
@@ -441,17 +464,13 @@ irm https://claude.ai/install.ps1 | iex</code></pre>
                     </li>
                   </ul>
 
-                  <h3>临时配置（当前会话有效）</h3>
-                  <h4>方法1：使用 PowerShell</h4>
-                  <pre><code class="language-powershell">$env:ANTHROPIC_BASE_URL="__SITE_ORIGIN__"
-$env:ANTHROPIC_AUTH_TOKEN="您的Token"</code></pre>
+                  <h3>第一推荐：CC Switch（强烈推荐）</h3>
+                  <p class="cc-switch-reco">
+                    <strong>强烈推荐：</strong>使用 CC Switch 一键切换配置（<a href="/openclaw.html">点击前往一键接入助手</a>）
+                  </p>
 
-                  <h4>方法2：使用命令提示符（CMD）</h4>
-                  <pre><code class="language-cmd">set ANTHROPIC_BASE_URL=__SITE_ORIGIN__
-set ANTHROPIC_AUTH_TOKEN=您的Token</code></pre>
-
-                  <h3>永久配置（推荐）</h3>
-                  <h4>方法1：通过系统环境变量设置</h4>
+                  <h3>第二推荐：永久配置（推荐）</h3>
+                  <h4>通过系统环境变量设置</h4>
                   <ol>
                     <li>右键点击“此电脑”，选择“属性”</li>
                     <li>点击“高级系统设置”</li>
@@ -467,16 +486,14 @@ set ANTHROPIC_AUTH_TOKEN=您的Token</code></pre>
                     <li>重启终端或命令提示符</li>
                   </ol>
 
-                  <h4>方法2：通过 PowerShell 配置</h4>
-                  <p>在 PowerShell 中运行以下命令设置用户级环境变量：</p>
-                  <pre><code class="language-powershell">[System.Environment]::SetEnvironmentVariable("ANTHROPIC_BASE_URL", "__SITE_ORIGIN__", [System.EnvironmentVariableTarget]::User)
+                  <h3>第三推荐：临时配置（当前会话有效）</h3>
+                  <h4>方法1：使用 PowerShell</h4>
+                  <pre><code class="language-powershell">$env:ANTHROPIC_BASE_URL="__SITE_ORIGIN__"
+$env:ANTHROPIC_AUTH_TOKEN="您的Token"</code></pre>
 
-[System.Environment]::SetEnvironmentVariable("ANTHROPIC_AUTH_TOKEN", "你的API密钥", [System.EnvironmentVariableTarget]::User)</code></pre>
-
-                  <p>在 <code>PowerShell</code> 中查看已设置的环境变量：</p>
-                  <pre><code class="language-powershell">[System.Environment]::GetEnvironmentVariable("ANTHROPIC_BASE_URL", [System.EnvironmentVariableTarget]::User)
-
-[System.Environment]::GetEnvironmentVariable("ANTHROPIC_AUTH_TOKEN", [System.EnvironmentVariableTarget]::User)</code></pre>
+                  <h4>方法2：使用命令提示符（CMD）</h4>
+                  <pre><code class="language-cmd">set ANTHROPIC_BASE_URL=__SITE_ORIGIN__
+set ANTHROPIC_AUTH_TOKEN=您的Token</code></pre>
 
                   <hr />
 
@@ -501,6 +518,14 @@ claude 你是什么大模型</code></pre>
                   <p>
                     当然，你也可以在 <strong>VS Code</strong> 或 <strong>Cursor</strong> 中安装插件
                     <code>Claude Code for VS Code</code> 来获得更好的使用体验。
+                  </p>
+                  <p>
+                    详细的图文教程可查看：<a
+                      href="https://ucngkdwd50uz.feishu.cn/wiki/BmcvwIT4bimiErk8O9McCQUqnFb"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >在 VS Code 中使用 Claude Code 图文指南</a
+                    >。
                   </p>
 
                   <p>完成后，就可以开始在终端里和你的 AI 编程搭档一起写代码了！🚀</p>
@@ -620,19 +645,13 @@ ANTHROPIC_AUTH_TOKEN=您的Token</code></pre>
                   <hr />
 
                   <h2>步骤 3：配置环境变量</h2>
-                  <p>您需要配置两个环境变量：</p>
-                  <ul>
-                    <li><code>ANTHROPIC_AUTH_TOKEN</code>：你的授权令牌</li>
-                    <li>
-                      <code>ANTHROPIC_BASE_URL</code>：API 服务地址（连接点：<code>__SITE_ORIGIN__</code>）
-                    </li>
-                  </ul>
 
-                  <h3>方法 1：临时配置（当前会话有效）</h3>
-                  <pre><code class="language-bash">export ANTHROPIC_BASE_URL="__SITE_ORIGIN__"
-export ANTHROPIC_AUTH_TOKEN="您的Token"</code></pre>
+                  <h3>第一推荐：CC Switch（强烈推荐）</h3>
+                  <p class="cc-switch-reco">
+                    <strong>强烈推荐：</strong>使用 CC Switch 一键切换配置（<a href="/openclaw.html">点击前往一键接入助手</a>）
+                  </p>
 
-                  <h3>方法 2：永久配置（推荐）</h3>
+                  <h3>第二推荐：永久配置（推荐）</h3>
 
                   <h4>检查当前使用的 Shell</h4>
                   <pre><code class="language-bash">echo $SHELL</code></pre>
@@ -651,6 +670,10 @@ echo -e '\nexport ANTHROPIC_BASE_URL="__SITE_ORIGIN__"' &gt;&gt; ~/.bashrc
 
 source ~/.bash_profile
 source ~/.bashrc</code></pre>
+
+                  <h3>第三推荐：临时配置（当前会话有效）</h3>
+                  <pre><code class="language-bash">export ANTHROPIC_BASE_URL="__SITE_ORIGIN__"
+export ANTHROPIC_AUTH_TOKEN="您的Token"</code></pre>
 
                   <hr />
 
@@ -775,21 +798,21 @@ node --version</code></pre>
                   <hr />
 
                   <h2>步骤 3：配置环境变量</h2>
-                  <p>您需要配置两个环境变量：</p>
-                  <ul>
-                    <li><code>ANTHROPIC_AUTH_TOKEN</code>：你的授权令牌</li>
-                    <li><code>ANTHROPIC_BASE_URL</code>：<code>__SITE_ORIGIN__</code></li>
-                  </ul>
 
-                  <h3>方法 1：临时配置（当前会话有效）</h3>
-                  <pre><code class="language-bash">export ANTHROPIC_BASE_URL="__SITE_ORIGIN__"
-export ANTHROPIC_AUTH_TOKEN="您的Token"</code></pre>
+                  <h3>第一推荐：CC Switch（强烈推荐）</h3>
+                  <p class="cc-switch-reco">
+                    <strong>强烈推荐：</strong>使用 CC Switch 一键切换配置（<a href="/openclaw.html">点击前往一键接入助手</a>）
+                  </p>
 
-                  <h3>方法 2：永久配置（推荐）</h3>
+                  <h3>第二推荐：永久配置（推荐）</h3>
                   <p>将环境变量写入你的 shell 配置文件（常见为 <code>~/.bashrc</code> 或 <code>~/.zshrc</code>），然后重新加载：</p>
                   <pre><code class="language-bash">source ~/.bashrc
 # 或
 source ~/.zshrc</code></pre>
+
+                  <h3>第三推荐：临时配置（当前会话有效）</h3>
+                  <pre><code class="language-bash">export ANTHROPIC_BASE_URL="__SITE_ORIGIN__"
+export ANTHROPIC_AUTH_TOKEN="您的Token"</code></pre>
 
                   <hr />
 
@@ -890,7 +913,42 @@ claude --version
 - `ANTHROPIC_AUTH_TOKEN`：您的授权令牌（格式：`sk_...`）
 - `ANTHROPIC_BASE_URL`：API 服务地址（本站提供的连接点 URL）
 
-### **临时配置（当前会话有效）**
+### **第一推荐：CC Switch（强烈推荐）**
+
+**强烈推荐：**使用 CC Switch 一键切换配置（[点击前往一键接入助手](/openclaw.html)）
+
+### **第二推荐：永久配置（推荐）**
+
+#### **方法1：通过系统环境变量设置**
+
+1. 右键点击"此电脑"，选择"属性"
+2. 点击"高级系统设置"
+3. 点击"环境变量"
+4. 在"用户变量"区域，点击"新建"，分别添加：
+    - 变量名：`ANTHROPIC_BASE_URL`，变量值：您的连接点 URL
+    - 变量名：`ANTHROPIC_AUTH_TOKEN`，变量值：您的 Token
+5. 点击"确定"保存
+6. 重启终端或命令提示符
+
+#### **方法2：通过 PowerShell 配置**
+
+在 PowerShell 中运行以下命令设置用户级环境变量：
+
+```powershell
+[System.Environment]::SetEnvironmentVariable("ANTHROPIC_BASE_URL", "__SITE_ORIGIN__", [System.EnvironmentVariableTarget]::User)
+
+[System.Environment]::SetEnvironmentVariable("ANTHROPIC_AUTH_TOKEN", "你的API密钥", [System.EnvironmentVariableTarget]::User)
+```
+
+在 PowerShell 中查看已设置的环境变量：
+
+```powershell
+[System.Environment]::GetEnvironmentVariable("ANTHROPIC_BASE_URL", [System.EnvironmentVariableTarget]::User)
+
+[System.Environment]::GetEnvironmentVariable("ANTHROPIC_AUTH_TOKEN", [System.EnvironmentVariableTarget]::User)
+```
+
+### **第三推荐：临时配置（当前会话有效）**
 
 #### **方法1：使用 PowerShell**
 
@@ -906,21 +964,9 @@ set ANTHROPIC_BASE_URL=__SITE_ORIGIN__
 set ANTHROPIC_AUTH_TOKEN=您的Token
 ```
 
-### **永久配置（推荐）**
+---
 
-#### **方法1：通过系统环境变量设置**
-
-1. 右键点击"此电脑"，选择"属性"
-2. 点击"高级系统设置"
-3. 点击"环境变量"
-4. 在"用户变量"区域，点击"新建"，分别添加：
-    - 变量名：`ANTHROPIC_BASE_URL`，变量值：您的连接点 URL
-    - 变量名：`ANTHROPIC_AUTH_TOKEN`，变量值：您的 Token
-5. 点击"确定"保存
-6. 重启终端或命令提示符
-
-> 提示: 如果不是第一次运行, 可以跳过以上步骤。
-> 
+## **步骤 4：开始使用**
 
 配置好环境变量后，在您的项目目录下使用`cmd`等的终端运行：
 
@@ -930,6 +976,8 @@ claude 你是什么大模型
 ```
 
 当然, 你也可以在**VS Code**或者**Cursor**中安装插件`Claude Code for VS Code`来获得更好的使用体验。
+
+详细的图文教程可查看：[在 VS Code 中使用 Claude Code 图文指南](https://ucngkdwd50uz.feishu.cn/wiki/BmcvwIT4bimiErk8O9McCQUqnFb)
 
 完成后，就可以开始在终端里和您的 AI 编程搭档一起写代码了！🚀
 
@@ -1095,21 +1143,13 @@ claude --version
 
 ## **步骤 3：配置环境变量**
 
-您需要配置两个环境变量：
+### **第一推荐：CC Switch（强烈推荐）**
 
-- `ANTHROPIC_AUTH_TOKEN`：您的授权令牌（格式：`cr_...`）
-- `ANTHROPIC_BASE_URL`：API 服务地址（本站提供的连接点 URL）
+**强烈推荐：**使用 CC Switch 一键切换配置（[点击前往一键接入助手](/openclaw.html)）
 
-#### **方法 1：临时配置（当前会话有效）**
+### **第二推荐：永久配置（推荐）**
 
-```bash
-export ANTHROPIC_BASE_URL="__SITE_ORIGIN__"
-export ANTHROPIC_AUTH_TOKEN="您的Token"
-```
-
-#### **方法 2：永久配置（推荐）**
-
-### **检查当前使用的 Shell**
+#### **检查当前使用的 Shell**
 
 ```bash
 echo $SHELL
@@ -1118,7 +1158,7 @@ echo $SHELL
 - 如果输出 `/bin/zsh`，您使用的是 **Zsh**（macOS 默认）
 - 如果输出 `/bin/bash`，您使用的是 **Bash**
 
-### **Zsh 配置（macOS 默认）**
+#### **Zsh 配置（macOS 默认）**
 
 将环境变量写入配置文件：
 
@@ -1133,7 +1173,7 @@ echo -e '\nexport ANTHROPIC_BASE_URL="__SITE_ORIGIN__"' >> ~/.zshrc
 source ~/.zshrc
 ```
 
-### **Bash 配置**
+#### **Bash 配置**
 
 将环境变量写入配置文件：
 
@@ -1149,6 +1189,13 @@ echo -e '\nexport ANTHROPIC_BASE_URL="__SITE_ORIGIN__"' >> ~/.bashrc
 ```bash
 source ~/.bash_profile
 source ~/.bashrc
+```
+
+### **第三推荐：临时配置（当前会话有效）**
+
+```bash
+export ANTHROPIC_BASE_URL="__SITE_ORIGIN__"
+export ANTHROPIC_AUTH_TOKEN="您的Token"
 ```
 
 ---
@@ -1510,22 +1557,19 @@ claude --version
 - `ANTHROPIC_AUTH_TOKEN`：您的授权令牌（格式：`cr_...`）
 - `ANTHROPIC_BASE_URL`：API 服务地址（本站提供的连接点 URL）
 
-#### **方法 1：临时配置（当前会话有效）**
+### **第一推荐：CC Switch（强烈推荐）**
 
-```bash
-export ANTHROPIC_BASE_URL="__SITE_ORIGIN__"
-export ANTHROPIC_AUTH_TOKEN="您的Token"
-```
+**强烈推荐：**使用 CC Switch 一键切换配置（[点击前往一键接入助手](/openclaw.html)）
 
-#### **方法 2：永久配置（推荐）**
+### **第二推荐：永久配置（推荐）**
 
-### **检查当前使用的 Shell**
+#### **检查当前使用的 Shell**
 
 ```bash
 echo $SHELL
 ```
 
-### **Bash Shell（最常见）**
+#### **Bash Shell（最常见）**
 
 将环境变量写入配置文件：
 
@@ -1543,7 +1587,7 @@ source ~/.bash_profile
 source ~/.bashrc
 ```
 
-### **Zsh Shell**
+#### **Zsh Shell**
 
 ```bash
 echo -e '\nexport ANTHROPIC_AUTH_TOKEN="您的Token"' >> ~/.zshrc
@@ -1553,11 +1597,18 @@ echo -e '\nexport ANTHROPIC_BASE_URL="__SITE_ORIGIN__"' >> ~/.zshrc
 source ~/.zshrc
 ```
 
-### **Fish Shell**
+#### **Fish Shell**
 
 ```bash
 set -Ux ANTHROPIC_AUTH_TOKEN "您的Token"
 set -Ux ANTHROPIC_BASE_URL "__SITE_ORIGIN__"
+```
+
+### **第三推荐：临时配置（当前会话有效）**
+
+```bash
+export ANTHROPIC_BASE_URL="__SITE_ORIGIN__"
+export ANTHROPIC_AUTH_TOKEN="您的Token"
 ```
 
 ---

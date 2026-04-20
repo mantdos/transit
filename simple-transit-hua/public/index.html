@@ -63,6 +63,10 @@
         background: rgba(234, 76, 137, 0.14);
         border-color: rgba(234, 76, 137, 0.38);
       }
+      /* 首页教程卡片：与教程中心页一致的 actions 区，主按钮 + 次要外链 */
+      .tutorial-home-card .feature-actions > a:first-of-type {
+        min-height: 2.75rem;
+      }
     </style>
   </head>
   <body class="min-h-screen text-slate-100 antialiased app-bg">
@@ -172,6 +176,86 @@
           </a>
           <a href="/tutorial" class="btn-glass inline-flex items-center justify-center rounded-xl px-8 py-3.5 text-base font-semibold text-slate-100 transition hover:bg-white/10 md:text-lg">教程中心</a>
           <a href="/openclaw" class="btn-glass inline-flex items-center justify-center rounded-xl px-8 py-3.5 text-base font-semibold text-slate-100 transition hover:bg-white/10 md:text-lg">一键接入</a>
+        </div>
+
+        <div class="mx-auto mt-14 w-full max-w-4xl">
+          <div class="text-center">
+            <h2 class="text-lg font-bold tracking-tight text-white sm:text-xl">教程中心</h2>
+            <p class="mx-auto mt-2 max-w-2xl text-sm text-slate-400">
+              分平台图文教程；也可在 VS Code 内按飞书指南接入。
+            </p>
+          </div>
+          <div class="mt-8 grid gap-6 text-left sm:grid-cols-2">
+            <article
+              class="tutorial-home-card glass relative overflow-hidden rounded-2xl border border-slate-600/50 p-6 transition hover:border-pink-500/40 hover:shadow-[0_0_30px_rgba(234,76,137,0.12)] sm:p-8"
+            >
+              <a
+                href="/tutorial-claude.html"
+                class="absolute inset-0 z-0 rounded-2xl"
+                aria-label="打开 Claude Code 安装教程"
+                tabindex="-1"
+                ><span class="sr-only">打开 Claude Code 安装教程</span></a
+              >
+              <div class="relative z-10 flex h-full flex-col">
+                <div class="pointer-events-none">
+                  <div class="text-xs font-semibold uppercase tracking-wider text-pink-300">Claude / Gemini</div>
+                  <h3 class="mt-3 text-lg font-bold text-white sm:text-xl">Claude Code 安装教程</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-slate-400">
+                    Git / Node、多平台安装步骤、环境变量与常见问题，配合一键接入与 VS Code 插件说明。
+                  </p>
+                </div>
+                <div class="feature-actions relative z-10 mt-6 flex flex-col items-start gap-2.5 self-stretch pointer-events-auto">
+                  <a
+                    href="/tutorial-claude.html"
+                    class="btn-glass inline-flex w-full items-center justify-center rounded-xl px-5 py-2.5 text-sm font-semibold text-slate-100 transition hover:bg-white/10 sm:w-auto"
+                    >打开教程</a
+                  >
+                  <a
+                    href="https://ucngkdwd50uz.feishu.cn/wiki/BmcvwIT4bimiErk8O9McCQUqnFb"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex w-fit text-sm font-medium text-slate-400 underline decoration-slate-500/50 underline-offset-[5px] transition hover:text-pink-300 hover:decoration-pink-400/60"
+                    >Claude Code 接入 VS Code</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="tutorial-home-card glass relative overflow-hidden rounded-2xl border border-slate-600/50 p-6 transition hover:border-cyan-500/40 hover:shadow-[0_0_30px_rgba(34,211,238,0.12)] sm:p-8"
+            >
+              <a
+                href="/tutorial-codex.html"
+                class="absolute inset-0 z-0 rounded-2xl"
+                aria-label="打开 Codex Cli 安装使用教程"
+                tabindex="-1"
+                ><span class="sr-only">打开 Codex Cli 安装使用教程</span></a
+              >
+              <div class="relative z-10 flex h-full flex-col">
+                <div class="pointer-events-none">
+                  <div class="text-xs font-semibold uppercase tracking-wider text-cyan-300">Codex Cli</div>
+                  <h3 class="mt-3 text-lg font-bold text-white sm:text-xl">Codex Cli 安装使用教程</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-slate-400">
+                    官方 Codex CLI、config.toml / auth.json、VS Code 插件与 OpenCode 配置说明。
+                  </p>
+                </div>
+                <div class="feature-actions relative z-10 mt-6 flex flex-col items-start gap-2.5 self-stretch pointer-events-auto">
+                  <a
+                    href="/tutorial-codex.html"
+                    class="btn-glass inline-flex w-full items-center justify-center rounded-xl px-5 py-2.5 text-sm font-semibold text-slate-100 transition hover:bg-white/10 sm:w-auto"
+                    >打开教程</a
+                  >
+                  <a
+                    href="/tutorial-codex.html#vscode-codex"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex w-fit text-sm font-medium text-slate-400 underline decoration-slate-500/50 underline-offset-[5px] transition hover:text-cyan-200 hover:decoration-cyan-400/60"
+                    >Codex CLI 接入 VS Code</a
+                  >
+                </div>
+              </div>
+            </article>
+          </div>
         </div>
 
         <div class="mt-20 grid gap-5 text-left sm:grid-cols-2 xl:grid-cols-3">
