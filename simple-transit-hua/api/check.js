@@ -120,7 +120,7 @@ export default async function handler(req, res) {
       const sub = subRes.data || {};
       const usage = usageRes.data || {};
 
-      const GROUP_MULTIPLIER_SCALE = 10;
+      const GROUP_MULTIPLIER_SCALE = 1;
 
       const hard_limit_usd =
         typeof sub.hard_limit_usd === 'number' && !Number.isNaN(sub.hard_limit_usd)

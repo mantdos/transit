@@ -263,7 +263,7 @@
                   <path d="M16 9l3 3-3 3" />
                   <path d="M14 5l-4 14" />
                 </svg>
-                Claude Code教程
+                Claude Code 安装使用
               </a>
               <a href="/tutorial-codex.html" class="nav-link-active nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition" aria-current="page">
                 <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -271,7 +271,7 @@
                   <path d="M12 9v6" />
                   <rect x="3" y="5" width="18" height="14" rx="2" />
                 </svg>
-                Codex 使用教程
+                Codex 安装使用
               </a>
               <a href="/openclaw" class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
                 <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -281,7 +281,7 @@
                   <path d="M21 10.5V8a2 2 0 0 0-2-2h-2.5" />
                   <path d="M8.5 8.5h7v7h-7z" />
                 </svg>
-                统一配置
+                一键接入助手
               </a>
               <a href="/usage" class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
                 <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -315,7 +315,7 @@
               </div>
             </div>
 
-            <script type="text/plain" id="md-main"># 🚀 Codex & Open Code 使用教程
+            <script type="text/plain" id="md-main">
 
 ## 一、环境安装
 
@@ -346,7 +346,7 @@ npm install -g @openai/codex
 
 ---
 
-## 二、手动配置 API（核心步骤）
+## 二、配置 API（核心步骤）
 
 > **高亮提醒：** 安装完成后，必须手动修改本地配置文件以接入我们的私有节点，否则将无法正常使用。
 
@@ -390,44 +390,6 @@ base_url = "__SITE_ORIGIN__/v1"
 
 > **Note：** 如果使用的是 Remote SSH 或 WSL 环境，必须先在服务器/WSL 中完成上述的环境安装和配置，确保命令行可用后，再重启服务器/WSL。
 
----
-
-## 四、在 OpenCode 中使用
-
-### 1. 修改认证文件
-
-- 路径（Linux/MacOS）：`~/.local/share/opencode/auth.json`
-- 路径（Windows）：`用户目录/.local/share/opencode/auth.json`
-
-```json
-{
-  "openai": {
-    "type": "oauth",
-    "access": "sk-...",
-    "refresh": "none",
-    "expires": 1988150400000,
-    "accountId": "none"
-  }
-}
-```
-
-### 2. 修改节点配置文件
-
-- 路径（Linux/MacOS）：`~/.config/opencode/opencode.json`
-- 路径（Windows）：`用户目录/.config/opencode/opencode.json`
-
-```json
-{
-  "$schema": "https://opencode.ai/config.json",
-  "provider": {
-    "openai": {
-      "options": {
-        "baseURL": "__SITE_ORIGIN__/v1"
-      }
-    }
-  }
-}
-```
 </script>
           </div>
         </div>
@@ -453,8 +415,8 @@ base_url = "__SITE_ORIGIN__/v1"
               <div class="mt-4 space-y-2 text-sm">
                 <a href="/" class="block text-slate-300 hover:text-white">首页</a>
                 <a href="/tutorial" class="block text-slate-300 hover:text-white">教程中心</a>
-                <a href="/tutorial-claude.html" class="block text-slate-300 hover:text-white">Claude Code教程</a>
-                <a href="/openclaw" class="block text-slate-300 hover:text-white">统一配置</a>
+                <a href="/tutorial-claude.html" class="block text-slate-300 hover:text-white">Claude Code 安装使用</a>
+                <a href="/openclaw" class="block text-slate-300 hover:text-white">一键接入助手</a>
                 <a href="/usage" class="block text-slate-300 hover:text-white">消费查询</a>
               </div>
             </div>

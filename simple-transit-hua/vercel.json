@@ -31,6 +31,9 @@
     },
     "api/check.js": {
       "maxDuration": 60
+    },
+    "api/models.js": {
+      "maxDuration": 60
     }
   }
 }
