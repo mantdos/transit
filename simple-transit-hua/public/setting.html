@@ -109,31 +109,33 @@
   </head>
   <body class="min-h-screen text-slate-100 antialiased app-bg">
     <header class="sticky top-0 z-50">
-      <div class="mx-auto max-w-6xl px-4 py-3">
+      <div class="mx-auto max-w-7xl px-4 py-3">
         <div class="glass rounded-2xl px-4">
-          <div class="flex flex-wrap items-center justify-between gap-4">
-            <a href="/" class="flex items-center gap-3 py-2">
+          <div class="flex flex-wrap items-center justify-between gap-3 md:flex-nowrap md:gap-4">
+            <a href="/" class="flex shrink-0 items-center gap-3 py-2">
               <img src="/brand-logo.png" alt="品牌图标" class="h-10 w-10 rounded-xl object-cover brightness-150 contrast-110 drop-shadow-[0_0_10px_rgba(148,163,184,0.35)]" />
               <div class="flex flex-col leading-tight">
                 <span class="text-sm font-extrabold gradient-text">API 中转站</span>
                 <span class="text-xs font-semibold tracking-wider bg-gradient-to-r from-slate-200 to-slate-400 bg-clip-text text-transparent">AI集创空间</span>
               </div>
             </a>
-            <nav class="flex flex-wrap items-center gap-2">
-              <a href="/" class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
+            <nav
+              class="flex max-w-full min-w-0 flex-nowrap items-center justify-end gap-x-1.5 overflow-x-auto overscroll-x-contain pb-0.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-x-2 md:pb-0"
+            >
+              <a href="/" class="nav-link inline-flex shrink-0 items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
                 <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M3 10.5 12 3l9 7.5V21a1.5 1.5 0 0 1-1.5 1.5H15v-6H9v6H4.5A1.5 1.5 0 0 1 3 21V10.5z" />
                 </svg>
                 首页
               </a>
-              <a href="/tutorial" class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
+              <a href="/tutorial" class="nav-link inline-flex shrink-0 items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
                 <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
                   <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
                 </svg>
                 教程中心
               </a>
-              <a href="/tutorial-claude.html" class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
+              <a href="/tutorial-claude.html" class="nav-link inline-flex shrink-0 items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
                 <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M8 9l-3 3 3 3" />
                   <path d="M16 9l3 3-3 3" />
@@ -141,7 +143,7 @@
                 </svg>
                 Claude Code 安装使用
               </a>
-              <a href="/tutorial-codex.html" class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
+              <a href="/tutorial-codex.html" class="nav-link inline-flex shrink-0 items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
                 <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M9 12h6" />
                   <path d="M12 9v6" />
@@ -149,7 +151,7 @@
                 </svg>
                 Codex Cli 安装使用
               </a>
-              <a href="/setting" class="nav-link-active nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition" aria-current="page">
+              <a href="/setting" class="nav-link-active nav-link inline-flex shrink-0 items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition" aria-current="page">
                 <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M13.5 3H8a2 2 0 0 0-2 2v4.5" />
                   <path d="M10.5 21H16a2 2 0 0 0 2-2v-4.5" />
@@ -159,7 +161,16 @@
                 </svg>
                 一键接入助手
               </a>
-              <a href="/usage" class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
+              <a href="/models" class="nav-link inline-flex shrink-0 items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
+                <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="3" width="7" height="7" rx="1" />
+                  <rect x="14" y="3" width="7" height="7" rx="1" />
+                  <rect x="3" y="14" width="7" height="7" rx="1" />
+                  <rect x="14" y="14" width="7" height="7" rx="1" />
+                </svg>
+                模型总览
+              </a>
+              <a href="/usage" class="nav-link inline-flex shrink-0 items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
                 <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M4 19V5" />
                   <path d="M8 19v-8" />
@@ -181,7 +192,7 @@
           <h1 class="gradient-text text-3xl font-extrabold tracking-tight sm:text-4xl">一键接入助手 · 配置与接入一站完成</h1>
           <div class="feature-box not-prose mx-auto mt-4 max-w-3xl rounded-2xl px-4 py-3 text-left text-sm leading-relaxed">
             <span aria-hidden="true">✨</span>
-            <strong>推荐提示</strong>：建议配合cc-switch使用
+            <strong>推荐提示</strong>：建议配合cc-switch
             <a
               href="https://ucngkdwd50uz.feishu.cn/wiki/S6MAwoZCDinuNDkqTPXcj5kZnOA"
               target="_blank"
@@ -189,14 +200,13 @@
               class="font-medium text-sky-300 underline decoration-sky-500/50 underline-offset-4 transition hover:text-sky-200"
               >（点击查看下载与使用指南）</a
             >
-            。只需将本页面生成的配置一键复制并导入，即可实现极简接入与模型切换。
+            使用。只需将本页面生成的配置一键复制并导入，即可实现极简接入与模型切换。
           </div>
         </header>
 
         <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
           <button type="button" class="glass tab-btn rounded-xl px-5 py-2.5 text-xl font-semibold leading-none transition active" data-tab-btn="cc-guide">Claude code配置指南</button>
           <button type="button" class="glass tab-btn rounded-xl px-5 py-2.5 text-xl font-semibold leading-none transition" data-tab-btn="oc-guide">Openclaw配置指南</button>
-          <button type="button" class="glass tab-btn rounded-xl px-5 py-2.5 text-xl font-semibold leading-none transition" data-tab-btn="models">模型总览 Claude/Gemini/Codex</button>
         </div>
 
         <div class="mt-6">
@@ -344,30 +354,6 @@
               <pre class="rounded-2xl border border-slate-700/50 p-6"><code id="ocJsonConfigCode" class="language-json"></code></pre>
             </div>
           </article>
-
-          <!-- Tab 3: 支持模型 -->
-          <article class="tab-panel glass rounded-2xl p-6 prose prose-invert max-w-none" data-tab-panel="models" aria-hidden="true">
-            <h2>平台当前支持的模型标识</h2>
-            <p>以下列表为实时拉取，供您在配置时参考。</p>
-            <div class="not-prose transit-billing-banner billing-alert mt-4 text-left" role="note">
-              💡 计费说明：未标注倍率标签的模型均按官方倍率 1:1 计费。部分特殊模型可能按更高倍率额外计费，具体查看标签，例如
-              <span class="tag-rate-example" aria-hidden="true">2.5x</span>。
-            </div>
-            <div class="not-prose mt-5 space-y-4">
-              <div>
-                <h3 class="mb-3 text-base font-semibold text-slate-100">Claude 模型</h3>
-                <div id="supportedClaudeModels" class="grid gap-3 sm:grid-cols-2"></div>
-              </div>
-              <div>
-                <h3 class="mb-3 text-base font-semibold text-slate-100">Gemini 模型</h3>
-                <div id="supportedGeminiModels" class="grid gap-3 sm:grid-cols-2"></div>
-              </div>
-              <div>
-                <h3 class="mb-3 text-base font-semibold text-slate-100">Codex（GPT）模型</h3>
-                <div id="supportedCodexModels" class="grid gap-3 sm:grid-cols-2"></div>
-              </div>
-            </div>
-          </article>
         </div>
       </section>
     </main>
@@ -389,6 +375,7 @@
                 <a href="/" class="block text-slate-300 hover:text-white">首页</a>
                 <a href="/tutorial" class="block text-slate-300 hover:text-white">教程中心</a>
                 <a href="/setting" class="block text-slate-300 hover:text-white">一键接入助手</a>
+                <a href="/models" class="block text-slate-300 hover:text-white">模型总览</a>
                 <a href="/usage" class="block text-slate-300 hover:text-white">消费查询</a>
               </div>
             </div>
@@ -447,9 +434,6 @@
 
         var PRICING_TAG_MAP = {};
 
-        var MODEL_CARD_CLASS =
-          "rounded-xl border border-slate-700/80 bg-slate-900/40 px-4 py-3 text-sm text-slate-100 transition-all duration-300 hover:-translate-y-1 hover:border-[#ea4c89]/50 hover:bg-slate-800/60 hover:shadow-[0_0_15px_rgba(234,76,137,0.15)] cursor-default flex flex-wrap items-center gap-x-2 gap-y-1";
-
         var MODEL_CATALOG = {
           claude: {
             defaultModel: "claude-sonnet-4.6",
@@ -464,10 +448,6 @@
             options: ["gpt-5.4", "gpt-5.3-codex", "gpt-5.2-codex", "gpt-5.2"],
           },
         };
-
-        var supportedClaudeModels = document.getElementById("supportedClaudeModels");
-        var supportedGeminiModels = document.getElementById("supportedGeminiModels");
-        var supportedCodexModels = document.getElementById("supportedCodexModels");
 
         /* ---- Claude Code (cc) ---- */
         var ccTokenInput = document.getElementById("ccApiTokenInput");
@@ -769,22 +749,7 @@
           return ocJsonCode ? ocJsonCode.textContent : "";
         });
 
-        /* ---- Remote models ---- */
-        function renderSupportedModelCards(container, models) {
-          if (!container || !Array.isArray(models) || !models.length) return;
-          container.innerHTML = "";
-          models.forEach(function (model) {
-            var card = document.createElement("div");
-            card.className = MODEL_CARD_CLASS;
-            if (typeof transitRenderModelLabel === "function") {
-              transitRenderModelLabel(card, model, PRICING_TAG_MAP);
-            } else {
-              card.textContent = model;
-            }
-            container.appendChild(card);
-          });
-        }
-
+        /* ---- Remote models (dropdown catalog) ---- */
         function applyRemoteModels(modelsData) {
           if (!modelsData || typeof modelsData !== "object") return false;
           var claudeModels = Array.isArray(modelsData.claude) ? modelsData.claude.filter(Boolean) : [];
@@ -804,10 +769,6 @@
             MODEL_CATALOG.codex.options = codexModels;
             MODEL_CATALOG.codex.defaultModel = codexModels[0];
           }
-
-          renderSupportedModelCards(supportedClaudeModels, MODEL_CATALOG.claude.options);
-          renderSupportedModelCards(supportedGeminiModels, MODEL_CATALOG.gemini.options);
-          renderSupportedModelCards(supportedCodexModels, MODEL_CATALOG.codex.options);
 
           setCcCategory(ccCategory);
           setOcCategory(ocCategory);
@@ -832,9 +793,6 @@
             if (payload && payload.ok === true && payload.data) {
               applied = applyRemoteModels(payload.data);
             }
-            if (!applied) {
-              seedPlaceholderCards();
-            }
             selectCcModel(ccModel);
             selectOcModel(ocModel);
           } catch (e) {
@@ -843,18 +801,11 @@
           }
         }
 
-        function seedPlaceholderCards() {
-          renderSupportedModelCards(supportedClaudeModels, MODEL_CATALOG.claude.options);
-          renderSupportedModelCards(supportedGeminiModels, MODEL_CATALOG.gemini.options);
-          renderSupportedModelCards(supportedCodexModels, MODEL_CATALOG.codex.options);
-        }
-
         setCcCategory("claude");
         renderCcConfigJson();
         setOcCategory("claude");
         renderOcConfigJson();
         setActiveTab("cc-guide");
-        seedPlaceholderCards();
         fetchModelsAndPricing();
       })();
     </script>

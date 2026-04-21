@@ -23,6 +23,10 @@
     {
       "source": "/usage",
       "destination": "/usage.html"
+    },
+    {
+      "source": "/models",
+      "destination": "/models.html"
     }
   ],
   "functions": {

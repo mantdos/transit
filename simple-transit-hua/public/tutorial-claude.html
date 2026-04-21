@@ -278,31 +278,33 @@
   </head>
   <body class="min-h-screen text-slate-100 antialiased app-bg">
     <header class="sticky top-0 z-50">
-      <div class="mx-auto max-w-6xl px-4 py-3">
+      <div class="mx-auto max-w-7xl px-4 py-3">
         <div class="glass rounded-2xl px-4">
-          <div class="flex flex-wrap items-center justify-between gap-4">
-            <a href="/" class="flex items-center gap-3 py-2">
+          <div class="flex flex-wrap items-center justify-between gap-3 md:flex-nowrap md:gap-4">
+            <a href="/" class="flex shrink-0 items-center gap-3 py-2">
               <img src="/brand-logo.png" alt="品牌图标" class="h-10 w-10 rounded-xl object-cover brightness-150 contrast-110 drop-shadow-[0_0_10px_rgba(148,163,184,0.35)]" />
               <div class="flex flex-col leading-tight">
                 <span class="text-sm font-extrabold gradient-text">API 中转站</span>
                 <span class="text-xs font-semibold tracking-wider bg-gradient-to-r from-slate-200 to-slate-400 bg-clip-text text-transparent">AI集创空间</span>
               </div>
             </a>
-            <nav class="flex flex-wrap items-center gap-2">
-              <a href="/" class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
+            <nav
+              class="flex max-w-full min-w-0 flex-nowrap items-center justify-end gap-x-1.5 overflow-x-auto overscroll-x-contain pb-0.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-x-2 md:pb-0"
+            >
+              <a href="/" class="nav-link inline-flex shrink-0 items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
                 <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M3 10.5 12 3l9 7.5V21a1.5 1.5 0 0 1-1.5 1.5H15v-6H9v6H4.5A1.5 1.5 0 0 1 3 21V10.5z" />
                 </svg>
                 首页
               </a>
-              <a href="/tutorial" class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
+              <a href="/tutorial" class="nav-link inline-flex shrink-0 items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
                 <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
                   <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
                 </svg>
                 教程中心
               </a>
-              <a href="/tutorial-claude.html" class="nav-link-active nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition" aria-current="page">
+              <a href="/tutorial-claude.html" class="nav-link-active nav-link inline-flex shrink-0 items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition" aria-current="page">
                 <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M8 9l-3 3 3 3" />
                   <path d="M16 9l3 3-3 3" />
@@ -310,7 +312,7 @@
                 </svg>
                 Claude Code 安装使用
               </a>
-              <a href="/tutorial-codex.html" class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
+              <a href="/tutorial-codex.html" class="nav-link inline-flex shrink-0 items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
                 <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M9 12h6" />
                   <path d="M12 9v6" />
@@ -318,7 +320,7 @@
                 </svg>
                 Codex Cli 安装使用
               </a>
-              <a href="/setting" class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
+              <a href="/setting" class="nav-link inline-flex shrink-0 items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
                 <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M13.5 3H8a2 2 0 0 0-2 2v4.5" />
                   <path d="M10.5 21H16a2 2 0 0 0 2-2v-4.5" />
@@ -328,7 +330,16 @@
                 </svg>
                 一键接入助手
               </a>
-              <a href="/usage" class="nav-link inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
+              <a href="/models" class="nav-link inline-flex shrink-0 items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
+                <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="3" width="7" height="7" rx="1" />
+                  <rect x="14" y="3" width="7" height="7" rx="1" />
+                  <rect x="3" y="14" width="7" height="7" rx="1" />
+                  <rect x="14" y="14" width="7" height="7" rx="1" />
+                </svg>
+                模型总览
+              </a>
+              <a href="/usage" class="nav-link inline-flex shrink-0 items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition">
                 <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M4 19V5" />
                   <path d="M8 19v-8" />
@@ -717,6 +728,7 @@ claude 你是什么大模型
                 <a href="/tutorial" class="block text-slate-300 hover:text-white">教程中心</a>
                 <a href="/tutorial-codex.html" class="block text-slate-300 hover:text-white">Codex Cli 安装使用</a>
                 <a href="/setting" class="block text-slate-300 hover:text-white">一键接入助手</a>
+                <a href="/models" class="block text-slate-300 hover:text-white">模型总览</a>
                 <a href="/usage" class="block text-slate-300 hover:text-white">消费查询</a>
               </div>
             </div>
