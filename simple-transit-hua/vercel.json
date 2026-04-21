@@ -9,16 +9,16 @@
       "destination": "/tutorial.html"
     },
     {
-      "source": "/openclaw",
-      "destination": "/openclaw.html"
+      "source": "/setting",
+      "destination": "/setting.html"
     },
     {
       "source": "/claudecode-config",
-      "destination": "/openclaw.html"
+      "destination": "/setting.html"
     },
     {
       "source": "/claude-code",
-      "destination": "/openclaw.html"
+      "destination": "/setting.html"
     },
     {
       "source": "/usage",
