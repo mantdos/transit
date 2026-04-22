@@ -434,17 +434,35 @@
 
         var PRICING_TAG_MAP = {};
 
+        /**
+         * Claude Code / OpenClaw 配置页：各分类首次进入时下拉的默认模型。
+         * 若该 id 不在当前可选列表中（含接口拉取后的列表），则使用列表第一项。
+         * 仅此一处修改即可调整默认选中。
+         */
+        var TRANSIT_DEFAULT_MODEL_PICK = {
+          claude: "claude-opus-4-7",
+          gemini: "gemini-3.1-pro",
+          codex: "gpt-5.4",
+        };
+
+        function transitPickDefaultModel(category) {
+          var key = MODEL_CATALOG[category] ? category : "claude";
+          var catalog = MODEL_CATALOG[key];
+          var opts = catalog && Array.isArray(catalog.options) ? catalog.options : [];
+          if (!opts.length) return "";
+          var want = TRANSIT_DEFAULT_MODEL_PICK[key];
+          if (want && opts.indexOf(want) !== -1) return want;
+          return opts[0];
+        }
+
         var MODEL_CATALOG = {
           claude: {
-            defaultModel: "claude-sonnet-4.6",
             options: ["claude-opus-4-6", "claude-opus-4-6-thinking", "claude-sonnet-4.6", "claude-sonnet-4-6-thinking", "claude-haiku-4.5"],
           },
           gemini: {
-            defaultModel: "gemini-3-flash",
             options: ["gemini-3-flash", "gemini-3-flash-preview"],
           },
           codex: {
-            defaultModel: "gpt-5.4",
             options: ["gpt-5.4", "gpt-5.3-codex", "gpt-5.2-codex", "gpt-5.2"],
           },
         };
@@ -462,7 +480,7 @@
         var ccCopyBtnText = document.getElementById("ccCopyBtnText");
 
         var ccCategory = "claude";
-        var ccModel = MODEL_CATALOG.claude.defaultModel;
+        var ccModel = transitPickDefaultModel("claude");
 
         function renderCcConfigJson() {
           if (!ccJsonCode) return;
@@ -530,7 +548,7 @@
           ccCategory = MODEL_CATALOG[category] ? category : "claude";
           var opts = MODEL_CATALOG[ccCategory].options;
           var modelInCategory = opts.indexOf(ccModel) !== -1;
-          var nextModel = modelInCategory ? ccModel : MODEL_CATALOG[ccCategory].defaultModel;
+          var nextModel = modelInCategory ? ccModel : transitPickDefaultModel(ccCategory);
           selectCcModel(nextModel);
           setCcDropdownOpen(false);
         }
@@ -547,7 +565,7 @@
           ccModelDropdownList.addEventListener("click", function (e) {
             var option = e.target.closest(".cc-model-option");
             if (!option) return;
-            selectCcModel(option.dataset.model || MODEL_CATALOG[ccCategory].defaultModel);
+            selectCcModel(option.dataset.model || transitPickDefaultModel(ccCategory));
             setCcDropdownOpen(false);
           });
         }
@@ -570,7 +588,7 @@
         var ocCopyBtnText = document.getElementById("ocCopyBtnText");
 
         var ocCategory = "claude";
-        var ocModel = MODEL_CATALOG.claude.defaultModel;
+        var ocModel = transitPickDefaultModel("claude");
 
         function openclawModelBlock(modelId, isOpenAI) {
           var maxTok = isOpenAI ? 32000 : 8192;
@@ -656,7 +674,7 @@
           ocCategory = MODEL_CATALOG[category] ? category : "claude";
           var opts = MODEL_CATALOG[ocCategory].options;
           var modelInCategory = opts.indexOf(ocModel) !== -1;
-          var nextModel = modelInCategory ? ocModel : MODEL_CATALOG[ocCategory].defaultModel;
+          var nextModel = modelInCategory ? ocModel : transitPickDefaultModel(ocCategory);
           selectOcModel(nextModel);
           setOcDropdownOpen(false);
         }
@@ -673,7 +691,7 @@
           ocModelDropdownList.addEventListener("click", function (e) {
             var option = e.target.closest(".oc-model-option");
             if (!option) return;
-            selectOcModel(option.dataset.model || MODEL_CATALOG[ocCategory].defaultModel);
+            selectOcModel(option.dataset.model || transitPickDefaultModel(ocCategory));
             setOcDropdownOpen(false);
           });
         }
@@ -759,15 +777,12 @@
 
           if (claudeModels.length) {
             MODEL_CATALOG.claude.options = claudeModels;
-            MODEL_CATALOG.claude.defaultModel = claudeModels[0];
           }
           if (geminiModels.length) {
             MODEL_CATALOG.gemini.options = geminiModels;
-            MODEL_CATALOG.gemini.defaultModel = geminiModels[0];
           }
           if (codexModels.length) {
             MODEL_CATALOG.codex.options = codexModels;
-            MODEL_CATALOG.codex.defaultModel = codexModels[0];
           }
 
           setCcCategory(ccCategory);
