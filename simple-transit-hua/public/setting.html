@@ -435,9 +435,8 @@
         var PRICING_TAG_MAP = {};
 
         /**
-         * Claude Code / OpenClaw 配置页：各分类首次进入时下拉的默认模型。
-         * 若该 id 不在当前可选列表中（含接口拉取后的列表），则使用列表第一项。
-         * 仅此一处修改即可调整默认选中。
+         * Claude Code / OpenClaw：切换 claude/gemini/codex 线路时使用此处配置的默认模型。
+         * 不读写 localStorage；若 id 不在当前可选列表（含接口拉取后的列表），则用列表第一项。
          */
         var TRANSIT_DEFAULT_MODEL_PICK = {
           claude: "claude-sonnet-4-6",
@@ -457,10 +456,10 @@
 
         var MODEL_CATALOG = {
           claude: {
-            options: ["claude-opus-4-6", "claude-opus-4-6-thinking", "claude-sonnet-4.6", "claude-sonnet-4-6-thinking", "claude-haiku-4.5"],
+            options: ["claude-opus-4-6", "claude-opus-4-6-thinking", "claude-sonnet-4-6", "claude-sonnet-4-6-thinking", "claude-haiku-4.5"],
           },
           gemini: {
-            options: ["gemini-3-flash", "gemini-3-flash-preview"],
+            options: ["gemini-3.1-pro", "gemini-3-flash", "gemini-3-flash-preview"],
           },
           codex: {
             options: ["gpt-5.4", "gpt-5.3-codex", "gpt-5.2-codex", "gpt-5.2"],
@@ -546,10 +545,7 @@
 
         function setCcCategory(category) {
           ccCategory = MODEL_CATALOG[category] ? category : "claude";
-          var opts = MODEL_CATALOG[ccCategory].options;
-          var modelInCategory = opts.indexOf(ccModel) !== -1;
-          var nextModel = modelInCategory ? ccModel : transitPickDefaultModel(ccCategory);
-          selectCcModel(nextModel);
+          selectCcModel(transitPickDefaultModel(ccCategory));
           setCcDropdownOpen(false);
         }
 
@@ -672,10 +668,7 @@
 
         function setOcCategory(category) {
           ocCategory = MODEL_CATALOG[category] ? category : "claude";
-          var opts = MODEL_CATALOG[ocCategory].options;
-          var modelInCategory = opts.indexOf(ocModel) !== -1;
-          var nextModel = modelInCategory ? ocModel : transitPickDefaultModel(ocCategory);
-          selectOcModel(nextModel);
+          selectOcModel(transitPickDefaultModel(ocCategory));
           setOcDropdownOpen(false);
         }
 
@@ -804,9 +797,8 @@
             var pair = await Promise.all([tagMapPromise, modelsPromise]);
             PRICING_TAG_MAP = pair[0] || {};
             var payload = pair[1];
-            var applied = false;
             if (payload && payload.ok === true && payload.data) {
-              applied = applyRemoteModels(payload.data);
+              applyRemoteModels(payload.data);
             }
             selectCcModel(ccModel);
             selectOcModel(ocModel);
