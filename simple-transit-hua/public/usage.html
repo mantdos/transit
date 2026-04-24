@@ -75,47 +75,44 @@
         pointer-events: none;
       }
 
-      /* 轻量 Toast：自顶部渐入/渐出，玻璃拟态配色与全站一致。 */
-      .toast-container {
-        position: fixed;
-        top: 1.25rem;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 1000;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        pointer-events: none;
+      /* 内嵌状态提示：渲染到 #status-message-container 的弹入动画与 Spinner。 */
+      #status-message-container:empty {
+        display: none;
       }
-      .toast {
-        pointer-events: auto;
-        min-width: 260px;
-        max-width: 420px;
-        padding: 0.75rem 1rem;
-        border-radius: 0.875rem;
-        border: 1px solid rgba(148, 163, 184, 0.35);
-        background: rgba(2, 6, 23, 0.88);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        color: #f1f5f9;
-        font-size: 0.875rem;
-        line-height: 1.5;
-        box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.6);
-        opacity: 0;
-        transform: translateY(-10px);
-        transition: opacity 0.25s ease, transform 0.25s ease;
+      @keyframes status-pop-in {
+        0% {
+          opacity: 0;
+          transform: translateY(10px) scale(0.96);
+        }
+        55% {
+          transform: translateY(-2px) scale(1.02);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
       }
-      .toast.is-open {
-        opacity: 1;
-        transform: translateY(0);
+      .status-card {
+        animation: status-pop-in 0.4s cubic-bezier(0.34, 1.25, 0.64, 1) both;
       }
-      .toast-success {
-        border-color: rgba(16, 185, 129, 0.55);
-        box-shadow: 0 20px 40px -20px rgba(16, 185, 129, 0.35);
+      .status-spinner {
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 9999px;
+        border: 3px solid rgba(2, 6, 23, 0.25);
+        border-top-color: currentColor;
+        animation: status-spin 0.9s linear infinite;
       }
-      .toast-error {
-        border-color: rgba(239, 68, 68, 0.55);
-        box-shadow: 0 20px 40px -20px rgba(239, 68, 68, 0.35);
+      @media (min-width: 640px) {
+        .status-spinner {
+          width: 1.75rem;
+          height: 1.75rem;
+        }
+      }
+      @keyframes status-spin {
+        to {
+          transform: rotate(360deg);
+        }
       }
     </style>
   </head>
@@ -298,7 +295,7 @@
               id="coupon"
               type="text"
               autocomplete="off"
-              placeholder="例如 claude-50-XXXXXXXX，系统将自动识别末段兑换码"
+              placeholder="claude-50-XXXXXXXX"
               disabled
               class="w-full rounded-xl border border-slate-600 bg-slate-900/80 py-3 pl-11 pr-4 text-sm text-slate-100 placeholder:text-slate-500 focus:border-pink-500 focus:outline-none focus:ring-2 focus:ring-pink-500/40 disabled:cursor-not-allowed disabled:opacity-70"
             />
@@ -313,9 +310,16 @@
           </button>
         </div>
         <p class="mt-2 text-xs text-slate-500">
-          支持粘贴形如 <code class="rounded bg-slate-900/80 px-1.5 py-0.5 font-mono text-[11px] text-slate-300">claude-50-xxxxxxxx</code> 的完整字符串，后端会自动提取末段作为真实兑换码。
+          支持粘贴形如 <code class="rounded bg-slate-900/80 px-1.5 py-0.5 font-mono text-[11px] text-slate-300">xxxxx-xx-xxxxxxxx</code> 的完整字符串。
         </p>
       </section>
+
+      <div
+        id="status-message-container"
+        class="mt-6 scroll-mt-24"
+        aria-live="polite"
+        aria-atomic="true"
+      ></div>
 
       <div id="error-box" class="mt-6 hidden rounded-xl border border-red-500/40 bg-red-950/40 px-4 py-3 text-sm text-red-200"></div>
 
@@ -560,35 +564,93 @@
         }
 
         /**
-         * 轻量 Toast：顶部居中淡入淡出，自动回收。
+         * 将状态消息渲染到 #status-message-container，作为页面级视觉焦点。
+         * - success: 亮绿底 + ✅
+         * - error:   亮红底 + ❌
+         * - info:    亮蓝底 + Spinner（常用于 Loading）
+         *
          * @param {string} message
-         * @param {'success'|'error'|'info'} [type]
-         * @param {number} [durationMs]
+         * @param {'success'|'error'|'info'} type
+         * @param {{ persistent?: boolean, duration?: number }} [options]
+         *        persistent=true 时不会自动消失（例如加载中状态），直到下一次
+         *        showStatus() 或 clearStatus() 被调用。
          */
-        function showToast(message, type, durationMs) {
-          let container = document.getElementById('toast-container');
-          if (!container) {
-            container = document.createElement('div');
-            container.id = 'toast-container';
-            container.className = 'toast-container';
-            document.body.appendChild(container);
+        let statusTimerId = null;
+
+        function clearStatus() {
+          if (statusTimerId) {
+            clearTimeout(statusTimerId);
+            statusTimerId = null;
           }
-          const el = document.createElement('div');
-          const cls =
-            type === 'success' ? 'toast-success' : type === 'error' ? 'toast-error' : '';
-          el.className = 'toast ' + cls;
-          el.textContent = message == null ? '' : String(message);
-          container.appendChild(el);
-          requestAnimationFrame(function () {
-            el.classList.add('is-open');
-          });
-          const keep = typeof durationMs === 'number' && durationMs > 0 ? durationMs : 3500;
-          window.setTimeout(function () {
-            el.classList.remove('is-open');
-            window.setTimeout(function () {
-              if (el.parentNode) el.parentNode.removeChild(el);
-            }, 280);
-          }, keep);
+          const container = $('status-message-container');
+          if (container) container.innerHTML = '';
+        }
+
+        function showStatus(message, type, options) {
+          const container = $('status-message-container');
+          if (!container) return;
+          const persistent = !!(options && options.persistent);
+          const duration =
+            options && typeof options.duration === 'number' && options.duration > 0
+              ? options.duration
+              : 5000;
+
+          // 替换式：旧消息立刻清空再渲染新消息，避免堆叠。
+          if (statusTimerId) {
+            clearTimeout(statusTimerId);
+            statusTimerId = null;
+          }
+          container.innerHTML = '';
+
+          const palette =
+            type === 'success'
+              ? {
+                  box: 'border-emerald-500 bg-gradient-to-r from-emerald-300 to-emerald-400 shadow-[0_12px_36px_-12px_rgba(16,185,129,0.6)]',
+                  text: 'text-emerald-950',
+                  icon: '✅',
+                }
+              : type === 'error'
+                ? {
+                    box: 'border-red-500 bg-gradient-to-r from-red-300 to-red-400 shadow-[0_12px_36px_-12px_rgba(239,68,68,0.55)]',
+                    text: 'text-red-950',
+                    icon: '❌',
+                  }
+                : {
+                    box: 'border-sky-500 bg-gradient-to-r from-sky-300 to-sky-400 shadow-[0_12px_36px_-12px_rgba(14,165,233,0.5)]',
+                    text: 'text-sky-950',
+                    icon: null,
+                  };
+
+          const card = document.createElement('div');
+          card.className =
+            'status-card rounded-2xl border-2 px-5 py-4 sm:px-6 sm:py-5 ' + palette.box;
+
+          const inner = document.createElement('div');
+          inner.className = 'flex items-center gap-3 sm:gap-4 ' + palette.text;
+
+          const iconEl = document.createElement('span');
+          if (palette.icon) {
+            iconEl.className = 'shrink-0 text-2xl sm:text-3xl';
+            iconEl.textContent = palette.icon;
+          } else {
+            iconEl.className = 'status-spinner shrink-0';
+            iconEl.setAttribute('aria-hidden', 'true');
+          }
+
+          const msgEl = document.createElement('p');
+          msgEl.className = 'text-base font-semibold leading-snug sm:text-lg';
+          msgEl.textContent = message == null ? '' : String(message);
+
+          inner.appendChild(iconEl);
+          inner.appendChild(msgEl);
+          card.appendChild(inner);
+          container.appendChild(card);
+
+          if (!persistent) {
+            statusTimerId = window.setTimeout(function () {
+              clearStatus();
+            }, duration);
+          }
         }
 
         // —— 充值状态联动 —— //
@@ -596,6 +658,11 @@
         let queriedToken = null;
         /** 最近一次查询到的「授予总量 (hard_limit_usd)」；仅在固定额度卡上有意义，否则为 null。 */
         let lastGrantedTotal = null;
+        /**
+         * 当 redeem() 在成功分支内部调用 query() 做数据刷新时，为避免 query() 开头的
+         * clearStatus() 把即将展示的「充值成功」消息抹掉，此处提供一次性跳过开关。
+         */
+        let suppressNextClearStatus = false;
 
         function pickGrantedTotal(d) {
           if (!d) return null;
@@ -634,6 +701,13 @@
         async function query() {
           const token = ($('token').value || '').trim();
           hideError();
+          // 任意「下一次操作」都立即清除上一条状态消息，保持页面干净；
+          // 但若处于 redeem 成功后的内部刷新，保留即将展示的「充值成功」消息。
+          if (suppressNextClearStatus) {
+            suppressNextClearStatus = false;
+          } else {
+            clearStatus();
+          }
           $('dashboard').classList.add('hidden');
           const cp = $('connectivity-panel');
           if (cp) cp.classList.add('hidden');
@@ -763,18 +837,22 @@
         /**
          * 兑换码充值：
          *  1) 记录充值前的「授予总量」；
-         *  2) 调用 /api/redeem；
-         *  3) 失败 -> Toast 错误提示；
-         *  4) 成功 -> 自动刷新查询、计算授予总量差值，Toast 展示 "已充值 $X.XX"。
+         *  2) 在状态容器中展示 Loading 提示；
+         *  3) 调用 /api/redeem；
+         *  4) 失败 -> showStatus('error')；
+         *  5) 成功 -> 自动刷新查询，计算授予总量差值，showStatus('success') 展示最终金额。
          */
         async function redeem() {
+          // 新一轮操作：先清除上一条状态消息。
+          clearStatus();
+
           if (!queriedToken) {
-            showToast('请先在上方查询 API Key 成功后再进行充值', 'error');
+            showStatus('请先在上方查询 API Key 成功后再进行充值', 'error');
             return;
           }
           const rawCoupon = ($('coupon').value || '').trim();
           if (!rawCoupon) {
-            showToast('请输入兑换码', 'error');
+            showStatus('请输入兑换码后再点击充值', 'error');
             return;
           }
 
@@ -784,6 +862,9 @@
           btn.disabled = true;
           input.disabled = true;
           btn.textContent = '充值中…';
+
+          // Loading 态：常驻展示，结果出来后再被替换。
+          showStatus('正在处理充值请求，请稍候...', 'info', { persistent: true });
 
           // 记录充值前的授予总量（固定额度卡才有意义）
           const beforeTotal = lastGrantedTotal;
@@ -802,18 +883,19 @@
             }
 
             if (!payload || typeof payload !== 'object') {
-              showToast('充值请求异常（HTTP ' + res.status + '）', 'error');
+              showStatus('充值请求异常（HTTP ' + res.status + '）', 'error');
               return;
             }
 
             if (payload.success !== true) {
-              showToast(payload.message || '充值失败，请稍后重试', 'error');
+              showStatus(payload.message || '充值失败，请稍后重试', 'error');
               return;
             }
 
             // —— 成功路径 —— //
             $('coupon').value = '';
-            // 自动刷新一次用量（query 内部会更新 lastGrantedTotal 与 UI）
+            // 自动刷新一次用量，但避免 query 内部的 clearStatus 抹掉我们即将渲染的成功消息。
+            suppressNextClearStatus = true;
             await query();
             const afterTotal = lastGrantedTotal;
 
@@ -825,13 +907,16 @@
             ) {
               const diff = afterTotal - beforeTotal;
               const amount = diff > 0 ? diff.toFixed(2) : '0.00';
-              showToast('充值成功！已充值 $' + amount + ' 。', 'success');
+              showStatus('充值成功！已为您增加 $' + amount + ' 额度', 'success');
             } else {
               // 动态限额月卡或连通性模式下拿不到授予总量，降级提示
-              showToast(payload.message || '充值成功！额度已更新。', 'success');
+              showStatus(payload.message || '充值成功！额度已更新', 'success');
             }
           } catch (e) {
-            showToast('网络错误：' + (e && e.message ? e.message : String(e)), 'error');
+            showStatus(
+              '网络错误：' + (e && e.message ? e.message : String(e)),
+              'error'
+            );
           } finally {
             btn.textContent = prev;
             // 根据最新 queriedToken 决定是否保持可用（query 失败时已被 resetRedeemState 关闭）
