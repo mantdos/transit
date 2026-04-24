@@ -456,18 +456,18 @@ claude --version
 
 ---
 
-## **步骤 2：配置环境变量**
+## **步骤 2：Claude Code 配置**
+
+### **第一推荐：CC Switch（强烈推荐）**
+
+🚀 强烈推荐（灵活、简单）：使用 CC Switch 一键切换配置（[点击前往一键接入助手](/setting.html)）
+
+### **第二推荐：永久配置（推荐）**
 
 您需要配置两个环境变量：
 
 - `ANTHROPIC_AUTH_TOKEN`：您的授权令牌（格式：`sk_...`）
 - `ANTHROPIC_BASE_URL`：API 服务地址（本站提供的连接点 URL）
-
-### **第一推荐：CC Switch（强烈推荐）**
-
-**强烈推荐：**使用 CC Switch 一键切换配置（[点击前往一键接入助手](/setting.html)）
-
-### **第二推荐：永久配置（推荐）**
 
 #### **方法1：通过系统环境变量设置（图形界面）**
 
@@ -523,6 +523,13 @@ $env:ANTHROPIC_AUTH_TOKEN="您的Token"
 cd your-project-folder
 claude 你是什么大模型
 ```
+
+⚠️ 建议根据任务的繁琐程度灵活选择模型，日常编码/轻量任务建议切换至 Sonnet 或 Haiku。
+如果使用环境变量方式配置，可以输入`/model`命令切换模型,如：
+``` bash
+/model 模型名称,如（claude-sonnet-4-6）
+```
+如果使用CC Switch方式配置，可以选择模型后生成配置，一键切换。
 
 当然, 你也可以在**VS Code**中安装插件`Claude Code for VS Code`来获得更好的使用体验。
 
@@ -617,19 +624,18 @@ claude --version
 
 ---
 
-## **步骤 2：配置环境变量**
-
-您需要配置两个环境变量：
-
-ANTHROPIC_AUTH_TOKEN：您的授权令牌（格式：sk_...）
-
-ANTHROPIC_BASE_URL：API 服务地址（本站提供的连接点 URL）
+## **步骤 2：Claude Code 配置**
 
 ### **第一推荐：CC Switch（强烈推荐）**
 
-**强烈推荐：**使用 CC Switch 一键切换配置（[点击前往一键接入助手](/setting.html)）
+🚀 强烈推荐（灵活、简单）：使用 CC Switch 一键切换配置（[点击前往一键接入助手](/setting.html)）
 
 ### **第二推荐：永久配置（推荐）**
+
+您需要配置两个环境变量：
+
+- `ANTHROPIC_AUTH_TOKEN`：您的授权令牌（格式：`sk_...`）
+- `ANTHROPIC_BASE_URL`：API 服务地址（本站提供的连接点 URL）
 
 #### **检查当前使用的 Shell**
 
@@ -696,6 +702,14 @@ export ANTHROPIC_AUTH_TOKEN="您的Token"
 cd your-project-folder
 claude 你是什么大模型
 ```
+
+⚠️ 建议根据任务的繁琐程度灵活选择模型，日常编码/轻量任务建议切换至 Sonnet 或 Haiku。
+如果使用环境变量方式配置，可以输入`/model`命令切换模型,如：
+``` bash
+/model 模型名称,如（claude-sonnet-4-6）
+```
+如果使用CC Switch方式配置，可以选择模型后生成配置，一键切换。
+
 当然, 你也可以在**VS Code**中安装插件`Claude Code for VS Code`来获得更好的使用体验。
 
 详细的图文教程可查看：[在 VS Code 中使用 Claude Code 图文指南](https://ucngkdwd50uz.feishu.cn/wiki/BmcvwIT4bimiErk8O9McCQUqnFb)

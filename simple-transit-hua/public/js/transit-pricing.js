@@ -47,6 +47,7 @@
 
   /**
    * 与 public/css/transit-model-tags.css 中 .transit-model-tag--* 一致（深色半透明 + 高亮边/字）。
+   * 未命中特殊规则时走 --default：朱红系，醒目且与「高可用」「倍率」色区分。
    */
   function badgeClassForText(tagText) {
     var s = String(tagText || "").trim();
@@ -56,7 +57,7 @@
     if (/x$/i.test(s)) {
       return "transit-model-tag transit-model-tag--rate";
     }
-    return "transit-model-tag transit-model-tag--neutral";
+    return "transit-model-tag transit-model-tag--default";
   }
 
   global.transitTagBadgeClassForText = badgeClassForText;
