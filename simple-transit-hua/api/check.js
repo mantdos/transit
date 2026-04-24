@@ -161,16 +161,21 @@ export default async function handler(req, res) {
         }
       }
 
+      const dataPayload = {
+        hard_limit_usd,
+        access_until,
+        total_usage_raw: total_usage_raw !== null ? round2(total_usage_raw) : null,
+        used_usd,
+        remaining_usd,
+        usage_percent,
+      };
+      if (sub.group !== undefined && sub.group !== null) {
+        dataPayload.group = sub.group;
+      }
+
       return json(res, 200, {
         ok: true,
-        data: {
-          hard_limit_usd,
-          access_until,
-          total_usage_raw: total_usage_raw !== null ? round2(total_usage_raw) : null,
-          used_usd,
-          remaining_usd,
-          usage_percent,
-        },
+        data: dataPayload,
       });
     }
 

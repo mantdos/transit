@@ -81,7 +81,7 @@
     "</div>" +
     '<div class="site-notice-modal-body text-sm leading-relaxed text-slate-200">' +
     '<p class="mb-4 rounded-lg border border-cyan-500/25 bg-cyan-500/10 px-3 py-2.5">' +
-    "🎉 <span class=\"site-notice-highlight\">gpt-5.5</span> 与 <span class=\"site-notice-highlight\">claude-opus-4-7-max</span> 现已上线，欢迎根据需求酌情尝试！" +
+    "🎉 <span class=\"site-notice-highlight\">gpt-5.5</span> 与 <span class=\"site-notice-highlight\">claude-opus-4-7-max</span> 现已上线，欢迎根据需要酌情尝试！" +
     "</p>" +
     "<p class=\"mb-0\">" +
     "🚫 <span class=\"site-notice-warn\">温馨提示</span>：<span class=\"site-notice-highlight\">claude-opus</span> 是 claude 系列最顶级的模型，专用于极强逻辑推理任务。请根据任务的繁琐程度灵活选择模型，日常编码/轻量任务建议切换至 " +

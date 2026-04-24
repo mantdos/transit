@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI 集创空间</title>
+    <title>令牌余额查询与充值 - AI 集创空间</title>
     <link rel="stylesheet" href="/css/transit-model-tags.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -60,6 +60,62 @@
         color: #ffffff;
         background: rgba(234, 76, 137, 0.14);
         border-color: rgba(234, 76, 137, 0.38);
+      }
+
+      /* 充值区域禁用态：整体降亮、禁止交互，但保留视觉层次。 */
+      .redeem-section {
+        transition: opacity 0.25s ease, filter 0.25s ease;
+      }
+      .redeem-section.is-locked {
+        opacity: 0.55;
+        filter: saturate(0.6);
+      }
+      .redeem-section.is-locked input,
+      .redeem-section.is-locked button {
+        pointer-events: none;
+      }
+
+      /* 轻量 Toast：自顶部渐入/渐出，玻璃拟态配色与全站一致。 */
+      .toast-container {
+        position: fixed;
+        top: 1.25rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        pointer-events: none;
+      }
+      .toast {
+        pointer-events: auto;
+        min-width: 260px;
+        max-width: 420px;
+        padding: 0.75rem 1rem;
+        border-radius: 0.875rem;
+        border: 1px solid rgba(148, 163, 184, 0.35);
+        background: rgba(2, 6, 23, 0.88);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        color: #f1f5f9;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.25s ease, transform 0.25s ease;
+      }
+      .toast.is-open {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .toast-success {
+        border-color: rgba(16, 185, 129, 0.55);
+        box-shadow: 0 20px 40px -20px rgba(16, 185, 129, 0.35);
+      }
+      .toast-error {
+        border-color: rgba(239, 68, 68, 0.55);
+        box-shadow: 0 20px 40px -20px rgba(239, 68, 68, 0.35);
       }
     </style>
   </head>
@@ -134,7 +190,7 @@
                   <path d="M16 19V8" />
                   <path d="M20 19v-3" />
                 </svg>
-                余额查询
+                余额查询/充值
               </a>
             </nav>
           </div>
@@ -145,10 +201,10 @@
     <div class="mx-auto max-w-4xl px-4 py-10 sm:px-6">
       <header class="mb-10 text-center">
         <h1 class="text-5xl font-extrabold tracking-tight md:text-6xl">
-          <span class="gradient-text">令牌用量查询</span>
+          <span class="gradient-text">令牌余额查询与充值</span>
         </h1>
         <p class="mt-4 text-base text-slate-300 sm:text-lg">
-          实时查看您的 Token 使用情况和剩余额度
+          实时查看 Token 使用情况，使用兑换码为您的令牌充值额度
         </p>
       </header>
 
@@ -222,6 +278,45 @@
         <p id="hint" class="mt-2 text-xs text-slate-500">Token 仅用于查询，不会持久化存储。</p>
       </section>
 
+      <section id="redeem-section" class="redeem-section is-locked mt-6 rounded-2xl border border-slate-700/80 bg-slate-800/50 p-6 shadow-xl backdrop-blur sm:p-8">
+        <div class="mb-2 flex flex-wrap items-center justify-between gap-2">
+          <label for="coupon" class="block text-sm font-medium text-slate-300">兑换码充值</label>
+          <span id="redeem-hint" class="text-xs text-slate-500">请先在上方查询成功后再使用充值功能</span>
+        </div>
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-stretch">
+          <div class="relative flex-1">
+            <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 12 20 22 4 22 4 12"></polyline>
+                <rect x="2" y="7" width="20" height="5"></rect>
+                <line x1="12" y1="22" x2="12" y2="7"></line>
+                <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+                <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+              </svg>
+            </span>
+            <input
+              id="coupon"
+              type="text"
+              autocomplete="off"
+              placeholder="例如 claude-50-XXXXXXXX，系统将自动识别末段兑换码"
+              disabled
+              class="w-full rounded-xl border border-slate-600 bg-slate-900/80 py-3 pl-11 pr-4 text-sm text-slate-100 placeholder:text-slate-500 focus:border-pink-500 focus:outline-none focus:ring-2 focus:ring-pink-500/40 disabled:cursor-not-allowed disabled:opacity-70"
+            />
+          </div>
+          <button
+            id="btn-redeem"
+            type="button"
+            disabled
+            class="inline-flex shrink-0 items-center justify-center rounded-xl bg-pink-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-pink-900/30 transition hover:bg-pink-500 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            充值
+          </button>
+        </div>
+        <p class="mt-2 text-xs text-slate-500">
+          支持粘贴形如 <code class="rounded bg-slate-900/80 px-1.5 py-0.5 font-mono text-[11px] text-slate-300">claude-50-xxxxxxxx</code> 的完整字符串，后端会自动提取末段作为真实兑换码。
+        </p>
+      </section>
+
       <div id="error-box" class="mt-6 hidden rounded-xl border border-red-500/40 bg-red-950/40 px-4 py-3 text-sm text-red-200"></div>
 
       <div id="connectivity-panel" class="mt-8 hidden rounded-2xl border border-emerald-500/35 bg-emerald-950/25 px-6 py-6 text-sm text-emerald-100">
@@ -229,14 +324,21 @@
         <pre id="connectivity-detail" class="mt-3 max-h-40 overflow-auto rounded-lg bg-slate-950/60 p-3 font-mono text-xs text-slate-300"></pre>
       </div>
 
-      <div id="dashboard" class="mt-8 hidden space-y-6">
+        <div id="dashboard" class="mt-8 hidden space-y-6">
         <div class="rounded-2xl border border-slate-700/80 bg-gradient-to-br from-slate-800/90 to-slate-900/90 p-6 shadow-lg">
           <div class="flex flex-wrap items-start justify-between gap-4">
-            <div>
+            <div class="min-w-0 basis-0 flex-1">
               <p class="text-xs uppercase tracking-wider text-slate-500">Token</p>
               <p id="disp-name" class="mt-1 font-mono text-lg font-medium text-white">—</p>
             </div>
-            <div class="text-right">
+            <div
+              id="api-type-wrap"
+              class="hidden shrink-0 flex-col items-center text-center sm:px-2"
+            >
+              <p class="text-xs uppercase tracking-wider text-slate-500">API类型</p>
+              <p id="disp-api-type" class="mt-1 text-lg font-medium text-cyan-200">—</p>
+            </div>
+            <div class="basis-0 flex-1 text-right">
               <p class="text-xs uppercase tracking-wider text-slate-500">有效期至</p>
               <p id="disp-expire" class="mt-1 text-sm text-violet-300">—</p>
             </div>
@@ -419,6 +521,34 @@
           return 'bg-emerald-500';
         }
 
+        /**
+         * 根据订阅 `group` 解析展示的 API 类型；无法识别时返回 null（不展示区块）。
+         * @returns {'claude'|'gemini'|'codex'|null}
+         */
+        function apiTypeFromGroup(group) {
+          if (group === undefined || group === null) return null;
+          const g = String(group).toLowerCase();
+          if (g.includes('claude')) return 'Claude';
+          if (g.includes('gemini')) return 'Gemini';
+          if (g.includes('chatgpt')) return 'Codex';
+          return null;
+        }
+
+        function setApiTypeVisibility(apiType) {
+          const wrap = $('api-type-wrap');
+          const val = $('disp-api-type');
+          if (!wrap || !val) return;
+          if (apiType) {
+            val.textContent = apiType;
+            wrap.classList.remove('hidden');
+            wrap.classList.add('flex');
+          } else {
+            val.textContent = '—';
+            wrap.classList.add('hidden');
+            wrap.classList.remove('flex');
+          }
+        }
+
         function showError(msg) {
           const box = $('error-box');
           box.textContent = msg || '未知错误';
@@ -429,12 +559,86 @@
           $('error-box').classList.add('hidden');
         }
 
+        /**
+         * 轻量 Toast：顶部居中淡入淡出，自动回收。
+         * @param {string} message
+         * @param {'success'|'error'|'info'} [type]
+         * @param {number} [durationMs]
+         */
+        function showToast(message, type, durationMs) {
+          let container = document.getElementById('toast-container');
+          if (!container) {
+            container = document.createElement('div');
+            container.id = 'toast-container';
+            container.className = 'toast-container';
+            document.body.appendChild(container);
+          }
+          const el = document.createElement('div');
+          const cls =
+            type === 'success' ? 'toast-success' : type === 'error' ? 'toast-error' : '';
+          el.className = 'toast ' + cls;
+          el.textContent = message == null ? '' : String(message);
+          container.appendChild(el);
+          requestAnimationFrame(function () {
+            el.classList.add('is-open');
+          });
+          const keep = typeof durationMs === 'number' && durationMs > 0 ? durationMs : 3500;
+          window.setTimeout(function () {
+            el.classList.remove('is-open');
+            window.setTimeout(function () {
+              if (el.parentNode) el.parentNode.removeChild(el);
+            }, 280);
+          }, keep);
+        }
+
+        // —— 充值状态联动 —— //
+        /** 最近一次「查询成功」对应的 Token 原文（用于与输入框做一致性比对）。 */
+        let queriedToken = null;
+        /** 最近一次查询到的「授予总量 (hard_limit_usd)」；仅在固定额度卡上有意义，否则为 null。 */
+        let lastGrantedTotal = null;
+
+        function pickGrantedTotal(d) {
+          if (!d) return null;
+          const n = Number(d.hard_limit_usd);
+          if (!Number.isFinite(n)) return null;
+          // 动态限额月卡（占位巨额 limit）不参与差值计算
+          if (n > 999999) return null;
+          return n;
+        }
+
+        function setRedeemEnabled(enabled) {
+          const section = $('redeem-section');
+          const input = $('coupon');
+          const btn = $('btn-redeem');
+          const hint = $('redeem-hint');
+          if (!section || !input || !btn) return;
+          if (enabled) {
+            section.classList.remove('is-locked');
+            input.disabled = false;
+            btn.disabled = false;
+            if (hint) hint.textContent = '输入兑换码后点击充值，支持完整前缀格式';
+          } else {
+            section.classList.add('is-locked');
+            input.disabled = true;
+            btn.disabled = true;
+            if (hint) hint.textContent = '请先在上方查询成功后再使用充值功能';
+          }
+        }
+
+        function resetRedeemState() {
+          queriedToken = null;
+          lastGrantedTotal = null;
+          setRedeemEnabled(false);
+        }
+
         async function query() {
           const token = ($('token').value || '').trim();
           hideError();
           $('dashboard').classList.add('hidden');
           const cp = $('connectivity-panel');
           if (cp) cp.classList.add('hidden');
+          // 任意新的查询先锁定充值区域，仅在确认成功后再解锁。
+          resetRedeemState();
 
           if (!token.startsWith('sk-')) {
             showError('请输入以 sk- 开头的有效 Token。');
@@ -481,12 +685,17 @@
               if (detEl)
                 detEl.textContent = payload.data ? JSON.stringify(payload.data, null, 2) : '';
               if (cp) cp.classList.remove('hidden');
+              // 连通性模式下仍视为「Token 有效」，解锁充值；但无法取到授予总量。
+              queriedToken = token;
+              lastGrantedTotal = null;
+              setRedeemEnabled(true);
               return;
             }
 
             const d = payload.data || {};
             $('disp-name').textContent = maskToken(token);
             $('disp-expire').textContent = labelForValidityCard(d.access_until);
+            setApiTypeVisibility(apiTypeFromGroup(d.group));
 
             const dynamic = isDynamicDailyQuota(d);
             const elDyn = $('usage-mode-dynamic');
@@ -538,11 +747,95 @@
             }
 
             $('dashboard').classList.remove('hidden');
+
+            // 数据模式查询成功：记录当前 Token 与「授予总量」，解锁充值区域。
+            queriedToken = token;
+            lastGrantedTotal = pickGrantedTotal(d);
+            setRedeemEnabled(true);
           } catch (e) {
             showError('网络错误：' + (e && e.message ? e.message : String(e)));
           } finally {
             btn.disabled = false;
             btn.textContent = prevText;
+          }
+        }
+
+        /**
+         * 兑换码充值：
+         *  1) 记录充值前的「授予总量」；
+         *  2) 调用 /api/redeem；
+         *  3) 失败 -> Toast 错误提示；
+         *  4) 成功 -> 自动刷新查询、计算授予总量差值，Toast 展示 "已充值 $X.XX"。
+         */
+        async function redeem() {
+          if (!queriedToken) {
+            showToast('请先在上方查询 API Key 成功后再进行充值', 'error');
+            return;
+          }
+          const rawCoupon = ($('coupon').value || '').trim();
+          if (!rawCoupon) {
+            showToast('请输入兑换码', 'error');
+            return;
+          }
+
+          const btn = $('btn-redeem');
+          const input = $('coupon');
+          const prev = btn.textContent;
+          btn.disabled = true;
+          input.disabled = true;
+          btn.textContent = '充值中…';
+
+          // 记录充值前的授予总量（固定额度卡才有意义）
+          const beforeTotal = lastGrantedTotal;
+
+          try {
+            const res = await fetch('/api/redeem', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ apiKey: queriedToken, couponCode: rawCoupon }),
+            });
+            let payload = null;
+            try {
+              payload = await res.json();
+            } catch {
+              payload = null;
+            }
+
+            if (!payload || typeof payload !== 'object') {
+              showToast('充值请求异常（HTTP ' + res.status + '）', 'error');
+              return;
+            }
+
+            if (payload.success !== true) {
+              showToast(payload.message || '充值失败，请稍后重试', 'error');
+              return;
+            }
+
+            // —— 成功路径 —— //
+            $('coupon').value = '';
+            // 自动刷新一次用量（query 内部会更新 lastGrantedTotal 与 UI）
+            await query();
+            const afterTotal = lastGrantedTotal;
+
+            if (
+              typeof beforeTotal === 'number' &&
+              Number.isFinite(beforeTotal) &&
+              typeof afterTotal === 'number' &&
+              Number.isFinite(afterTotal)
+            ) {
+              const diff = afterTotal - beforeTotal;
+              const amount = diff > 0 ? diff.toFixed(2) : '0.00';
+              showToast('充值成功！已充值 $' + amount + ' 。', 'success');
+            } else {
+              // 动态限额月卡或连通性模式下拿不到授予总量，降级提示
+              showToast(payload.message || '充值成功！额度已更新。', 'success');
+            }
+          } catch (e) {
+            showToast('网络错误：' + (e && e.message ? e.message : String(e)), 'error');
+          } finally {
+            btn.textContent = prev;
+            // 根据最新 queriedToken 决定是否保持可用（query 失败时已被 resetRedeemState 关闭）
+            setRedeemEnabled(!!queriedToken);
           }
         }
 
@@ -569,6 +862,23 @@
         $('token').addEventListener('keydown', function (e) {
           if (e.key === 'Enter') query();
         });
+
+        // Token 改变 / 清空 / 粘贴 -> 充值区域立即恢复禁用，避免使用过期的 API Key 发起充值。
+        $('token').addEventListener('input', function () {
+          const v = ($('token').value || '').trim();
+          if (queriedToken !== null && v !== queriedToken) {
+            resetRedeemState();
+          }
+        });
+
+        const btnRedeem = $('btn-redeem');
+        if (btnRedeem) btnRedeem.addEventListener('click', redeem);
+        const couponInput = $('coupon');
+        if (couponInput) {
+          couponInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' && !couponInput.disabled) redeem();
+          });
+        }
       })();
     </script>
     <script src="/js/global-notice.js"></script>

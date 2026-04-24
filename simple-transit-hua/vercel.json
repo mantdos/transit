@@ -41,6 +41,9 @@
     },
     "api/pricing.js": {
       "maxDuration": 60
+    },
+    "api/redeem.js": {
+      "maxDuration": 60
     }
   }
 }
