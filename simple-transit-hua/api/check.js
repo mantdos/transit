@@ -64,6 +64,13 @@ async function fetchJson(url, token) {
   return { ok: r.ok, status: r.status, data };
 }
 
+/** 上游在额度用尽时仍可能返回 JSON body，其中 error.message 含「用尽」。 */
+function responseIndicatesQuotaExhausted(fetchResult) {
+  const d = fetchResult && fetchResult.data;
+  const msg = d && d.error && d.error.message;
+  return typeof msg === 'string' && msg.includes('用尽');
+}
+
 async function fetchConnectivity(token) {
   const r = await fetch(MODELS_URL, {
     method: 'GET',
@@ -115,6 +122,18 @@ export default async function handler(req, res) {
       fetchJson(SUBSCRIPTION_URL, token),
       fetchJson(USAGE_URL, token),
     ]);
+
+    if (responseIndicatesQuotaExhausted(subRes) || responseIndicatesQuotaExhausted(usageRes)) {
+      return json(res, 200, {
+        ok: true,
+        mode: 'exhausted',
+        message: '令牌额度已用尽',
+        data: {
+          remaining_usd: 0,
+          usage_percent: 100,
+        },
+      });
+    }
 
     if (subRes.ok && usageRes.ok) {
       const sub = subRes.data || {};

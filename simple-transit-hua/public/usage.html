@@ -349,6 +349,20 @@
           </div>
         </div>
 
+        <!-- 额度用尽：上游账单接口返回 error.message 含「用尽」时由后端 mode=exhausted 驱动 -->
+        <div id="usage-mode-exhausted" class="hidden space-y-4">
+          <div
+            class="rounded-2xl border border-rose-500/40 bg-gradient-to-br from-rose-950/45 via-slate-900/80 to-slate-900/90 p-8 text-center shadow-lg ring-1 ring-rose-500/20"
+          >
+            <p id="exhausted-title" class="text-xl font-bold tracking-tight text-rose-100 sm:text-2xl">
+              令牌额度已用尽
+            </p>
+            <p class="mt-3 text-sm leading-relaxed text-slate-400">
+              请使用页面上方「兑换码充值」为您的令牌充值后再次查询。
+            </p>
+          </div>
+        </div>
+
         <!-- 动态限额月卡（上游占位巨额 limit）：仅展示累计已用 -->
         <div id="usage-mode-dynamic" class="hidden space-y-4">
           <div
@@ -766,6 +780,33 @@
               return;
             }
 
+            const msgText = payload.message != null ? String(payload.message) : '';
+            const isExhausted =
+              payload.mode === 'exhausted' ||
+              (msgText.length > 0 && msgText.indexOf('用尽') !== -1);
+
+            if (isExhausted) {
+              const titleEl = $('exhausted-title');
+              if (titleEl) titleEl.textContent = '令牌额度已用尽';
+              $('disp-name').textContent = maskToken(token);
+              $('disp-expire').textContent = '—';
+              setApiTypeVisibility(null);
+
+              const elDyn = $('usage-mode-dynamic');
+              const elFixed = $('usage-mode-fixed');
+              const elExh = $('usage-mode-exhausted');
+              if (elDyn) elDyn.classList.add('hidden');
+              if (elFixed) elFixed.classList.add('hidden');
+              if (elExh) elExh.classList.remove('hidden');
+
+              $('dashboard').classList.remove('hidden');
+
+              queriedToken = token;
+              lastGrantedTotal = null;
+              setRedeemEnabled(true);
+              return;
+            }
+
             const d = payload.data || {};
             $('disp-name').textContent = maskToken(token);
             $('disp-expire').textContent = labelForValidityCard(d.access_until);
@@ -774,6 +815,8 @@
             const dynamic = isDynamicDailyQuota(d);
             const elDyn = $('usage-mode-dynamic');
             const elFixed = $('usage-mode-fixed');
+            const elExh = $('usage-mode-exhausted');
+            if (elExh) elExh.classList.add('hidden');
             if (elDyn) elDyn.classList.toggle('hidden', !dynamic);
             if (elFixed) elFixed.classList.toggle('hidden', dynamic);
 
