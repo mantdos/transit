@@ -65,6 +65,8 @@
     ".site-notice-warn{font-weight:700;color:#fecaca;background:rgba(239,68,68,.18);padding:.1em .35em;border-radius:.35rem}" +
     ".site-notice-subtip{font-size:.9em;color:rgb(148 163 184);line-height:1.55;margin:0 0 1rem;text-align:justify}" +
     ".site-notice-subtip strong{color:rgb(100 116 139);font-weight:600}" +
+    ".site-notice-subtip-red{font-size:.9em;color:#fecaca;line-height:1.55;margin:0 0 1rem;text-align:justify}" +
+    ".site-notice-subtip-red strong{color:#fda4af;font-weight:600}" +
     ".site-notice-link{display:inline-flex;align-items:center;gap:.35rem;margin-top:.5rem;font-weight:600;color:#a5b4fc;text-decoration:underline;text-underline-offset:3px;transition:color .15s ease}" +
     ".site-notice-link:hover{color:#c4b5fd}" +
     ".site-notice-btn-primary{display:inline-flex;align-items:center;justify-content:center;width:100%;padding:.8rem 1.25rem;border-radius:.75rem;font-weight:700;font-size:1rem;color:#fff;border:none;cursor:pointer;background:linear-gradient(90deg,#00a6ff 0%,#c369ff 52.4%,#ff4590 100%);box-shadow:0 4px 14px rgba(234,76,137,.35);transition:opacity .15s ease,transform .15s ease}" +
@@ -87,7 +89,7 @@
     "🚫 <span class=\"site-notice-warn\">温馨提示</span>：<span class=\"site-notice-highlight\">claude-opus</span> 是 claude 系列最顶级的模型，专用于极强逻辑推理任务。请根据任务的繁琐程度灵活选择模型，日常编码/轻量任务建议切换至 " +
     '<span class="site-notice-highlight">Sonnet</span> 或 <span class="site-notice-highlight">Haiku</span>，<span class=\"site-notice-warn\">拒绝大炮打蚊子</span>。（也不要用 Opus 模型来阅读文件哦！）' +
     "</p>" +
-    '<p class="site-notice-subtip">💡 操作提示： Claude Code 下，可直接输入 <strong>/model</strong> 快捷切换模型。</p>' +
+    '<p class="site-notice-subtip-red">💡 操作提示：所有工具（codex、claude code、龙虾等）均支持通过配置文件来指定模型。特别的，Claude Code 下可通过 <strong>/model</strong> 指令快捷切换模型。如：<strong>/model claude-sonnet-4-6</strong></p>' +
     '<p class="mb-4 rounded-lg border border-emerald-500/20 bg-emerald-500/5 px-3 py-2.5 text-slate-200">' +
     '🛡️ 本站为<strong class="text-emerald-200">纯净中转</strong>，缓存创建均同步官方，模型皆为<strong class="text-emerald-200">正版</strong>，未做任何更改！除特殊标注外，计费均按官方 Token <span class="site-notice-highlight">1:1</span> 扣除。' +
     "</p>" +
